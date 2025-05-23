@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { cn } from '@/lib/utils'
 
 interface SlideData {
   id: number
@@ -86,7 +85,7 @@ const SliderComponent = () => {
         >
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center">
-              <h2 className="mb-4 text-4xl font-bold text-copper-600 dark:text-copper-400 md:text-6xl">
+              <h2 className="mb-4 text-4xl font-bold text-amber-600 dark:text-amber-400 md:text-6xl">
                 {slides[currentSlide].title}
               </h2>
               <p className="mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
@@ -112,7 +111,7 @@ const SliderComponent = () => {
       <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
         <button
           onClick={prevSlide}
-          className="rounded-full bg-copper-500 p-3 text-white shadow-lg transition-all hover:bg-copper-600 dark:bg-copper-600 dark:hover:bg-copper-700"
+          className="rounded-full bg-amber-500 p-3 text-white shadow-lg transition-all hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +130,7 @@ const SliderComponent = () => {
         </button>
         <button
           onClick={nextSlide}
-          className="rounded-full bg-copper-500 p-3 text-white shadow-lg transition-all hover:bg-copper-600 dark:bg-copper-600 dark:hover:bg-copper-700"
+          className="rounded-full bg-amber-500 p-3 text-white shadow-lg transition-all hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -159,12 +158,11 @@ const SliderComponent = () => {
               setDirection(index > currentSlide ? 1 : -1)
               setCurrentSlide(index)
             }}
-            className={cn(
-              "h-2 w-2 rounded-full transition-all",
+            className={`h-2 rounded-full transition-all ${
               currentSlide === index
-                ? "bg-copper-500 w-8"
-                : "bg-gray-400 hover:bg-copper-400"
-            )}
+                ? "w-8 bg-amber-500"
+                : "w-2 bg-gray-400 hover:bg-amber-400"
+            }`}
           />
         ))}
       </div>
