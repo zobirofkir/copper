@@ -1,6 +1,7 @@
 import AboutComponent from "@/components/AboutComponent"
 import ProjectComponent from "@/components/ProjectComponent"
 import SliderComponent from "@/components/SliderComponent"
+import ContactComponent from "@/components/ContactComponent"
 import { Head } from "@inertiajs/react"
 
 const WelcomePage = () => {
@@ -27,6 +28,13 @@ const WelcomePage = () => {
          */
       }
       <ProjectComponent />
+
+      {
+        /**
+         * Contact Component
+         */
+      }
+      <ContactComponent/>
     </div>
   )
 }
