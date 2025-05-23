@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link } from '@inertiajs/react';
@@ -31,7 +30,7 @@ const HeaderComponent = () => {
             className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent"
           >
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-3xl font-extrabold tracking-tight">Copper</span>
+              <span className="text-3xl font-extrabold tracking-tight">Cop</span>
             </Link>
           </motion.div>
 
