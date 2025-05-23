@@ -34,7 +34,7 @@ const HeaderComponent = () => {
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* Navigation Bureau */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-8">
             {menuItems.map((item) => (
               <motion.div key={item.title} variants={linkVariants} whileHover="hover">
@@ -51,7 +51,7 @@ const HeaderComponent = () => {
               </motion.div>
             ))}
             
-            {/* Theme Toggle Button */}
+            {/* Bouton Mode Sombre */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -59,14 +59,14 @@ const HeaderComponent = () => {
               className={`p-2 rounded-full ${
                 isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
               }`}
-              aria-label="Toggle dark mode"
+              aria-label="Basculer le mode sombre"
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
           </div>
 
           <div className="flex items-center md:hidden">
-            {/* Mobile Theme Toggle */}
+            {/* Basculer Mode Sombre Mobile */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -74,12 +74,12 @@ const HeaderComponent = () => {
               className={`p-2 mr-2 rounded-full ${
                 isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
               }`}
-              aria-label="Toggle dark mode"
+              aria-label="Basculer le mode sombre"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </motion.button>
             
-            {/* Mobile Menu Button */}
+            {/* Bouton Menu Mobile */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -87,14 +87,14 @@ const HeaderComponent = () => {
               className={`p-2 rounded-md ${
                 isDarkMode ? 'text-white hover:bg-gray-800' : 'text-gray-900 hover:bg-gray-100'
               }`}
-              aria-label="Open menu"
+              aria-label="Ouvrir le menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Navigation Mobile */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
