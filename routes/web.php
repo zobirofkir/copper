@@ -8,5 +8,5 @@ Route::get('/', function () {
 
 
 Route::get('/projects', function() {
-    return inertia('ProjectComponent');
+    return inertia('ProjectPage');
 })->name('project.pahe');

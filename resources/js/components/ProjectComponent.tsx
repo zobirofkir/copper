@@ -15,7 +15,9 @@ const ProjectComponent = () => {
     setIsLoaded(true)
   }, [isInView, controls])
 
-  // Enhanced animation variants
+  /**
+   * Enhanced animation variants
+   */
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -60,7 +62,9 @@ const ProjectComponent = () => {
     }
   }
 
-  // Sample project data - replace with your actual data
+  /**
+   * Sample project data - replace with your actual data
+   */
   const projects = [
     {
       id: 1,
@@ -112,25 +116,27 @@ const ProjectComponent = () => {
     }
   ]
 
-  // Filter categories for the filter buttons
+  /**
+   * Filter categories for the filter buttons
+   */
   const categories = Array.from(new Set(projects.map(project => project.category)))
 
   const [activeFilter, setActiveFilter] = useState('Tous')
   const [filteredProjects, setFilteredProjects] = useState(projects)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Filter projects based on selected category
+  /**
+   * Filter projects based on selected category
+   */
   const handleFilterClick = (category: string) => {
     setActiveFilter(category)
     
-    // Animate out current projects
     controls.start("hidden").then(() => {
       if (category === 'Tous') {
         setFilteredProjects(projects)
       } else {
         setFilteredProjects(projects.filter(project => project.category === category))
       }
-      // Animate in new filtered projects
       controls.start("visible")
     })
   }
@@ -146,7 +152,9 @@ const ProjectComponent = () => {
     document.body.style.overflow = 'auto'
   }
 
-  // Responsive grid layout based on screen size
+  /**
+   * Responsive grid layout based on screen size
+   */
   const getGridClass = () => {
     return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
   }
