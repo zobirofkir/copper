@@ -44,7 +44,9 @@ createInertiaApp({
     },
 });
 
-// Initialize theme from localStorage on page load
+/**
+ * Initialize theme from localStorage on page load
+ */
 function initializeTheme() {
     const savedTheme = localStorage.getItem('theme');
     
@@ -53,7 +55,9 @@ function initializeTheme() {
     } else if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
     } else {
-        // If no theme is saved, check system preference
+        /**
+         * If no theme is saved, check system preference
+         */
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (prefersDark) {
             document.documentElement.classList.add('dark');
@@ -65,5 +69,7 @@ function initializeTheme() {
     }
 }
 
-// Initialize theme as early as possible to prevent flash
+/**
+ * Initialize theme as early as possible to prevent flash
+ */
 initializeTheme();
