@@ -1,99 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link } from '@inertiajs/react';
+import { useHeaderComponent } from '../hooks/useHeaderComponent';
 
 const HeaderComponent = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  /**
-   * Load theme preference from localStorage on mount
-   */
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-    } else {
-      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      setIsDarkMode(darkModeQuery.matches);
-    }
-  }, []);
-
-  /**
-   * Toggle dark mode in document and save to localStorage
-   */
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
-
-  /**
-   * Handle scroll effect
-   */
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const menuItems = [
-    { title: 'Home', href: '/' },
-    { title: 'Projects', href: '/projects' },
-    { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/contact' },
-  ];
-
-  const headerVariants = {
-    hidden: { y: -100 },
-    visible: { 
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
-  const mobileMenuVariants = {
-    closed: {
-      opacity: 0,
-      x: '100%',
-      transition: {
-        type: 'tween',
-        duration: 0.3
-      }
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: 'tween',
-        duration: 0.3
-      }
-    }
-  };
-
-  const linkVariants = {
-    hover: {
-      scale: 1.05,
-      color: '#f59e0b',
-      transition: {
-        type: 'spring',
-        stiffness: 300
-      }
-    }
-  };
+  const [state, actions] = useHeaderComponent();
+  const { isOpen, isDarkMode, scrolled, menuItems, headerVariants, mobileMenuVariants, linkVariants } = state;
+  const { setIsOpen, toggleDarkMode } = actions;
 
   return (
     <motion.header
@@ -142,7 +56,7 @@ const HeaderComponent = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setIsDarkMode(!isDarkMode)}
+              onClick={toggleDarkMode}
               className={`p-2 rounded-full ${
                 isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
               }`}
@@ -157,7 +71,7 @@ const HeaderComponent = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setIsDarkMode(!isDarkMode)}
+              onClick={toggleDarkMode}
               className={`p-2 mr-2 rounded-full ${
                 isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
               }`}
