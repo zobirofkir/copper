@@ -6,31 +6,37 @@ import { useEffect, useState } from 'react'
 const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
   const [isLoaded, setIsLoaded] = useState(false)
+  const [imageOpacity, setImageOpacity] = useState(0.7) // Control image opacity
   
   /**
-   * Particle animation effect
+   * Particle animation effect - enhanced for premium look
    */
-  const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, speed: number}>>([])
+  const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, speed: number, color: string}>>([])
   
   useEffect(() => {
     setIsLoaded(true)
     
     /**
-     * Generate random particles for background effect
+     * Generate premium particles for background effect with copper tones
      */
-    const particlesArray = Array.from({ length: 30 }, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      speed: Math.random() * 0.5 + 0.1
-    }))
+    const particlesArray = Array.from({ length: 40 }, () => {
+      // Create copper-toned particles with varying colors
+      const copperColors = ['#b87333', '#cd7f32', '#a05a2c', '#d2691e', '#e6be8a'];
+      return {
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 1,
+        speed: Math.random() * 0.5 + 0.1,
+        color: copperColors[Math.floor(Math.random() * copperColors.length)]
+      }
+    })
     setParticles(particlesArray)
     
     const interval = setInterval(() => {
       const nextSlide = (currentSlide + 1) % slides.length
       setDirection(1)
       setCurrentSlide(nextSlide)
-    }, 7000)
+    }, 8000) // Slightly longer for better viewing experience
     
     return () => clearInterval(interval)
   }, [currentSlide, setCurrentSlide, setDirection])
@@ -165,38 +171,57 @@ const SliderComponent = () => {
           {/* Full screen image container */}
           <div className="absolute inset-0 w-screen h-screen">
             <div className="relative w-full h-full">
-              {/* Image with full screen cover and parallax effect */}
+              {/* Premium image with controlled opacity and enhanced parallax effect */}
               <motion.div
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+                transition={{ duration: 2, ease: "easeOut" }}
                 className="absolute inset-0 w-full h-full bg-cover bg-center"
                 style={{ 
                   backgroundImage: `url(${slides[currentSlide].image})`,
-                  transform: 'translate3d(0, 0, 0)'
+                  opacity: imageOpacity,
+                  transform: 'translate3d(0, 0, 0)',
+                  filter: 'brightness(0.85) contrast(1.1)'
                 }}
               />
               
-              {/* Copper gradient overlays with animated opacity */}
+              {/* Enhanced copper gradient overlays with animated opacity */}
               <motion.div 
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.9 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
+                animate={{ opacity: 0.92 }}
+                transition={{ duration: 1.2 }}
+                className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent"
+              ></motion.div>
+              
+              {/* Premium copper overlay effects */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.4, delay: 0.2 }}
+                className="absolute inset-0 bg-gradient-to-br from-amber-700/25 via-amber-600/20 to-transparent mix-blend-overlay"
               ></motion.div>
               
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1.2, delay: 0.2 }}
-                className="absolute inset-0 bg-gradient-to-br from-amber-700/20 via-amber-600/15 to-transparent mix-blend-overlay"
+                transition={{ duration: 1.4, delay: 0.3 }}
+                className="absolute inset-0 bg-gradient-to-t from-amber-900/15 via-transparent to-amber-700/10 mix-blend-multiply"
               ></motion.div>
               
-              <motion.div 
+              {/* Premium light rays effect */}
+              <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
-                className="absolute inset-0 bg-gradient-to-t from-amber-900/10 via-transparent to-amber-700/5 mix-blend-multiply"
+                animate={{ 
+                  opacity: [0, 0.3, 0.1, 0.3, 0],
+                  backgroundPosition: ['0% 0%', '100% 100%']
+                }}
+                transition={{ 
+                  duration: 15, 
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+                className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(217,119,6,0.15)_0%,_transparent_70%)]"
+                style={{ backgroundSize: '200% 200%' }}
               ></motion.div>
 
               {/* Content container with staggered animations */}
@@ -211,10 +236,15 @@ const SliderComponent = () => {
                 <motion.h2
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-                  className="text-4xl md:text-6xl lg:text-8xl font-bold drop-shadow-lg mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-amber-600 to-amber-500"
+                  transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 90 }}
+                  className="relative text-4xl md:text-6xl lg:text-8xl font-bold mb-6"
                 >
-                  {slides[currentSlide].title}
+                  <span className="absolute inset-0 bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-amber-500 to-amber-400 blur-sm opacity-70">
+                    Cuivre Raid
+                  </span>
+                  <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-amber-500 to-amber-300 drop-shadow-[0_0_25px_rgba(217,119,6,0.3)]">
+                    Cuivre Raid
+                  </span>
                 </motion.h2>
                 
                 <motion.p
