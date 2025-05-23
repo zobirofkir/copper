@@ -1,9 +1,231 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Link } from '@inertiajs/react';
 
 const HeaderComponent = () => {
-  return (
-    <div className='dark:text-white text-black'>HeaderComponent</div>
-  )
-}
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-export default HeaderComponent
+  // Check system preference for dark mode on mount
+  useEffect(() => {
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(darkModeQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+    darkModeQuery.addEventListener('change', handleChange);
+    
+    return () => darkModeQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Toggle dark mode in document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const menuItems = [
+    { title: 'Home', href: '/' },
+    { title: 'Projects', href: '/projects' },
+    { title: 'About', href: '/about' },
+    { title: 'Contact', href: '/contact' },
+  ];
+
+  const headerVariants = {
+    hidden: { y: -100 },
+    visible: { 
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      x: '100%',
+      transition: {
+        type: 'tween',
+        duration: 0.3
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: 'tween',
+        duration: 0.3
+      }
+    }
+  };
+
+  const linkVariants = {
+    hover: {
+      scale: 1.05,
+      color: '#f59e0b',
+      transition: {
+        type: 'spring',
+        stiffness: 300
+      }
+    }
+  };
+
+  return (
+    <motion.header
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'py-2 shadow-lg' : 'py-4'
+      } ${
+        isDarkMode 
+          ? 'bg-black text-white' 
+          : 'bg-white text-gray-900'
+      }`}
+    >
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent"
+          >
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-3xl font-extrabold tracking-tight">Copper</span>
+            </Link>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-8">
+            {menuItems.map((item) => (
+              <motion.div key={item.title} variants={linkVariants} whileHover="hover">
+                <Link
+                  href={item.href}
+                  className={`px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-200 ${
+                    isDarkMode 
+                      ? 'text-gray-200 hover:text-amber-400 hover:bg-gray-900' 
+                      : 'text-gray-700 hover:text-amber-600 hover:bg-gray-100'
+                  }`}
+                >
+                  {item.title}
+                </Link>
+              </motion.div>
+            ))}
+            
+            {/* Theme Toggle Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className={`p-2 rounded-full ${
+                isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
+              }`}
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </motion.button>
+          </div>
+
+          <div className="flex items-center md:hidden">
+            {/* Mobile Theme Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className={`p-2 mr-2 rounded-full ${
+                isDarkMode ? 'bg-gray-800 text-amber-400' : 'bg-gray-100 text-amber-600'
+              }`}
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </motion.button>
+            
+            {/* Mobile Menu Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-md ${
+                isDarkMode ? 'text-white hover:bg-gray-800' : 'text-gray-900 hover:bg-gray-100'
+              }`}
+              aria-label="Open menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={mobileMenuVariants}
+              className={`fixed inset-y-0 right-0 w-full sm:w-80 shadow-xl md:hidden z-50 ${
+                isDarkMode ? 'bg-black' : 'bg-white'
+              }`}
+            >
+              <div className="flex flex-col p-8 space-y-6">
+                <div className="flex justify-end">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsOpen(false)}
+                    className={`p-2 rounded-full ${
+                      isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'
+                    }`}
+                  >
+                    <X size={24} />
+                  </motion.button>
+                </div>
+                
+                {menuItems.map((item) => (
+                  <motion.div
+                    key={item.title}
+                    variants={linkVariants}
+                    whileHover="hover"
+                    className="block"
+                  >
+                    <Link
+                      href={item.href}
+                      className={`block px-4 py-3 rounded-md text-lg font-medium transition-all ${
+                        isDarkMode 
+                          ? 'text-white hover:bg-gray-800 hover:text-amber-400' 
+                          : 'text-gray-900 hover:bg-gray-100 hover:text-amber-600'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </motion.header>
+  );
+};
+
+export default HeaderComponent;
