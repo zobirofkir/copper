@@ -44,5 +44,26 @@ createInertiaApp({
     },
 });
 
-// This will set light / dark mode on load...
+// Initialize theme from localStorage on page load
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+    } else {
+        // If no theme is saved, check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+}
+
+// Initialize theme as early as possible to prevent flash
 initializeTheme();

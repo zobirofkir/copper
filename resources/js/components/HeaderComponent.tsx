@@ -8,23 +8,26 @@ const HeaderComponent = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Check system preference for dark mode on mount
+  // Load theme preference from localStorage on mount
   useEffect(() => {
-    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(darkModeQuery.matches);
-    
-    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-    darkModeQuery.addEventListener('change', handleChange);
-    
-    return () => darkModeQuery.removeEventListener('change', handleChange);
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else {
+      // Fall back to system preference if no saved theme
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      setIsDarkMode(darkModeQuery.matches);
+    }
   }, []);
 
-  // Toggle dark mode in document
+  // Toggle dark mode in document and save to localStorage
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
 
