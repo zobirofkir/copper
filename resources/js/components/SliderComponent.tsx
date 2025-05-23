@@ -7,14 +7,17 @@ const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
   const [isLoaded, setIsLoaded] = useState(false)
   
-  // Particle animation effect
+  /**
+   * Particle animation effect
+   */
   const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, speed: number}>>([])
   
   useEffect(() => {
-    // Set loaded state after component mounts for entrance animation
     setIsLoaded(true)
     
-    // Generate random particles for background effect
+    /**
+     * Generate random particles for background effect
+     */
     const particlesArray = Array.from({ length: 30 }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -23,7 +26,6 @@ const SliderComponent = () => {
     }))
     setParticles(particlesArray)
     
-    // Auto-advance slides every 7 seconds
     const interval = setInterval(() => {
       const nextSlide = (currentSlide + 1) % slides.length
       setDirection(1)
@@ -33,7 +35,9 @@ const SliderComponent = () => {
     return () => clearInterval(interval)
   }, [currentSlide, setCurrentSlide, setDirection])
 
-  // Navigation controls
+  /**
+   * Navigation controls
+   */
   const handlePrevSlide = () => {
     const prevSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1
     setDirection(-1)
