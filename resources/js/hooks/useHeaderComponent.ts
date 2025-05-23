@@ -60,7 +60,7 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
 
   const menuItems = [
     { title: 'Accueil', href: '/' },
-    { title: 'Projets', href: '#' },
+    { title: 'Projets', href: '/projects' },
     { title: 'À propos', href: '#' },
     { title: 'Contact', href: '#' },
   ];
