@@ -53,10 +53,10 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
   }, []);
 
   const menuItems = [
-    { title: 'Home', href: '/' },
-    { title: 'Projects', href: '/projects' },
-    { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/contact' },
+    { title: 'Accueil', href: '/' },
+    { title: 'Projets', href: '#' },
+    { title: 'À propos', href: '#' },
+    { title: 'Contact', href: '#' },
   ];
 
   const headerVariants = {
