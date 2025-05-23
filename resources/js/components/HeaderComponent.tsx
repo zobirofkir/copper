@@ -8,19 +8,22 @@ const HeaderComponent = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Load theme preference from localStorage on mount
+  /**
+   * Load theme preference from localStorage on mount
+   */
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setIsDarkMode(savedTheme === 'dark');
     } else {
-      // Fall back to system preference if no saved theme
       const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
       setIsDarkMode(darkModeQuery.matches);
     }
   }, []);
 
-  // Toggle dark mode in document and save to localStorage
+  /**
+   * Toggle dark mode in document and save to localStorage
+   */
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -31,7 +34,9 @@ const HeaderComponent = () => {
     }
   }, [isDarkMode]);
 
-  // Handle scroll effect
+  /**
+   * Handle scroll effect
+   */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
