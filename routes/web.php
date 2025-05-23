@@ -19,3 +19,11 @@ Route::get('/projects', function() {
 Route::get('/abouts', function() {
     return inertia('AboutPage');
 })->name('about.page');
+
+/**
+ * Contact Page
+ */
+Route::get('/contacts', function() {
+    return inertia('ContactPage');
+})->name('contact.page');
+ 

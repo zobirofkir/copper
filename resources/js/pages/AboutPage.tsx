@@ -3,11 +3,11 @@ import React from 'react'
 
 const AboutPage = () => {
   return (
-    <section>
-        <div>
-            <AboutComponent />
-        </div>
-    </section>
+        <section>
+            <div>
+                <AboutComponent />
+            </div>
+        </section>
     )
 }
 
