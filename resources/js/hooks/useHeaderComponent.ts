@@ -20,7 +20,9 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Load theme preference from localStorage on mount
+  /**
+   * Load theme preference from localStorage on mount
+   */
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -31,7 +33,9 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     }
   }, []);
 
-  // Toggle dark mode in document and save to localStorage
+  /**
+   * Toggle dark mode in document and save to localStorage
+   */
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -42,7 +46,9 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     }
   }, [isDarkMode]);
 
-  // Handle scroll effect
+  /**
+   * Handle scroll effect
+   */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
