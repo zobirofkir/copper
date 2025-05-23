@@ -4,7 +4,7 @@ import { Head } from "@inertiajs/react"
 
 const WelcomePage = () => {
   return (
-    <div className='dark:text-white text-black'>
+    <div>
       <Head title="Accueil"/>
       {
         /**
