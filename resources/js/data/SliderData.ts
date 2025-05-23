@@ -8,20 +8,26 @@ interface SlideData {
 export const slides: SlideData[] = [
   {
     id: 1,
-    title: 'Creative Development',
-    description: 'Building innovative solutions with modern technologies',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
+    title: 'Copper Excellence',
+    description: 'Premium copper solutions with unmatched quality and durability',
+    image: 'https://images.unsplash.com/photo-1609387433510-d2ca76dd0259?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     id: 2,
-    title: 'Professional Design',
-    description: 'Crafting beautiful and responsive user interfaces',
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
+    title: 'Sustainable Copper',
+    description: 'Environmentally responsible copper sourcing and processing',
+    image: 'https://images.unsplash.com/photo-1541617392762-9bd12653bd12?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     id: 3,
-    title: 'Expert Solutions',
-    description: 'Delivering high-quality software solutions',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
+    title: 'Copper Innovation',
+    description: 'Advanced copper applications for modern industrial needs',
+    image: 'https://images.unsplash.com/photo-1548357204-82fc6c4a0c67?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
+    id: 4,
+    title: 'Copper Craftsmanship',
+    description: 'Artisan-quality copper products with exceptional finish',
+    image: 'https://images.unsplash.com/photo-1609387603477-d8adcc635790?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   }
 ]
