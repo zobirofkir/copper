@@ -27,7 +27,6 @@ class ProjectController extends Controller
                 'id' => $project->id,
                 'title' => $project->title,
                 'description' => $project->description,
-                'details' => $project->description,
                 'category' => $project->projectCategory->title,
                 'image' => $project->image ? asset('storage/' . $project->image) : null,
                 'client' => $project->client,
