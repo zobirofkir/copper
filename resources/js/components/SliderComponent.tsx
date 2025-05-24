@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
   const [isLoaded, setIsLoaded] = useState(false)
-  const [imageOpacity, setImageOpacity] = useState(0.7) // Control image opacity
-  const [isDarkMode, setIsDarkMode] = useState(false) // Track dark mode
+  const [imageOpacity, setImageOpacity] = useState(0.7) 
+  const [isDarkMode, setIsDarkMode] = useState(false) 
   
   /**
    * Particle animation effect - enhanced for premium look
@@ -151,7 +151,11 @@ const SliderComponent = () => {
         whileHover={{ opacity: 1, scale: 1.1 }}
         transition={{ duration: 0.5 }}
         onClick={handlePrevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-stone-200/50 dark:bg-black/30 backdrop-blur-sm text-amber-800 dark:text-amber-100 border border-amber-500/30 dark:border-amber-600/30 hover:bg-stone-300/60 dark:hover:bg-black/50"
+        className={`absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm border hover:bg-stone-300/60 ${
+          isDarkMode 
+            ? 'bg-black/30 text-amber-100 border-amber-600/30 hover:bg-black/50' 
+            : 'bg-stone-200/50 text-amber-800 border-amber-500/30'
+        }`}
         aria-label="Previous slide"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +169,11 @@ const SliderComponent = () => {
         whileHover={{ opacity: 1, scale: 1.1 }}
         transition={{ duration: 0.5 }}
         onClick={handleNextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-stone-200/50 dark:bg-black/30 backdrop-blur-sm text-amber-800 dark:text-amber-100 border border-amber-500/30 dark:border-amber-600/30 hover:bg-stone-300/60 dark:hover:bg-black/50"
+        className={`absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm border ${
+          isDarkMode 
+            ? 'bg-black/30 text-amber-100 border-amber-600/30 hover:bg-black/50' 
+            : 'bg-stone-200/50 text-amber-800 border-amber-500/30 hover:bg-stone-300/60'
+        }`}
         aria-label="Next slide"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
