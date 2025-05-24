@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion'
-import { projects } from '@/data/ProjectData'
-import { useProjectComponent, containerVariants, itemVariants, projectCardVariants, categories, getGridClass } from '@/hooks/useProjectComponent'
+import { useProjectComponent, containerVariants, itemVariants, projectCardVariants, getGridClass } from '@/hooks/useProjectComponent'
 
 const ProjectComponent = () => {
   const {
@@ -14,6 +13,7 @@ const ProjectComponent = () => {
     controls,
     ref,
     isInView,
+    categories,
     handleFilterClick,
     openProjectModal,
     closeProjectModal

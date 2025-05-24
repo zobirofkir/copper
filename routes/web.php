@@ -5,16 +5,14 @@ use Illuminate\Support\Facades\Route;
 /**
  * Home Page
  */
-Route::get('/', function () {
-    return inertia('WelcomePage');
-})->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
  * Project Page
  */
-Route::get('/projects', function() {
-    return inertia('ProjectPage');
-})->name('project.page');
+Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.page');
+Route::get('/api/projects', [App\Http\Controllers\ProjectController::class, 'getProjects'])->name('api.projects');
+Route::get('/api/projects/{id}', [App\Http\Controllers\ProjectController::class, 'show'])->name('api.projects.show');
 
 Route::get('/abouts', function() {
     return inertia('AboutPage');

@@ -1,6 +1,6 @@
-import { projects } from "@/data/ProjectData"
 import { useAnimation, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
+import axios from "axios"
 
 /**
  * Enhanced animation variants
@@ -50,9 +50,8 @@ export const projectCardVariants = {
 }
 
 /**
- * Filter categories for the filter buttons
+ * Categories will now be fetched from the API
  */
-export const categories = Array.from(new Set(projects.map(project => project.category)))
 
 /**
  * Responsive grid layout based on screen size
@@ -72,14 +71,32 @@ export interface Project {
 
 export const useProjectComponent = () => {
   const [activeFilter, setActiveFilter] = useState('Tous')
-  const [filteredProjects, setFilteredProjects] = useState(projects)
+  const [projects, setProjects] = useState<Project[]>([])
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [categories, setCategories] = useState<string[]>([])
   
   const controls = useAnimation()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.1 })
+
+  useEffect(() => {
+    // Fetch projects from API
+    axios.get('/api/projects')
+      .then(response => {
+        setProjects(response.data)
+        setFilteredProjects(response.data)
+        
+        // Extract unique categories
+        const uniqueCategories = Array.from(
+          new Set(response.data.map((project: Project) => project.category))
+        )
+        setCategories(uniqueCategories)
+      })
+      .catch(error => console.error('Error fetching projects:', error))
+  }, [])
 
   /**
    * Filter projects based on selected category
@@ -98,9 +115,20 @@ export const useProjectComponent = () => {
   }
 
   const openProjectModal = (project: Project) => {
-    setSelectedProject(project)
-    setIsModalOpen(true)
-    document.body.style.overflow = 'hidden'
+    // Fetch detailed project data from API
+    axios.get(`/api/projects/${project.id}`)
+      .then(response => {
+        setSelectedProject(response.data)
+        setIsModalOpen(true)
+        document.body.style.overflow = 'hidden'
+      })
+      .catch(error => {
+        console.error('Error fetching project details:', error)
+        // Fallback to using the project data we already have
+        setSelectedProject(project)
+        setIsModalOpen(true)
+        document.body.style.overflow = 'hidden'
+      })
   }
 
   const closeProjectModal = () => {
@@ -118,6 +146,7 @@ export const useProjectComponent = () => {
     controls,
     ref,
     isInView,
+    categories,
     handleFilterClick,
     openProjectModal,
     closeProjectModal
