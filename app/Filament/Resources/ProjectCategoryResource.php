@@ -19,9 +19,9 @@ class ProjectCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     
-    protected static ?string $navigationLabel = 'Project Categories';
+    protected static ?string $navigationLabel = 'Category';
     protected static ?string $modelLabel = 'Project Category';
-    protected static ?string $pluralModelLabel = 'Project Categories';
+    protected static ?string $pluralModelLabel = 'Category';
     protected static ?string $navigationGroup = 'Project';
 
     public static function form(Form $form): Form
