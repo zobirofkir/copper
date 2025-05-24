@@ -18,12 +18,18 @@ class ProjectCategoryResource extends Resource
     protected static ?string $model = ProjectCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    protected static ?string $navigationLabel = 'Project Categories';
+    protected static ?string $modelLabel = 'Project Category';
+    protected static ?string $pluralModelLabel = 'Project Categories';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,7 +37,19 @@ class ProjectCategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('projects_count')
+                    ->counts('projects')
+                    ->label('Projects'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -49,7 +67,7 @@ class ProjectCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ProjectsRelationManager::class,
         ];
     }
 

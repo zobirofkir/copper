@@ -27,6 +27,9 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('project_category_id')
+                    ->relationship('projectCategory', 'title')
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -49,6 +52,9 @@ class ProjectResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('projectCategory.title')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('client')
                     ->searchable(),
