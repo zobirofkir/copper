@@ -302,9 +302,6 @@ const ProjectComponent = () => {
                 <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-400 mb-4">Description</h4>
                 <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.description}</p>
                 
-                <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-400 mb-4">Détails</h4>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.details}</p>
-                
                 <div className="flex flex-wrap gap-4 mt-8">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
