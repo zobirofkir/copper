@@ -2,9 +2,11 @@ import AboutComponent from "@/components/AboutComponent"
 import ProjectComponent from "@/components/ProjectComponent"
 import SliderComponent from "@/components/SliderComponent"
 import ContactComponent from "@/components/ContactComponent"
-import { Head } from "@inertiajs/react"
+import { Head, usePage } from "@inertiajs/react"
 
 const WelcomePage = () => {
+  const { projects, categories } = usePage().props as any;
+  
   return (
     <div>
       <Head title="Accueil"/>
