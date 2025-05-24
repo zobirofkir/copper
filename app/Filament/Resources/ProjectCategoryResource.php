@@ -22,6 +22,7 @@ class ProjectCategoryResource extends Resource
     protected static ?string $navigationLabel = 'Project Categories';
     protected static ?string $modelLabel = 'Project Category';
     protected static ?string $pluralModelLabel = 'Project Categories';
+    protected static ?string $navigationGroup = 'Project';
 
     public static function form(Form $form): Form
     {
