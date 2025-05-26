@@ -7,6 +7,7 @@ use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
@@ -39,9 +40,24 @@ class BlogResource extends Resource
                     ->directory('blog-images')
                     ->disk('public')
                     ->required(),
-                Textarea::make('content')
+                RichEditor::make('content')
                     ->label('Contenu')
-                    ->required(),
+                    ->required()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        'heading',
+                        'bulletList',
+                        'orderedList',
+                        'link',
+                        'codeBlock',
+                        'blockquote',
+                        'color',
+                        'fontFamily',
+                        'fontSize',
+                    ]),
                 TextInput::make('slug')
                     ->label('Slug')
                     ->required()
