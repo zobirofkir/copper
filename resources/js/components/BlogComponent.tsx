@@ -58,11 +58,11 @@ const BlogComponent = ({ blogs }: { blogs: any[] }) => {
                     {blog.title}
                   </h3>
                   <p className="text-stone-700 dark:text-amber-100 mb-4">
-                    {blog.description}
+                    {blog.content.substring(0, 10)} ...
                   </p>
                   <p className="text-sm text-stone-500 dark:text-amber-300">
-                    {blog.date}
-                  </p>
+                    {new Date(blog.created_at).toISOString().slice(0, 10)}
+                  </p>                
                 </div>
               </Link>
             </motion.div>

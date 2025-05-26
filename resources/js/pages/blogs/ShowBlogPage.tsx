@@ -22,11 +22,12 @@ const ShowBlogPage = () => {
             <h1 className="text-4xl font-bold text-amber-700 dark:text-amber-500 mb-6">
               {blog.title}
             </h1>
-            <p className="text-stone-700 dark:text-amber-100 mb-4">
-              {blog.description}
-            </p>
+            <p
+              className="text-stone-700 dark:text-amber-100 mb-4"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            ></p>
             <p className="text-sm text-stone-500 dark:text-amber-300">
-              Published on: {blog.date}
+              Published on:  {new Date(blog.created_at).toISOString().slice(0, 10)}
             </p>
           </div>
         </div>
