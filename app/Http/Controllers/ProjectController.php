@@ -25,8 +25,12 @@ class ProjectController extends Controller
         $projects = Project::with('projectCategory')->get()->map(function ($project) {
             return [
                 'id' => $project->id,
-                'title' => $project->title,
-                'description' => $project->description,
+                'title' => $project->article, 
+                'article' => $project->article,
+                'name_reference' => $project->name_reference,
+                'materials' => $project->materials,
+                'dimensions' => $project->dimensions,
+                'price_availability' => $project->price_availability,
                 'category' => $project->projectCategory->title,
                 'image' => $project->image ? asset('storage/' . $project->image) : null,
                 'client' => $project->client,
@@ -43,9 +47,12 @@ class ProjectController extends Controller
         
         return response()->json([
             'id' => $project->id,
-            'title' => $project->title,
-            'description' => $project->description,
-            'details' => $project->description, // Using description as details for now
+            'title' => $project->article, 
+            'article' => $project->article,
+            'name_reference' => $project->name_reference,
+            'materials' => $project->materials,
+            'dimensions' => $project->dimensions,
+            'price_availability' => $project->price_availability,
             'category' => $project->projectCategory->title,
             'image' => $project->image ? asset('storage/' . $project->image) : null,
             'client' => $project->client,

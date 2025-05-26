@@ -14,6 +14,8 @@ class Project extends Model
         'dimensions',
         'price_availability',
         'image',
+        'client',
+        'location',
     ];
 
     public function projectCategory()

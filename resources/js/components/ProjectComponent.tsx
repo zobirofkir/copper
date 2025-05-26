@@ -193,11 +193,7 @@ const ProjectComponent = () => {
                   </motion.div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 mb-2">{project.article}</h3>
-                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.name_reference}</p>
-                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.materials}</p>
-                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.dimensions}</p>
-                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.price_availability}</p>
+                  <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 mb-2">{project.title}</h3>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -302,11 +298,26 @@ const ProjectComponent = () => {
                 </div>
               </div>
               <div className="p-6 sm:p-8">
-                <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-400 mb-4">Description</h4>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.name_reference}</p>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.materials}</p>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.dimensions}</p>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.price_availability}</p>
+                <h4 className="text-2xl font-bold text-amber-800 dark:text-amber-400 mb-4">{selectedProject.title}</h4> {/* Display project title */}
+                <p className="text-lg font-semibold text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.article}</p> {/* Display article */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Référence:</h5>
+                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.name_reference}</p>
+                  </div>
+                  <div>
+                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Matériaux:</h5>
+                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.materials}</p>
+                  </div>
+                  <div>
+                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Dimensions:</h5>
+                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.dimensions}</p>
+                  </div>
+                  <div>
+                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Prix & Disponibilité:</h5>
+                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.price_availability}</p>
+                  </div>
+                </div>
                 <div className="flex flex-wrap gap-4 mt-8">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
