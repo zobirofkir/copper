@@ -22,7 +22,7 @@ class BlogResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationLabel = 'Blog';
     protected static ?string $modelLabel = 'Blog';
-    protected static ?string $pluralModelLabel = 'Blog';
+    protected static ?string $pluralModelLabel = 'Blogs';
     protected static ?string $navigationGroup = 'Blog';
 
     public static function form(Forms\Form $form): Forms\Form
@@ -30,15 +30,19 @@ class BlogResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title')
+                    ->label('Titre')
                     ->required()
                     ->maxLength(255),
                 FileUpload::make('image')
+                    ->label('Image')
                     ->image()
                     ->directory('blog-images')
                     ->required(),
                 Textarea::make('content')
+                    ->label('Contenu')
                     ->required(),
                 TextInput::make('slug')
+                    ->label('Slug')
                     ->required()
                     ->maxLength(255),
             ])->columns(1);
@@ -49,7 +53,7 @@ class BlogResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label('Title')
+                    ->label('Titre')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
@@ -57,7 +61,7 @@ class BlogResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created At')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable(),
             ])

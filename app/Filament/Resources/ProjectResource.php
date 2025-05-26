@@ -27,21 +27,21 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     
-    protected static ?string $navigationLabel = 'Project';
-    protected static ?string $modelLabel = 'Project';
-    protected static ?string $pluralModelLabel = 'Project';
-    protected static ?string $navigationGroup = 'Project';
+    protected static ?string $navigationLabel = 'Projet';
+    protected static ?string $modelLabel = 'Projet';
+    protected static ?string $pluralModelLabel = 'Projets';
+    protected static ?string $navigationGroup = 'Projet';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Select::make('project_category_id')
-                    ->label('Project Category')
+                    ->label('Catégorie de Projet')
                     ->relationship('projectCategory', 'title')
                     ->required(),
                 TextInput::make('article')
-                    ->label('Title')
+                    ->label('Titre')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('name_reference')

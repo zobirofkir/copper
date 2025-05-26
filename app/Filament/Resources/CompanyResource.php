@@ -25,18 +25,20 @@ class CompanyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Company';
-    protected static ?string $modelLabel = 'Company';
-    protected static ?string $pluralModelLabel = 'Company';
-    protected static ?string $navigationGroup = 'Company';
+    protected static ?string $navigationLabel = 'Entreprise';
+    protected static ?string $modelLabel = 'Entreprise';
+    protected static ?string $pluralModelLabel = 'Entreprises';
+    protected static ?string $navigationGroup = 'Entreprise';
 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title'),
+                TextInput::make('title')
+                    ->label('Titre'),
                 FileUpload::make('image')
+                    ->label('Image')
                     ->image()
                     ->directory('companies'),
                 Hidden::make('user_id')
@@ -48,8 +50,10 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("title"),
-                ImageColumn::make('image'),
+                TextColumn::make("title")
+                    ->label('Titre'),
+                ImageColumn::make('image')
+                    ->label('Image'),
             ])
             ->filters([
                 //

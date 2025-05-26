@@ -15,28 +15,28 @@ class WidgetOverView extends BaseWidget
     {
         return [
             Stat::make('Blogs', Blog::count())
-            ->description('Blogs')
-            ->descriptionIcon('heroicon-o-shopping-bag')
-            ->chart([1, 10, 5, 2, 20, 30, 45])
-            ->color('success'),
+                ->description('Blogs')
+                ->descriptionIcon('heroicon-o-shopping-bag')
+                ->chart([1, 10, 5, 2, 20, 30, 45])
+                ->color('success'),
 
-            Stat::make('Companies', Company::count())
-            ->description('Companies')
-            ->descriptionIcon('heroicon-o-cube')
-            ->chart([1, 10, 5, 2, 20, 30, 45])
-            ->color('success'),
+            Stat::make('Entreprises', Company::count())
+                ->description('Entreprises')
+                ->descriptionIcon('heroicon-o-cube')
+                ->chart([1, 10, 5, 2, 20, 30, 45])
+                ->color('success'),
 
-            Stat::make('Categories', ProjectCategory::count())
-            ->description('Companies')
-            ->descriptionIcon('heroicon-o-cube')
-            ->chart([1, 10, 5, 2, 20, 30, 45])
-            ->color('success'),
+            Stat::make('Catégories', ProjectCategory::count())
+                ->description('Catégories')
+                ->descriptionIcon('heroicon-o-cube')
+                ->chart([1, 10, 5, 2, 20, 30, 45])
+                ->color('success'),
 
-            Stat::make('Projects', Project::count())
-            ->description('Projects')
-            ->descriptionIcon('heroicon-o-cube')
-            ->chart([1, 10, 5, 2, 20, 30, 45])
-            ->color('success'),
+            Stat::make('Projets', Project::count())
+                ->description('Projets')
+                ->descriptionIcon('heroicon-o-cube')
+                ->chart([1, 10, 5, 2, 20, 30, 45])
+                ->color('success'),
 
         ];
     }

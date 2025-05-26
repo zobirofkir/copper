@@ -22,11 +22,11 @@ class ProjectsRelationManager extends RelationManager
         return $form
             ->schema([
                 Select::make('project_category_id')
-                    ->label('Project Category')
+                    ->label('Catégorie de Projet')
                     ->relationship('projectCategory', 'title')
                     ->required(),
                 TextInput::make('article')
-                    ->label('Title')
+                    ->label('Titre')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('name_reference')

@@ -19,16 +19,17 @@ class ProjectCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     
-    protected static ?string $navigationLabel = 'Category';
-    protected static ?string $modelLabel = 'Project Category';
-    protected static ?string $pluralModelLabel = 'Category';
-    protected static ?string $navigationGroup = 'Project';
+    protected static ?string $navigationLabel = 'Catégorie';
+    protected static ?string $modelLabel = 'Catégorie de Projet';
+    protected static ?string $pluralModelLabel = 'Catégories';
+    protected static ?string $navigationGroup = 'Projet';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label('Titre')
                     ->required()
                     ->maxLength(255),
             ])->columns(1);
@@ -39,15 +40,18 @@ class ProjectCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Titre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('projects_count')
-                    ->counts('projects')
-                    ->label('Projects'),
+                    ->label('Projets')
+                    ->counts('projects'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
