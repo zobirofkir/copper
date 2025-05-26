@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "@inertiajs/react";
 
 const BlogComponent = () => {
   const containerVariants = {
@@ -70,25 +71,27 @@ const BlogComponent = () => {
               variants={itemVariants}
               className="bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="relative">
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-500 mb-4">
-                  {blog.title}
-                </h3>
-                <p className="text-stone-700 dark:text-amber-100 mb-4">
-                  {blog.description}
-                </p>
-                <p className="text-sm text-stone-500 dark:text-amber-300">
-                  {blog.date}
-                </p>
-              </div>
+              <Link href={`/blogs/${blog.id}`}>
+                <div className="relative">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-500 mb-4">
+                    {blog.title}
+                  </h3>
+                  <p className="text-stone-700 dark:text-amber-100 mb-4">
+                    {blog.description}
+                  </p>
+                  <p className="text-sm text-stone-500 dark:text-amber-300">
+                    {blog.date}
+                  </p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
