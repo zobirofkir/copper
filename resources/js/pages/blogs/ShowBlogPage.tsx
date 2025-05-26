@@ -1,10 +1,12 @@
 import React from "react";
-import { usePage } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 
 const ShowBlogPage = () => {
   const { blog } = usePage().props as any;
 
   return (
+    <>
+    <Head title={blog.title}/>
     <div className="min-h-screen w-full bg-gradient-to-br from-white to-amber-50 dark:from-black dark:to-stone-900 py-20 px-6 md:px-12">
       <div className="container mx-auto">
         <div className="bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 rounded-xl shadow-lg overflow-hidden">
@@ -30,6 +32,8 @@ const ShowBlogPage = () => {
         </div>
       </div>
     </div>
+
+    </>
   );
 };
 

@@ -1,12 +1,16 @@
 import BlogComponent from '@/components/BlogComponent'
+import { Head } from '@inertiajs/react'
 
 const BlogPage = () => {
   return (
-    <section>
-        <div>
-            <BlogComponent />
-        </div>
-    </section>
+    <>
+    <Head title="Blog"/>
+      <section>
+          <div>
+              <BlogComponent />
+          </div>
+      </section>
+    </>
   )
 }
 
