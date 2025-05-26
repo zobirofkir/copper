@@ -6,9 +6,13 @@ use App\Filament\Resources\CompanyResource\Pages;
 use App\Filament\Resources\CompanyResource\RelationManagers;
 use App\Models\Company;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -29,15 +33,23 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                //
-            ]);
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('companies'),
+                ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextInput::make("title"),
+
+                ImageColumn::make('image'),
+
             ])
             ->filters([
                 //
