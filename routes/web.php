@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Home Page
  */
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\CompanyController::class, 'index'])->name('home');
 
 /**
  * Project Page
@@ -24,4 +24,3 @@ Route::get('/abouts', function() {
 Route::get('/contacts', function() {
     return inertia('ContactPage');
 })->name('contact.page');
- 

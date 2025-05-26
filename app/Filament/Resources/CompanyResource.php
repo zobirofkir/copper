@@ -38,10 +38,11 @@ class CompanyResource extends Resource
                 TextInput::make('title'),
                 FileUpload::make('image')
                     ->image()
-                    ->directory('companies'),
+                    ->directory('companies') 
+                    ->visibility('public'), 
                 Hidden::make('user_id')
                     ->default(fn () => Auth::id()),
-                ])->columns(1);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -49,7 +50,8 @@ class CompanyResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("title"),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->url(fn ($record) => '/storage/companies/' . $record->image), 
             ])
             ->filters([
                 //

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Company extends Model
 {
@@ -15,5 +16,10 @@ class Company extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function getAllCompanies()
+    {
+        return self::all(['id', 'title as name', DB::raw("CONCAT('/storage/', image) as image")]);
     }
 }

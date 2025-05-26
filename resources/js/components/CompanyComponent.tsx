@@ -1,15 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-const companies = [
-  { name: "CopperCraft Inc.", image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "MetalWorks Ltd.", image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Artisan Copper Co.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Heritage Metals", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Innovative Copper", image: "https://images.unsplash.com/photo-1564069114553-7215e1ff1890?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
-]
+interface Company {
+  id: number;
+  name: string;
+  image: string;
+}
 
-const CompanyComponent = () => {
+const CompanyComponent = ({ companies }: { companies: Company[] }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,9 +43,9 @@ const CompanyComponent = () => {
           variants={containerVariants}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {companies.map((company, index) => (
+          {companies.map((company) => (
             <motion.div 
-              key={index}
+              key={company.id}
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
               className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 shadow-lg hover:shadow-xl transition-all duration-300"

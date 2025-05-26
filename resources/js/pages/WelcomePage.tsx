@@ -6,7 +6,7 @@ import { Head, usePage } from "@inertiajs/react"
 import CompanyComponent from "@/components/CompanyComponent"
 
 const WelcomePage = () => {
-  const { projects, categories } = usePage().props as any;
+  const { projects, categories, companies } = usePage().props as any;
   
   return (
     <div>
@@ -37,7 +37,7 @@ const WelcomePage = () => {
          * Company Component
          */
       }
-      <CompanyComponent />
+      <CompanyComponent companies={companies} />
 
       {
         /**
