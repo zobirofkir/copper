@@ -41,11 +41,11 @@ class ProjectResource extends Resource
                     ->relationship('projectCategory', 'title')
                     ->required(),
                 TextInput::make('article')
-                    ->label('Article/Description')
+                    ->label('Title')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('name_reference')
-                    ->label('Nom & Référence')
+                    ->label('Référence')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('materials')
@@ -55,8 +55,13 @@ class ProjectResource extends Resource
                     ->label('Dimensions')
                     ->maxLength(255),
                 TextInput::make('price_availability')
-                    ->label('Prix & Disponibilité')
+                    ->label('Prix')
                     ->maxLength(255),
+                FileUpload::make('image')
+                    ->label('Image')
+                    ->image()
+                    ->directory('projects')
+                    ->required(),
             ])->columns(1);
     }
 
@@ -79,6 +84,8 @@ class ProjectResource extends Resource
                 TextColumn::make('price_availability')
                     ->label('Prix & Disponibilité')
                     ->searchable(),
+                ImageColumn::make('image')
+                    ->label('Image'),
             ])
             ->filters([
                 //

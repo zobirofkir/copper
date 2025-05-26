@@ -13,6 +13,7 @@ class Project extends Model
         'materials',
         'dimensions',
         'price_availability',
+        'image',
     ];
 
     public function projectCategory()

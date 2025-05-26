@@ -161,7 +161,7 @@ const ProjectComponent = () => {
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <motion.img 
                     src={project.image} 
-                    alt={project.title}
+                    alt={project.article} // Updated to use 'article'
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     initial={{ scale: 1.2, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -187,14 +187,17 @@ const ProjectComponent = () => {
                         transition={{ duration: 0.3, delay: 0.1 }}
                         className="text-xl font-bold text-white mb-1"
                       >
-                        {project.title}
+                        {project.article} {/* Updated to use 'article' */}
                       </motion.h3>
                     </div>
                   </motion.div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 mb-2">{project.title}</h3>
-                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.description}</p>
+                  <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 mb-2">{project.article}</h3>
+                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.name_reference}</p>
+                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.materials}</p>
+                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.dimensions}</p>
+                  <p className="text-stone-600 dark:text-amber-100/70 mb-4 line-clamp-2">{project.price_availability}</p>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -276,7 +279,7 @@ const ProjectComponent = () => {
               <div className="relative">
                 <img 
                   src={selectedProject.image} 
-                  alt={selectedProject.title} 
+                  alt={selectedProject.article} // Updated to use 'article'
                   className="w-full h-64 sm:h-80 object-cover"
                 />
                 <motion.button
@@ -295,13 +298,15 @@ const ProjectComponent = () => {
                   <span className="inline-block px-3 py-1 bg-amber-600 text-amber-50 text-sm rounded-full mb-2">
                     {selectedProject.category}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">{selectedProject.title}</h3>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">{selectedProject.article}</h3>
                 </div>
               </div>
               <div className="p-6 sm:p-8">
                 <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-400 mb-4">Description</h4>
-                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.description}</p>
-                
+                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.name_reference}</p>
+                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.materials}</p>
+                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.dimensions}</p>
+                <p className="text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.price_availability}</p>
                 <div className="flex flex-wrap gap-4 mt-8">
                   <motion.button
                     whileHover={{ scale: 1.05 }}

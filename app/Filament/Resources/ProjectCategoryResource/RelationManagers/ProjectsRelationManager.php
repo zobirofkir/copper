@@ -3,6 +3,9 @@
 namespace App\Filament\Resources\ProjectCategoryResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -18,23 +21,32 @@ class ProjectsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('article')
-                    ->label('Article/Description')
+                Select::make('project_category_id')
+                    ->label('Project Category')
+                    ->relationship('projectCategory', 'title')
+                    ->required(),
+                TextInput::make('article')
+                    ->label('Title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('name_reference')
-                    ->label('Nom & Référence')
+                TextInput::make('name_reference')
+                    ->label('Référence')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('materials')
+                TextInput::make('materials')
                     ->label('Matériaux')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('dimensions')
+                TextInput::make('dimensions')
                     ->label('Dimensions')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('price_availability')
-                    ->label('Prix & Disponibilité')
+                TextInput::make('price_availability')
+                    ->label('Prix')
                     ->maxLength(255),
+                FileUpload::make('image')
+                    ->label('Image')
+                    ->image()
+                    ->directory('projects')
+                    ->required(),
             ])->columns(1);
     }
 
@@ -53,6 +65,8 @@ class ProjectsRelationManager extends RelationManager
                     ->label('Dimensions'),
                 Tables\Columns\TextColumn::make('price_availability')
                     ->label('Prix & Disponibilité'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Image'),
             ])
             ->filters([
                 //

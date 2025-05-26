@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('materials')->nullable();
             $table->string('dimensions')->nullable();
             $table->string('price_availability')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
