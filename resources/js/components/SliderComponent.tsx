@@ -17,11 +17,15 @@ const SliderComponent = () => {
   useEffect(() => {
     setIsLoaded(true)
     
-    // Check for dark mode preference
+    /**
+     * Check for dark mode preference
+     */
     const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
     setIsDarkMode(darkModeQuery.matches)
     
-    // Listen for changes in color scheme preference
+    /**
+     * Listen for changes in color scheme preference
+     */
     const darkModeListener = (e: MediaQueryListEvent) => {
       setIsDarkMode(e.matches)
     }
