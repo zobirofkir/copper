@@ -2,11 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const companies = [
-  { name: "CopperCraft Inc.", image: "https://via.placeholder.com/150" },
-  { name: "MetalWorks Ltd.", image: "https://via.placeholder.com/150" },
-  { name: "Artisan Copper Co.", image: "https://via.placeholder.com/150" },
-  { name: "Heritage Metals", image: "https://via.placeholder.com/150" },
-  { name: "Innovative Copper", image: "https://via.placeholder.com/150" }
+  { name: "CopperCraft Inc.", image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "MetalWorks Ltd.", image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Artisan Copper Co.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Heritage Metals", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Innovative Copper", image: "https://images.unsplash.com/photo-1564069114553-7215e1ff1890?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
 ]
 
 const CompanyComponent = () => {
