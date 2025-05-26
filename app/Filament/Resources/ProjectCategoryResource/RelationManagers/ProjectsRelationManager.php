@@ -18,18 +18,22 @@ class ProjectsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('article')
+                    ->label('Article/Description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->directory('projects'),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\TextInput::make('name_reference')
+                    ->label('Nom & Référence')
                     ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('client')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('location')
+                Forms\Components\TextInput::make('materials')
+                    ->label('Matériaux')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('dimensions')
+                    ->label('Dimensions')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('price_availability')
+                    ->label('Prix & Disponibilité')
                     ->maxLength(255),
             ])->columns(1);
     }
@@ -37,12 +41,18 @@ class ProjectsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('title')
+            ->recordTitleAttribute('article')
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('client'),
-                Tables\Columns\TextColumn::make('location'),
+                Tables\Columns\TextColumn::make('article')
+                    ->label('Article/Description'),
+                Tables\Columns\TextColumn::make('name_reference')
+                    ->label('Nom & Référence'),
+                Tables\Columns\TextColumn::make('materials')
+                    ->label('Matériaux'),
+                Tables\Columns\TextColumn::make('dimensions')
+                    ->label('Dimensions'),
+                Tables\Columns\TextColumn::make('price_availability')
+                    ->label('Prix & Disponibilité'),
             ])
             ->filters([
                 //

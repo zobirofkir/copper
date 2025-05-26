@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('project_category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->text('image')->nullable();
-            $table->longText('description');
-            $table->string('client')->nullable();
-            $table->string('location')->nullable();
+            $table->foreignId('project_category_id')->constrained('project_categories')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('article');
+            $table->string('name_reference');
+            $table->string('materials')->nullable();
+            $table->string('dimensions')->nullable();
+            $table->string('price_availability')->nullable();
             $table->timestamps();
         });
     }

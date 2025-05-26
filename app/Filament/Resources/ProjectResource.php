@@ -37,20 +37,25 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 Select::make('project_category_id')
+                    ->label('Project Category')
                     ->relationship('projectCategory', 'title')
                     ->required(),
-                TextInput::make('title')
+                TextInput::make('article')
+                    ->label('Article/Description')
                     ->required()
                     ->maxLength(255),
-                FileUpload::make('image')
-                    ->image()
-                    ->directory('projects'),
-                Textarea::make('description')
+                TextInput::make('name_reference')
+                    ->label('Nom & Référence')
                     ->required()
-                    ->columnSpanFull(),
-                TextInput::make('client')
                     ->maxLength(255),
-                TextInput::make('location')
+                TextInput::make('materials')
+                    ->label('Matériaux')
+                    ->maxLength(255),
+                TextInput::make('dimensions')
+                    ->label('Dimensions')
+                    ->maxLength(255),
+                TextInput::make('price_availability')
+                    ->label('Prix & Disponibilité')
                     ->maxLength(255),
             ])->columns(1);
     }
@@ -59,24 +64,21 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('article')
+                    ->label('Article/Description')
                     ->searchable(),
-                TextColumn::make('projectCategory.title')
-                    ->searchable()
-                    ->sortable(),
-                ImageColumn::make('image'),
-                TextColumn::make('client')
+                TextColumn::make('name_reference')
+                    ->label('Nom & Référence')
                     ->searchable(),
-                TextColumn::make('location')
+                TextColumn::make('materials')
+                    ->label('Matériaux')
                     ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('dimensions')
+                    ->label('Dimensions')
+                    ->searchable(),
+                TextColumn::make('price_availability')
+                    ->label('Prix & Disponibilité')
+                    ->searchable(),
             ])
             ->filters([
                 //
