@@ -3,6 +3,7 @@ import ProjectComponent from "@/components/ProjectComponent"
 import SliderComponent from "@/components/SliderComponent"
 import ContactComponent from "@/components/ContactComponent"
 import { Head, usePage } from "@inertiajs/react"
+import CompanyComponent from "@/components/CompanyComponent"
 
 const WelcomePage = () => {
   const { projects, categories } = usePage().props as any;
@@ -30,6 +31,13 @@ const WelcomePage = () => {
          */
       }
       <ProjectComponent />
+
+      {
+        /**
+         * Company Component
+         */
+      }
+      <CompanyComponent />
 
       {
         /**
