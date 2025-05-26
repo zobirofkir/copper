@@ -60,6 +60,16 @@ const AboutComponent = () => {
     })
   }
 
+  const typingVariants = {
+    hidden: { opacity: 0 },
+    visible: (i: number) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.1,
+      },
+    }),
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -168,9 +178,20 @@ const AboutComponent = () => {
           >
             <motion.h3 
               variants={itemVariants}
-              className="text-3xl md:text-4xl font-bold mb-8 text-amber-700 dark:text-amber-500"
+              className="text-3xl md:text-4xl font-bold mb-8 text-amber-700 dark:text-amber-500 flex justify-center"
             >
-              Notre Héritage de Cuivre
+              {Array.from("Notre Héritage de Cuivre").map((char, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={typingVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
             </motion.h3>
             
             <motion.p 
