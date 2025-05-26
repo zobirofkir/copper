@@ -37,6 +37,7 @@ class BlogResource extends Resource
                     ->label('Image')
                     ->image()
                     ->directory('blog-images')
+                    ->disk('public')
                     ->required(),
                 Textarea::make('content')
                     ->label('Contenu')

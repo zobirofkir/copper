@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "@inertiajs/react";
 
-const BlogComponent = () => {
+const BlogComponent = ({ blogs }: { blogs: any[] }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -18,33 +18,6 @@ const BlogComponent = () => {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 },
   };
-
-  const blogs = [
-    {
-      id: 1,
-      title: "The Art of Copper Crafting",
-      description:
-        "Discover the timeless techniques and artistry behind copper crafting.",
-      image: "https://images.unsplash.com/photo-1609387433510-d2ca76dd0259?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      date: "2023-10-01",
-    },
-    {
-      id: 2,
-      title: "Sustainability in Copper Production",
-      description:
-        "Learn how copper production is evolving to meet sustainability goals.",
-      image: "https://images.unsplash.com/photo-1541617392762-9bd12653bd12?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      date: "2023-09-15",
-    },
-    {
-      id: 3,
-      title: "Innovative Uses of Copper",
-      description:
-        "Explore the innovative ways copper is being used in modern design.",
-      image: "https://images.unsplash.com/photo-1548357204-82fc6c4a0c67?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      date: "2023-09-05",
-    },
-  ];
 
   return (
     <motion.div

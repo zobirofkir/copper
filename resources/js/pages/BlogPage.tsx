@@ -1,17 +1,19 @@
-import BlogComponent from '@/components/BlogComponent'
-import { Head } from '@inertiajs/react'
+import BlogComponent from '@/components/BlogComponent';
+import { Head, usePage } from '@inertiajs/react';
 
 const BlogPage = () => {
+  const { blogs } = usePage().props as any;
+
   return (
     <>
-    <Head title="Blog"/>
+      <Head title="Blog" />
       <section>
-          <div>
-              <BlogComponent />
-          </div>
+        <div>
+          <BlogComponent blogs={blogs} />
+        </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default BlogPage
+export default BlogPage;
