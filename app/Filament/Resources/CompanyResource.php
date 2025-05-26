@@ -46,10 +46,8 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                TextInput::make("title"),
-
+                TextColumn::make("title"),
                 ImageColumn::make('image'),
-
             ])
             ->filters([
                 //
