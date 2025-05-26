@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import AboutComponent from "@/components/AboutComponent"
 import ProjectComponent from "@/components/ProjectComponent"
 import SliderComponent from "@/components/SliderComponent"
@@ -7,7 +8,12 @@ import CompanyComponent from "@/components/CompanyComponent"
 
 const WelcomePage = () => {
   const { projects, categories, companies } = usePage().props as any;
-  
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   return (
     <div>
       <Head title="Accueil"/>
@@ -16,35 +22,69 @@ const WelcomePage = () => {
          * Slider Component
          */
       }
-      <SliderComponent />
-      
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
+        <SliderComponent />
+      </motion.div>
+
       {
         /**
          * About Component
          */
       }
-      <AboutComponent />
-      
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <AboutComponent />
+      </motion.div>
+
       {
         /**
          * Project Component
          */
       }
-      <ProjectComponent />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <ProjectComponent />
+      </motion.div>
 
       {
         /**
          * Company Component
          */
       }
-      <CompanyComponent companies={companies} />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <CompanyComponent companies={companies} />
+      </motion.div>
 
       {
         /**
          * Contact Component
          */
       }
-      <ContactComponent/>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <ContactComponent/>
+      </motion.div>
     </div>
   )
 }
