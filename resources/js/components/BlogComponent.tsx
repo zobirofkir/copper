@@ -45,14 +45,22 @@ const BlogComponent = ({ blogs }: { blogs: any[] }) => {
               className="bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <Link href={`/blogs/${blog.id}`}>
-                <div className="relative">
+                <motion.div
+                  className="relative"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0, scale: 1.1 },
+                    visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } },
+                  }}
+                >
                   <img
                     src={blog.image}
                     alt={blog.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-screen object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
+                </motion.div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-500 mb-4">
                     {blog.title}
