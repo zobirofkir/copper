@@ -62,6 +62,7 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     { title: 'Accueil', href: '/' },
     { title: 'Projets', href: '/projects' },
     { title: 'À propos', href: '/abouts' },
+    { title: 'Blog', href: '/blogs' },
     { title: 'Contact', href: '/contacts' },
   ];
 
