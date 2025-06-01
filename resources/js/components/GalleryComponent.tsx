@@ -3,10 +3,10 @@ import PhotoAlbum from 'react-photo-album';
 import { motion } from 'framer-motion';
 
 const photos = [
-  { src: '/images/photo1.jpg', width: 800, height: 600 },
-  { src: '/images/photo2.jpg', width: 1200, height: 800 },
-  { src: '/images/photo3.jpg', width: 600, height: 800 },
-  { src: '/images/photo4.jpg', width: 900, height: 600 },
+  { src: 'https://lh5.googleusercontent.com/proxy/-yRg0E2RmAwZ1pLWg2CNPvpd_OxOEBxDUiF4xZS9-b994YRL9-FRgtWx_u8kvvdHsnP6BDB_SN7SaKlYSueSaCe2ptJ-f4DTQUIGbTQQUKIHCpGWhbzc1148fCHSNg', width: 800, height: 600 },
+  { src: 'https://www.quebec-cite.com/sites/otq/files/styles/gallery_desktop/public/simpleview/roses-plate_FED586A4-2066-4AD0-9DB9E21D4756D49C_1b08faea-3213-4da6-a724048165c69583.jpg?itok=7MpRKP3r', width: 1200, height: 800 },
+  { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3TAzn_BDav5W6yl70ahhKdkYTbMJEl5Vn0uAYBPTYx1-xX8zpKllIxIR_bH59IOnj0E&usqp=CAU', width: 600, height: 800 },
+  { src: 'https://lh6.googleusercontent.com/proxy/gSHyCMJ8tbLnM_T1i9p0P0iBrXoaVF0C6VyFh0BmTc5Zny6jJHYKXlBAjPj9g2wi4FMXVtnR9UYRa26HR4FcJQRYmfpqKf0cp2OQiUO40gJyYbI58-C31S-ahhO6gQdaVg', width: 900, height: 600 },
   
 ];
 
