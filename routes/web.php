@@ -31,6 +31,12 @@ Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->nam
  */
 Route::get('/blogs/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('show-blog.page');
 
+/**
+ * Gallery Page
+ */
+Route::get('/galleries', function() {
+    return inertia('GalleryPage');
+});
 
 /**
  * Contact Page
