@@ -257,7 +257,7 @@ const SliderComponent = () => {
                   initial={{ width: 0 }}
                   animate={{ width: "120px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="h-0.5 bg-gradient-to-r from-transparent via-gray-500 to-transparent mb-8 overflow-hidden"
+                  className="h-0.5 bg-gradient-to-r from-transparent via-black to-transparent mb-8 overflow-hidden"
                 />
                 
                 <motion.h2
