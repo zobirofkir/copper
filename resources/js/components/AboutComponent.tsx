@@ -75,29 +75,27 @@ const AboutComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-gradient-to-br from-white to-amber-50 dark:from-black dark:to-stone-900 py-20 relative overflow-hidden"
+      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-100 dark:from-black dark:to-gray-900 py-20 relative overflow-hidden"
     >
-      {/* Animated background elements */}
       <motion.div 
         animate={{ 
           background: [
-            'radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.05) 0%, transparent 70%)',
-            'radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.05) 0%, transparent 70%)',
-            'radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.05) 0%, transparent 70%)'
+            'radial-gradient(circle at 20% 30%, rgba(128, 128, 128, 0.05) 0%, transparent 70%)',
+            'radial-gradient(circle at 80% 70%, rgba(128, 128, 128, 0.05) 0%, transparent 70%)',
+            'radial-gradient(circle at 20% 30%, rgba(128, 128, 128, 0.05) 0%, transparent 70%)'
           ]
         }}
         transition={{ duration: 10, repeat: Infinity }}
         className="absolute inset-0 pointer-events-none"
       />
 
-      {/* Copper accent borders with animation */}
       <motion.div 
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-amber-800/80 via-amber-600 to-amber-800/80 origin-left"
+        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 origin-left"
       />
-      
+
       <div className="container mx-auto px-6 md:px-12 relative" ref={ref}>
         <motion.div 
           variants={containerVariants}
@@ -114,7 +112,7 @@ const AboutComponent = () => {
           
           <motion.h2 
             variants={itemVariants}
-            className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-black dark:text-white"
+            className="text-5xl md:text-6xl font-bold mb-6 text-black dark:text-white"
           >
             À Propos de Nous
           </motion.h2>
@@ -128,7 +126,6 @@ const AboutComponent = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
-          {/* Left column - Enhanced Image */}
           <motion.div 
             variants={itemVariants}
             className="relative group"
@@ -147,38 +144,36 @@ const AboutComponent = () => {
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-amber-700/30 via-transparent to-transparent mix-blend-overlay"
+                className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-transparent mix-blend-overlay"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
               />
             </motion.div>
             
-            {/* Decorative elements */}
             <motion.div 
-              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-amber-600/30 rounded-2xl -z-10"
+              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-gray-600/20 rounded-2xl -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             />
             <motion.div 
-              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-amber-600/30 rounded-2xl -z-10"
+              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-gray-600/20 rounded-2xl -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
             />
           </motion.div>
 
-          {/* Right column - Enhanced Content */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate={controls}
-            className="text-stone-700 dark:text-amber-100"
+            className="text-gray-700 dark:text-gray-200"
           >
             <motion.h3 
               variants={itemVariants}
-              className="text-3xl md:text-4xl font-bold mb-8 text-amber-700 dark:text-amber-500 flex justify-center"
+              className="text-3xl md:text-4xl font-bold mb-8 text-black dark:text-white flex justify-center"
             >
               {Array.from("Notre Héritage de Cuivre").map((char, i) => (
                 <motion.span
@@ -211,7 +206,6 @@ const AboutComponent = () => {
               produisons reflète notre passion pour ce métal noble et polyvalent.
             </motion.p>
             
-            {/* Enhanced Stats */}
             <motion.div 
               variants={containerVariants}
               className="grid grid-cols-2 gap-8 mb-10"
@@ -219,48 +213,47 @@ const AboutComponent = () => {
               <motion.div 
                 variants={numberAnimation}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 backdrop-blur-sm shadow-lg"
+                className="p-6 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 backdrop-blur-sm shadow-lg"
               >
                 <motion.span 
-                  className="block text-4xl font-bold text-amber-700 dark:text-amber-500 mb-2"
+                  className="block text-4xl font-bold text-black dark:text-white mb-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
                 >
                   30+
                 </motion.span>
-                <span className="text-amber-900 dark:text-amber-200">Années d'Expérience</span>
+                <span className="text-black dark:text-white">Années d'Expérience</span>
               </motion.div>
               
               <motion.div 
                 variants={numberAnimation}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 backdrop-blur-sm shadow-lg"
+                className="p-6 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 backdrop-blur-sm shadow-lg"
               >
                 <motion.span 
-                  className="block text-4xl font-bold text-amber-700 dark:text-amber-500 mb-2"
+                  className="block text-4xl font-bold text-black dark:text-white mb-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
                 >
                   100%
                 </motion.span>
-                <span className="text-amber-900 dark:text-amber-200">Satisfaction Client</span>
+                <span className="text-black dark:text-white">Satisfaction Client</span>
               </motion.div>
             </motion.div>
             
             <motion.button
               variants={itemVariants}
-              whileHover={{ scale: 1.05, backgroundColor: "rgb(217, 119, 6)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-amber-600 text-amber-50 rounded-lg shadow-lg shadow-amber-900/30 transition-all duration-300 transform hover:shadow-xl"
+              className="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg shadow-lg shadow-gray-900/30 hover:shadow-2xl transition-all duration-300 transform"
             >
               En Savoir Plus
             </motion.button>
           </motion.div>
         </div>
         
-        {/* Enhanced Features section */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -269,7 +262,7 @@ const AboutComponent = () => {
         >
           <motion.h3 
             variants={itemVariants}
-            className="text-4xl font-bold text-center mb-16 text-amber-700 dark:text-amber-500"
+            className="text-4xl font-bold text-center mb-16 text-black dark:text-white"
           >
             Pourquoi Choisir Notre Cuivre
           </motion.h3>
@@ -283,50 +276,30 @@ const AboutComponent = () => {
               },
               {
                 icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9",
-                title: "Durabilité",
-                description: "Nous nous engageons à des pratiques durables, de l'approvisionnement responsable à la production écologique."
+                title: "Portée Mondiale",
+                description: "Nous desservons des clients à travers le monde avec des solutions en cuivre personnalisées."
               },
               {
-                icon: "M13 10V3L4 14h7v7l9-11h-7z",
-                title: "Innovation",
-                description: "Nous repoussons constamment les limites de ce qui est possible avec le cuivre, créant des solutions innovantes."
+                icon: "M12 14l9-5-9-5-9 5 9 5z",
+                title: "Artisanat Authentique",
+                description: "Chaque produit est fabriqué à la main avec passion, selon des méthodes artisanales éprouvées."
               }
-            ].map((feature, i) => (
+            ].map(({ icon, title, description }, index) => (
               <motion.div
-                key={i}
-                custom={i}
-                variants={featureCardVariants}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="group p-8 rounded-xl bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                key={index}
+                variants={itemVariants}
+                className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
               >
-                <motion.div 
-                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-700/30 dark:to-amber-600/30 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-amber-700 dark:text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={feature.icon} />
-                  </svg>
-                </motion.div>
-                <h4 className="text-2xl font-semibold text-amber-700 dark:text-amber-400 text-center mb-4">
-                  {feature.title}
-                </h4>
-                <p className="text-stone-700 dark:text-amber-100/90 text-center leading-relaxed">
-                  {feature.description}
-                </p>
+                <svg className="w-8 h-8 mb-4 text-black dark:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d={icon}></path>
+                </svg>
+                <h4 className="text-xl font-semibold mb-2 text-black dark:text-white">{title}</h4>
+                <p className="text-gray-600 dark:text-gray-300">{description}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
       </div>
-      
-      {/* Bottom copper accent border with animation */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute bottom-0 w-full h-0.5 bg-gradient-to-r from-amber-800/80 via-amber-600 to-amber-800/80 origin-right"
-      />
     </motion.div>
   )
 }
