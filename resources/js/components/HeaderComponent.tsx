@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 import { useHeaderComponent } from '../hooks/useHeaderComponent';
+import Logo from '../assets/logo/logo.jpg';
 
 const HeaderComponent = () => {
   const [state, actions] = useHeaderComponent();
@@ -26,7 +27,7 @@ const HeaderComponent = () => {
             className="text-2xl font-bold"
           >
             <Link href="/" className="flex items-center gap-2">
-              <span className={`text-3xl font-extrabold tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Copper</span>
+              <img src={Logo} className='md:w-11 w-10 md:h-11 h-10 rounded-full'/>
             </Link>
           </motion.div>
 
