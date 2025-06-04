@@ -84,7 +84,7 @@ const AboutComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-950 py-20 relative overflow-hidden"
+      className="min-h-screen w-full bg-white dark:bg-black py-20 relative overflow-hidden"
     >
       {/* Background texture */}
       <motion.div 
@@ -113,7 +113,7 @@ const AboutComponent = () => {
           variants={containerVariants}
           initial="hidden"
           animate={controls}
-          className={`sticky top-0 z-30 py-6 backdrop-blur-sm bg-white/70 dark:bg-gray-900/70 transition-all duration-300 ${
+          className={`sticky top-0 z-30 py-6 backdrop-blur-sm bg-white dark:bg-black transition-all duration-300 ${
             scrolled ? 'shadow-0' : ''
           }`}
         >
