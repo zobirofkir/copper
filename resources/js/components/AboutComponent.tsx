@@ -282,7 +282,7 @@ const AboutComponent = () => {
           {/* Features title - Sticky */}
           <motion.h3 
             variants={itemVariants}
-            className="sticky top-0 z-20 py-6 text-3xl font-serif font-bold text-center mb-16 text-gray-800 dark:text-gray-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm"
+            className="sticky top-0 z-20 py-6 text-3xl font-serif font-bold text-center mb-16 text-gray-800 dark:text-gray-50 backdrop-blur-sm"
           >
             Pourquoi Choisir Notre Cuivre
           </motion.h3>
