@@ -154,7 +154,7 @@ const AboutComponent = () => {
               <motion.img 
                 src={AboutImage}
                 alt="Artisanat en cuivre" 
-                className="w-full h-full object-cover transform transition-transform duration-2000"
+                className="w-full h-full object-contain rounded-md transform transition-transform duration-2000"
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
