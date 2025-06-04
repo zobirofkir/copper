@@ -102,21 +102,7 @@ const HeaderComponent = () => {
                   className="md:w-12 w-11 md:h-12 h-11 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700 shadow-md"
                   alt="Copper Artistry Logo"
                 />
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-br from-gray-600 to-gray-800 rounded-full"
-                />
               </div>
-              <motion.span 
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="font-serif hidden sm:block text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 dark:from-gray-300 dark:via-gray-100 dark:to-gray-300"
-              >
-                Copper Artistry
-              </motion.span>
             </Link>
           </motion.div>
 
