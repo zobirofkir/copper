@@ -1,35 +1,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { GalleryData } from "@/data/GalleryData";
 
 const GalleryComponent = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const photos = [
-    {
-      src: "https://media.istockphoto.com/id/1279278493/fr/photo/pile-de-tige-de-cuivre-de-ferraille.jpg?s=612x612&w=0&k=20&c=5Lo4wgnZt26C2dp9RbPVc45t0m4H1XLPnvaZnDPTWeU=",
-      alt: "Photo 1",
-    },
-    {
-      src: "https://www.zintilon.com/wp-content/uploads/2024/02/copper-parts-and-components.jpg",
-      alt: "Photo 2",
-    },
-    {
-      src: "https://media.istockphoto.com/id/1279278493/fr/photo/pile-de-tige-de-cuivre-de-ferraille.jpg?s=612x612&w=0&k=20&c=5Lo4wgnZt26C2dp9RbPVc45t0m4H1XLPnvaZnDPTWeU=",
-      alt: "Photo 3",
-    },
-    {
-      src: "https://www.zintilon.com/wp-content/uploads/2024/02/copper-parts-and-components.jpg",
-      alt: "Photo 4",
-    },
-    {
-      src: "https://media.istockphoto.com/id/1279278493/fr/photo/pile-de-tige-de-cuivre-de-ferraille.jpg?s=612x612&w=0&k=20&c=5Lo4wgnZt26C2dp9RbPVc45t0m4H1XLPnvaZnDPTWeU=",
-      alt: "Photo 5",
-    },
-    {
-      src: "https://www.zintilon.com/wp-content/uploads/2024/02/copper-parts-and-components.jpg",
-      alt: "Photo 6",
-    },
-  ];
 
   return (
     <div className="container mx-auto mt-10 px-4 py-16">
@@ -37,7 +12,7 @@ const GalleryComponent = () => {
         Photo Gallery
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {photos.map((photo, index) => (
+        {GalleryData.map((photo, index) => (
           <div
             key={index}
             className="group relative cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition duration-300"
