@@ -6,7 +6,12 @@ import { useEffect, useState } from 'react'
 const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false) 
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [screenSize, setScreenSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0
+  })
   
   /**
    * Particle animation effect - elegant monochrome style
@@ -23,12 +28,40 @@ const SliderComponent = () => {
     setIsDarkMode(darkModeQuery.matches)
     
     /**
+     * Check for mobile screen size - improved breakpoints
+     */
+    const mobileQuery = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mobileQuery.matches)
+    
+    /**
+     * Update screen dimensions for responsive calculations
+     */
+    const updateScreenSize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    window.addEventListener('resize', updateScreenSize)
+    updateScreenSize()
+    
+    /**
      * Listen for changes in color scheme preference
      */
     const darkModeListener = (e: MediaQueryListEvent) => {
       setIsDarkMode(e.matches)
     }
     darkModeQuery.addEventListener('change', darkModeListener)
+    
+    /**
+     * Listen for changes in screen size
+     */
+    const mobileListener = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches)
+    }
+    mobileQuery.addEventListener('change', mobileListener)
     
     /**
      * Generate elegant particles for background effect with monochrome tones
@@ -53,6 +86,8 @@ const SliderComponent = () => {
     return () => {
       clearInterval(interval)
       darkModeQuery.removeEventListener('change', darkModeListener)
+      mobileQuery.removeEventListener('change', mobileListener)
+      window.removeEventListener('resize', updateScreenSize)
     }
   }, [currentSlide, setCurrentSlide, setDirection])
 
@@ -76,11 +111,12 @@ const SliderComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative inset-0 h-screen w-screen overflow-hidden bg-gray-100 dark:bg-gray-900 mt-10"
+      className="relative inset-0 h-screen w-screen overflow-hidden bg-gray-100 dark:bg-gray-900 mt-0 sm:mt-4 md:mt-10"
     >
-      {/* Elegant particles background */}
+      {/* Elegant particles background - optimized for mobile */}
       <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle, i) => (
+        {/* Reduce particles on mobile for better performance */}
+        {particles.slice(0, isMobile ? 15 : particles.length).map((particle, i) => (
           <motion.div
             key={i}
             initial={{ 
@@ -147,39 +183,39 @@ const SliderComponent = () => {
         } origin-right`}
       ></motion.div>
       
-      {/* Navigation arrows - refined minimal style */}
+      {/* Navigation arrows - refined minimal style with responsive positioning */}
       <motion.button
         initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 0.7 }}
+        animate={{ x: 0, opacity: isMobile ? 0.9 : 0.7 }}
         whileHover={{ opacity: 1, scale: 1.05 }}
         transition={{ duration: 0.5 }}
         onClick={handlePrevSlide}
-        className={`absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${
+        className={`absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${
           isDarkMode 
-            ? 'bg-black/20 text-white border border-white/20 hover:bg-black/40' 
-            : 'bg-white/30 text-black border border-black/10 hover:bg-white/50'
+            ? 'bg-black/30 text-white border border-white/20 hover:bg-black/40' 
+            : 'bg-white/40 text-black border border-black/10 hover:bg-white/50'
         }`}
         aria-label="Previous slide"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
         </svg>
       </motion.button>
       
       <motion.button
         initial={{ x: 50, opacity: 0 }}
-        animate={{ x: 0, opacity: 0.7 }}
+        animate={{ x: 0, opacity: isMobile ? 0.9 : 0.7 }}
         whileHover={{ opacity: 1, scale: 1.05 }}
         transition={{ duration: 0.5 }}
         onClick={handleNextSlide}
-        className={`absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${
+        className={`absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${
           isDarkMode 
-            ? 'bg-black/20 text-white border border-white/20 hover:bg-black/40' 
-            : 'bg-white/30 text-black border border-black/10 hover:bg-white/50'
+            ? 'bg-black/30 text-white border border-white/20 hover:bg-black/40' 
+            : 'bg-white/40 text-black border border-black/10 hover:bg-white/50'
         }`}
         aria-label="Next slide"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
         </svg>
       </motion.button>
@@ -202,22 +238,34 @@ const SliderComponent = () => {
           {/* Full screen image container */}
           <div className="absolute inset-0 w-screen h-screen">
             <div className="relative w-full h-full">
-              {/* Image with elegant parallax effect */}
+              {/* Image with elegant parallax effect - optimized for mobile */}
               <motion.div
                 initial={{ scale: 1.05 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 2, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full bg-cover bg-center"
-                style={{ 
-                  backgroundImage: `url(${slides[currentSlide].image})`,
-                  transform: 'translate3d(0, 0, 0)',
-                }}
-              />
+                className="absolute inset-0 w-full h-full"
+              >
+                {/* Using picture element for better responsive image handling */}
+                <picture>
+                  {/* Mobile-optimized image */}
+                  <source 
+                    media="(max-width: 768px)" 
+                    srcSet={slides[currentSlide].phoneImage} 
+                  />
+                  {/* Desktop image */}
+                  <img 
+                    src={slides[currentSlide].image} 
+                    alt={slides[currentSlide].title}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    style={{ transform: 'translate3d(0, 0, 0)' }}
+                  />
+                </picture>
+              </motion.div>
               
-              {/* Elegant monochrome overlay */}
+              {/* Elegant monochrome overlay - adjusted for better mobile contrast */}
               <motion.div 
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.85 }}
+                animate={{ opacity: isMobile ? 0.9 : 0.85 }}
                 transition={{ duration: 1.2 }}
                 className={`absolute inset-0 ${
                   isDarkMode 
@@ -235,23 +283,23 @@ const SliderComponent = () => {
                 style={{ mixBlendMode: 'overlay' }}
               ></motion.div>
 
-              {/* Content container with staggered animations */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-12 lg:p-16 max-w-7xl mx-auto text-center">
+              {/* Content container with staggered animations - improved mobile layout */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 max-w-7xl mx-auto text-center">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: "80px" }}
+                  animate={{ width: isMobile ? "60px" : "80px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className={`h-[1px] ${isDarkMode ? 'bg-white/50' : 'bg-white/80'} mb-8 overflow-hidden`}
+                  className={`h-[1px] ${isDarkMode ? 'bg-white/50' : 'bg-white/80'} mb-4 sm:mb-8 overflow-hidden`}
                 />
                 
                 <motion.h2
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 90 }}
-                  className="relative text-4xl md:text-6xl lg:text-7xl font-light tracking-wider mb-6 text-white"
+                  className="relative text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-wider mb-3 sm:mb-6 text-white"
                 >
                   <span className="relative">
-                    Cuivre Raid
+                    {slides[currentSlide].title}
                   </span>
                 </motion.h2>
                 
@@ -259,7 +307,7 @@ const SliderComponent = () => {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
-                  className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light tracking-wide max-w-3xl mb-8"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-light tracking-wide max-w-3xl mb-4 sm:mb-8 px-2"
                 >
                   {slides[currentSlide].description}
                 </motion.p>
@@ -272,7 +320,7 @@ const SliderComponent = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-3 bg-transparent border border-white/30 text-white tracking-wider rounded-none hover:bg-white/10 transition-all duration-300"
+                    className="px-6 sm:px-8 py-2 sm:py-3 bg-transparent border border-white/30 text-white tracking-wider rounded-none hover:bg-white/10 transition-all duration-300 text-sm sm:text-base"
                   >
                     En Savoir Plus
                   </motion.button>
@@ -280,9 +328,9 @@ const SliderComponent = () => {
                 
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: "80px" }}
+                  animate={{ width: isMobile ? "60px" : "80px" }}
                   transition={{ duration: 0.8, delay: 1 }}
-                  className={`h-[1px] ${isDarkMode ? 'bg-white/50' : 'bg-white/80'} mt-8 overflow-hidden`}
+                  className={`h-[1px] ${isDarkMode ? 'bg-white/50' : 'bg-white/80'} mt-4 sm:mt-8 overflow-hidden`}
                 />
               </div>
             </div>
@@ -290,12 +338,12 @@ const SliderComponent = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Slide Indicators with minimal design */}
+      {/* Slide Indicators with minimal design - improved for mobile */}
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.2 }}
-        className="absolute bottom-10 left-0 right-0 z-30 flex justify-center gap-3"
+        className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-0 right-0 z-30 flex justify-center gap-2 sm:gap-3"
       >
         {slides.map((_, index) => (
           <motion.button
@@ -309,20 +357,20 @@ const SliderComponent = () => {
             }}
             className={`h-[2px] transition-all duration-300 ${
               currentSlide === index
-                ? "w-8 bg-white"
-                : "w-4 bg-white/30 hover:bg-white/50"
+                ? "w-6 sm:w-8 bg-white"
+                : "w-3 sm:w-4 bg-white/30 hover:bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </motion.div>
       
-      {/* Slide counter - minimal style */}
+      {/* Slide counter - minimal style with responsive positioning */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.4, duration: 0.8 }}
-        className="absolute bottom-10 right-10 text-white/70 font-light text-sm tracking-widest"
+        className="absolute bottom-6 sm:bottom-8 md:bottom-10 right-4 sm:right-6 md:right-10 text-white/70 font-light text-xs sm:text-sm tracking-widest"
       >
         <span className="text-white font-normal">{currentSlide + 1}</span>
         <span className="mx-1">/</span>
