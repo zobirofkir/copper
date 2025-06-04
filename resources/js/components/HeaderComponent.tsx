@@ -164,7 +164,7 @@ const HeaderComponent = () => {
                 <div className="relative">
                   <img 
                     src={Logo} 
-                    className="md:w-12 w-11 md:h-12 h-11 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700 shadow-md"
+                    className="md:w-20 w-11 md:h-20 h-11 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700 shadow-md"
                     alt="Copper Artistry Logo"
                   />
                 </div>
