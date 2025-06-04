@@ -77,7 +77,7 @@ const SliderComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className={`relative inset-0 h-screen w-screen overflow-hidden bg-gradient-to-br ${
+      className={`relative inset-0 h-screen w-screen overflow-hidden bg-gradient-to-br mt-10 ${
         isDarkMode ? 'from-gray-100 to-gray-200' : 'from-gray-100 to-gray-300'
       }`}
     >
@@ -263,24 +263,24 @@ const SliderComponent = () => {
                   transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 90 }}
                   className="relative text-4xl md:text-6xl lg:text-8xl font-bold mb-6"
                 >
-                  <span className="absolute inset-0 bg-clip-text text-black dark:text-white  blur-sm opacity-70">
+                  <span className="absolute inset-0 bg-clip-text text-white dark:text-white  blur-sm opacity-70">
                     Cuivre Raid
                   </span>
-                  <span className="relative bg-clip-text text-transparent bg-black dark:bg-white drop-shadow-[0_0_25px_rgba(217,119,6,0.3)]">
+                  <span className="relative bg-clip-text text-transparent bg-white dark:bg-white drop-shadow-[0_0_25px_rgba(217,119,6,0.3)]">
                     Cuivre Raid
                   </span>
                 </motion.h2>
                 
-                <motion.p
+                {/* <motion.p
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
                   className="text-lg md:text-xl lg:text-2xl text-black dark:text-gray-100 drop-shadow-md max-w-3xl mb-8"
                 >
                   {slides[currentSlide].description}
-                </motion.p>
+                </motion.p> */}
                 
-                <motion.div
+                {/* <motion.div
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -292,7 +292,7 @@ const SliderComponent = () => {
                   >
                     En Savoir Plus
                   </motion.button>
-                </motion.div>
+                </motion.div> */}
                 
                 <motion.div
                   initial={{ width: 0 }}

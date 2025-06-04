@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import AboutImage from '../assets/images/post 1.jpg'
 
 const AboutComponent = () => {
   const controls = useAnimation()
@@ -131,14 +132,13 @@ const AboutComponent = () => {
             className="relative group"
           >
             <motion.div 
-              className="aspect-square overflow-hidden rounded-2xl shadow-2xl relative"
-              whileHover={{ scale: 1.02 }}
+              className="aspect-square overflow-hidden rounded-2xl relative"
               transition={{ duration: 0.3 }}
             >
               <motion.img 
-                src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd?q=80&w=1974&auto=format&fit=crop" 
+                src={AboutImage}
                 alt="Artisanat en cuivre" 
-                className="w-full h-full object-cover transform transition-transform duration-2000"
+                className="w-full h-full object-contain transform transition-transform duration-2000"
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
