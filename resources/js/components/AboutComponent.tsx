@@ -114,7 +114,7 @@ const AboutComponent = () => {
           initial="hidden"
           animate={controls}
           className={`sticky top-0 z-30 py-6 backdrop-blur-sm bg-white/70 dark:bg-gray-900/70 transition-all duration-300 ${
-            scrolled ? 'shadow-md' : ''
+            scrolled ? 'shadow-0' : ''
           }`}
         >
           <div className="flex flex-col items-center">
