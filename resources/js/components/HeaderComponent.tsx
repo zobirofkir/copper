@@ -193,7 +193,7 @@ const HeaderComponent = () => {
               animate="open"
               exit="closed"
               variants={mobileMenuVariants}
-              className={`absolute inset-y-0 right-0 w-full sm:w-80 shadow-xl md:hidden z-50 ${
+              className={`fixed top-0 left-0 h-screen w-full sm:w-80 sm:left-auto sm:right-0 shadow-xl md:hidden z-[9999] overflow-y-auto ${
                 isDarkMode 
                   ? 'bg-black/95 backdrop-blur-sm' 
                   : 'bg-white/95 backdrop-blur-sm'
@@ -207,16 +207,8 @@ const HeaderComponent = () => {
                 className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gray-800/80 via-gray-600 to-gray-800/80 origin-top"
               />
               
-              <div className="flex flex-col p-8 space-y-6">
+              <div className="flex flex-col p-8 pt-16 space-y-6">
                 <div className="flex justify-between items-center">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="font-serif text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 dark:from-gray-300 dark:via-gray-100 dark:to-gray-300"
-                  >
-                    Menu
-                  </motion.div>
                   
                   <motion.button
                     whileHover={{ scale: 1.1, rotate: 90 }}

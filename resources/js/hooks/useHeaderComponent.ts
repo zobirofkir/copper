@@ -93,7 +93,9 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
       x: 0,
       transition: {
         type: 'tween',
-        duration: 0.3
+        duration: 0.3,
+        staggerChildren: 0.07,
+        delayChildren: 0.2
       }
     }
   };
