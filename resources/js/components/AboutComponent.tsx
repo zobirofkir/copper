@@ -270,58 +270,7 @@ const AboutComponent = () => {
               En Savoir Plus
             </motion.button>
           </motion.div>
-        </div>
-        
-        {/* Features section */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
-          className="mt-24"
-        >
-          {/* Features title - Sticky */}
-          <motion.h3 
-            variants={itemVariants}
-            className="sticky top-0 z-20 py-6 text-3xl font-serif font-bold text-center mb-16 text-gray-800 dark:text-gray-50 backdrop-blur-sm"
-          >
-            Pourquoi Choisir Notre Cuivre
-          </motion.h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-                title: "Qualité Supérieure",
-                description: "Nos produits en cuivre sont fabriqués selon les normes les plus élevées, garantissant durabilité et performance."
-              },
-              {
-                icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9",
-                title: "Portée Mondiale",
-                description: "Nous desservons des clients à travers le monde avec des solutions en cuivre personnalisées."
-              },
-              {
-                icon: "M12 14l9-5-9-5-9 5 9 5z",
-                title: "Artisanat Authentique",
-                description: "Chaque produit est fabriqué à la main avec passion, selon des méthodes artisanales éprouvées."
-              }
-            ].map(({ icon, title, description }, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={featureCardVariants}
-                className="bg-white dark:bg-gray-800 p-8 shadow-md border-t-4 border-gray-600 hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-16 h-16 rounded-full bg-gray-50 dark:bg-gray-900/30 flex items-center justify-center mb-6 mx-auto">
-                  <svg className="w-8 h-8 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={icon}></path>
-                  </svg>
-                </div>
-                <h4 className="text-xl font-serif font-semibold mb-4 text-center text-gray-800 dark:text-gray-200">{title}</h4>
-                <p className="text-gray-600 dark:text-gray-300 text-center font-light">{description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        </div>        
       </div>
     </motion.div>
   )
