@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
   const [isLoaded, setIsLoaded] = useState(false)
-  const [imageOpacity, setImageOpacity] = useState(0.7) 
   const [isDarkMode, setIsDarkMode] = useState(false) 
   
   /**
@@ -79,7 +78,7 @@ const SliderComponent = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       className={`relative inset-0 h-screen w-screen overflow-hidden bg-gradient-to-br ${
-        isDarkMode ? 'from-gray-900 to-black' : 'from-gray-100 to-stone-300'
+        isDarkMode ? 'from-gray-100 to-gray-200' : 'from-gray-100 to-gray-300'
       }`}
     >
       {/* Animated particles background */}
@@ -102,7 +101,7 @@ const SliderComponent = () => {
               ease: "easeInOut",
               repeatType: "reverse"
             }}
-            className="absolute rounded-full bg-gray-600/10 dark:bg-gray-600/10"
+            className="absolute rounded-full bg-gray-white dark:bg-black"
             style={{ 
               width: `${particle.size}px`, 
               height: `${particle.size}px`,
@@ -138,13 +137,13 @@ const SliderComponent = () => {
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-        className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-gray-700/60 via-gray-500 to-gray-700/60 dark:from-gray-800/80 dark:via-gray-600 dark:to-gray-800/80 origin-left"
+        className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-black via-white to-gray-black dark:from-white dark:via-black dark:to-white origin-left"
       ></motion.div>
       <motion.div 
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-        className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-gray-700/60 via-gray-500 to-gray-700/60 dark:from-gray-800/80 dark:via-gray-600 dark:to-gray-800/80 origin-right"
+        className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-black via-white to-gray-black dark:from-white dark:via-black dark:to-white origin-right"
       ></motion.div>
       
       {/* Navigation arrows */}
@@ -206,9 +205,7 @@ const SliderComponent = () => {
                 className="absolute inset-0 w-full h-full bg-cover bg-center"
                 style={{ 
                   backgroundImage: `url(${slides[currentSlide].image})`,
-                  opacity: imageOpacity,
                   transform: 'translate3d(0, 0, 0)',
-                  filter: 'brightness(0.85) contrast(1.1)'
                 }}
               />
               
@@ -266,10 +263,10 @@ const SliderComponent = () => {
                   transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 90 }}
                   className="relative text-4xl md:text-6xl lg:text-8xl font-bold mb-6"
                 >
-                  <span className="absolute inset-0 bg-clip-text text-transparent bg-black dark:from-gray-300 dark:via-gray-500 dark:to-gray-400 blur-sm opacity-70">
+                  <span className="absolute inset-0 bg-clip-text text-black dark:text-white  blur-sm opacity-70">
                     Cuivre Raid
                   </span>
-                  <span className="relative bg-clip-text text-transparent bg-black dark:from-gray-200 dark:via-gray-500 dark:to-gray-300 drop-shadow-[0_0_25px_rgba(217,119,6,0.3)]">
+                  <span className="relative bg-clip-text text-transparent bg-black dark:bg-white drop-shadow-[0_0_25px_rgba(217,119,6,0.3)]">
                     Cuivre Raid
                   </span>
                 </motion.h2>
@@ -289,7 +286,7 @@ const SliderComponent = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: isDarkMode ? "rgba(217, 119, 6, 1)" : "rgba(180, 83, 9, 1)" }}
+                    whileHover={{ scale: 1.05, backgroundColor: isDarkMode ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)" }}
                     whileTap={{ scale: 0.98 }}
                     className="px-8 py-3 bg-black dark:bg-gray-600 text-gray-50 rounded-lg shadow-lg shadow-gray-800/30 dark:shadow-gray-900/30 transition-all duration-300"
                   >
