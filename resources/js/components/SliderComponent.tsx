@@ -111,7 +111,7 @@ const SliderComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative inset-0 h-screen w-screen overflow-hidden bg-gray-100 dark:bg-gray-900 mt-0 sm:mt-4 md:mt-10"
+      className="relative inset-0 h-screen w-screen overflow-hidden bg-gray-100 dark:bg-gray-900"
     >
       {/* Elegant particles background - optimized for mobile */}
       <div className="absolute inset-0 overflow-hidden">
@@ -156,8 +156,8 @@ const SliderComponent = () => {
         }}
         className={`absolute inset-0 bg-gradient-to-b ${
           isDarkMode 
-            ? 'from-black/20 via-transparent to-black/40' 
-            : 'from-white/30 via-transparent to-gray-200/50'
+            ? 'from-black/30 via-transparent to-black/50' 
+            : 'from-white/40 via-transparent to-gray-200/60'
         }`}
       ></motion.div>
       
@@ -298,8 +298,14 @@ const SliderComponent = () => {
                   transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 90 }}
                   className="relative text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-wider mb-3 sm:mb-6 text-white"
                 >
-                  <span className="relative">
+                  <span className="relative inline-block">
                     {slides[currentSlide].title}
+                    <motion.span 
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 1.2, delay: 0.8 }}
+                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-white/40 origin-left"
+                    />
                   </span>
                 </motion.h2>
                 
@@ -318,11 +324,18 @@ const SliderComponent = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-6 sm:px-8 py-2 sm:py-3 bg-transparent border border-white/30 text-white tracking-wider rounded-none hover:bg-white/10 transition-all duration-300 text-sm sm:text-base"
+                    className="group relative px-6 sm:px-8 py-2 sm:py-3 bg-transparent overflow-hidden text-white tracking-wider text-sm sm:text-base"
                   >
-                    En Savoir Plus
+                    <span className="relative z-10">En Savoir Plus</span>
+                    <span className="absolute inset-0 border border-white/30 group-hover:border-white/60 transition-colors duration-300"></span>
+                    <motion.span 
+                      initial={{ y: "100%" }}
+                      whileHover={{ y: "0%" }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 bg-white/10 z-0"
+                    />
                   </motion.button>
                 </motion.div>
                 

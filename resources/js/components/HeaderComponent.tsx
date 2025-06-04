@@ -13,9 +13,9 @@ const HeaderComponent = () => {
       initial="hidden"
       animate="visible"
       variants={headerVariants}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'py-2 shadow-lg' : 'py-4'
-      } ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}
+      className={`relative w-full z-40 transition-all duration-300 ${
+        scrolled ? 'py-2 shadow-md' : 'py-4'
+      } ${isDarkMode ? 'bg-black/90 text-white backdrop-blur-sm' : 'bg-white/90 text-gray-900 backdrop-blur-sm'}`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -23,23 +23,23 @@ const HeaderComponent = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="text-2xl font-bold text-gray-900 dark:text-white"
+            className="text-2xl font-bold"
           >
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-3xl font-extrabold tracking-tight">Cop</span>
+              <span className={`text-3xl font-extrabold tracking-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Copper</span>
             </Link>
           </motion.div>
 
           {/* Navigation Bureau */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
             {menuItems.map((item) => (
               <motion.div key={item.title} variants={linkVariants} whileHover="hover">
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-200 ${
+                  className={`px-3 py-2 text-sm lg:text-base font-medium transition-all duration-200 border-b-2 ${
                     isDarkMode
-                      ? 'text-gray-300 hover:text-white hover:bg-gray-800'
-                      : 'text-gray-800 hover:text-black hover:bg-gray-200'
+                      ? 'text-gray-300 hover:text-white border-transparent hover:border-white'
+                      : 'text-gray-800 hover:text-black border-transparent hover:border-gray-800'
                   }`}
                 >
                   {item.title}
@@ -98,8 +98,8 @@ const HeaderComponent = () => {
               animate="open"
               exit="closed"
               variants={mobileMenuVariants}
-              className={`fixed inset-y-0 right-0 w-full sm:w-80 shadow-xl md:hidden z-50 ${
-                isDarkMode ? 'bg-black' : 'bg-white'
+              className={`absolute inset-y-0 right-0 w-full sm:w-80 shadow-xl md:hidden z-50 ${
+                isDarkMode ? 'bg-black/95 backdrop-blur-sm' : 'bg-white/95 backdrop-blur-sm'
               }`}
             >
               <div className="flex flex-col p-8 space-y-6">
@@ -125,10 +125,10 @@ const HeaderComponent = () => {
                   >
                     <Link
                       href={item.href}
-                      className={`block px-4 py-3 rounded-md text-lg font-medium transition-all ${
+                      className={`block px-4 py-3 text-lg font-medium transition-all border-l-2 ${
                         isDarkMode
-                          ? 'text-white hover:bg-gray-800 hover:text-gray-200'
-                          : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                          ? 'text-white hover:text-gray-200 border-transparent hover:border-white pl-3'
+                          : 'text-gray-900 hover:text-black border-transparent hover:border-gray-900 pl-3'
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
