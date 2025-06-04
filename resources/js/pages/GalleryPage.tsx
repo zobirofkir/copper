@@ -4,7 +4,7 @@ import React from 'react'
 
 const GalleryPage = () => {
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <section className="bg-white dark:bg-black min-h-screen transition-colors duration-300">
       <Head title='Galerie'/>
       <div className="pt-8 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
