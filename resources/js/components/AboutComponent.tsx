@@ -109,12 +109,12 @@ const AboutComponent = () => {
             initial={{ width: 0 }}
             animate={{ width: "120px" }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-8"
+            className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-8"
           />
           
           <motion.h2 
             variants={itemVariants}
-            className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600"
+            className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-black dark:text-white"
           >
             À Propos de Nous
           </motion.h2>
@@ -123,7 +123,7 @@ const AboutComponent = () => {
             initial={{ width: 0 }}
             animate={{ width: "120px" }}
             transition={{ duration: 1, delay: 0.7 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"
+            className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto"
           />
         </motion.div>
 
