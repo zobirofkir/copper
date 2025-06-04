@@ -3,11 +3,21 @@ import SliderTwo from '../assets/slider/slide_2.jpg';
 import SliderThree from '../assets/slider/slide_3.jpg';
 import SliderFour from '../assets/slider/slide_4.jpg';
 
+/**
+ * Phone
+ */
+import SliderOnePhone from '../assets/slider/phone/slide_1.jpg';
+import SliderTwoPhone from '../assets/slider/phone/slide_2.jpg';
+import SliderThreePhone from '../assets/slider/phone/slide_3.jpg';
+import SliderFourPhone from '../assets/slider/phone/slide_4.jpg';
+
+
 interface SlideData {
   id: number
   title: string
   description: string
   image: string
+  phoneImage: string
 }
 
 export const slides: SlideData[] = [
@@ -15,24 +25,28 @@ export const slides: SlideData[] = [
     id: 1,
     title: 'Excellence en Cuivre',
     description: 'Solutions en cuivre premium avec une qualité et une durabilité inégalées',
-    image: SliderOne
+    image: SliderOne,
+    phoneImage: SliderOnePhone
   },
   {
     id: 2,
     title: 'Cuivre Durable',
     description: 'Approvisionnement et traitement du cuivre écologiquement responsables',
-    image: SliderTwo
+    image: SliderTwo,
+    phoneImage: SliderTwoPhone
   },
   {
     id: 3,
     title: 'Innovation en Cuivre',
     description: 'Applications avancées du cuivre pour les besoins industriels modernes',
-    image: SliderThree
+    image: SliderThree,
+    phoneImage: SliderThreePhone
   },
   {
     id: 4,
     title: 'Artisanat du Cuivre',
     description: 'Produits en cuivre de qualité artisanale avec une finition exceptionnelle',
-    image: SliderFour
+    image: SliderFour,
+    phoneImage: SliderFourPhone
   }
 ]
