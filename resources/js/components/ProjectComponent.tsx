@@ -32,7 +32,7 @@ const ProjectComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-gradient-to-br from-white to-amber-50 dark:from-stone-950 dark:to-stone-900 py-20 px-4 relative overflow-hidden"
+      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-50 dark:from-stone-950 dark:to-stone-900 py-20 px-4 relative overflow-hidden"
       id="projects"
     >
       {/* Animated background elements */}
@@ -43,7 +43,7 @@ const ProjectComponent = () => {
             y: [0, 15, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-amber-600/5 blur-[100px]"
+          className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-gray-600/5 blur-[100px]"
         />
         <motion.div 
           animate={{ 
@@ -51,7 +51,7 @@ const ProjectComponent = () => {
             y: [0, -10, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] right-[5%] w-[35vw] h-[35vw] rounded-full bg-amber-700/5 blur-[120px]"
+          className="absolute bottom-[10%] right-[5%] w-[35vw] h-[35vw] rounded-full bg-gray-700/5 blur-[120px]"
         />
       </div>
 
@@ -60,7 +60,7 @@ const ProjectComponent = () => {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-amber-800/80 via-amber-600 to-amber-800/80 origin-left"
+        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-gray-800/80 via-gray-600 to-gray-800/80 origin-left"
       />
       
       <div className="container mx-auto max-w-7xl relative" ref={ref}>
@@ -74,12 +74,12 @@ const ProjectComponent = () => {
             initial={{ width: 0 }}
             animate={{ width: "120px" }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-8"
+            className="h-0.5 bg-gradient-to-r from-transparent via-gray-500 to-transparent mx-auto mb-8"
           />
           
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:text-white"
           >
             Nos Projets
           </motion.h2>
@@ -88,12 +88,12 @@ const ProjectComponent = () => {
             initial={{ width: 0 }}
             animate={{ width: "120px" }}
             transition={{ duration: 1, delay: 0.7 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-8"
+            className="h-0.5 bg-gradient-to-r from-transparent via-gray-500 to-transparent mx-auto mb-8"
           />
           
           <motion.p
             variants={itemVariants}
-            className="max-w-2xl mx-auto text-base sm:text-lg text-stone-700 dark:text-amber-100/90"
+            className="max-w-2xl mx-auto text-base sm:text-lg text-stone-700 dark:text-gray-100/90"
           >
             Découvrez notre collection de créations en cuivre, alliant tradition artisanale et design contemporain.
             Chaque pièce raconte une histoire d'excellence et de savoir-faire.
@@ -114,8 +114,8 @@ const ProjectComponent = () => {
             onClick={() => handleFilterClick('Tous')}
             className={`px-4 sm:px-6 py-2 rounded-full transition-all duration-300 ${
               activeFilter === 'Tous' 
-                ? 'bg-amber-600 text-amber-50 shadow-lg shadow-amber-900/30' 
-                : 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800/40'
+                ? 'bg-gray-600 text-gray-50 shadow-lg shadow-gray-900/30' 
+                : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40'
             }`}
           >
             Tous
@@ -130,8 +130,8 @@ const ProjectComponent = () => {
               onClick={() => handleFilterClick(category)}
               className={`px-4 sm:px-6 py-2 rounded-full transition-all duration-300 ${
                 activeFilter === category 
-                  ? 'bg-amber-600 text-amber-50 shadow-lg shadow-amber-900/30' 
-                  : 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800/40'
+                  ? 'bg-gray-600 text-gray-50 shadow-lg shadow-gray-900/30' 
+                  : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40'
               }`}
             >
               {category}
@@ -156,7 +156,7 @@ const ProjectComponent = () => {
                 animate="visible"
                 whileHover="hover"
                 layout
-                className="group rounded-xl overflow-hidden shadow-xl bg-white dark:bg-stone-800/90 border border-amber-100 dark:border-amber-900/50 backdrop-blur-sm"
+                className="group rounded-xl overflow-hidden shadow-xl bg-white dark:bg-stone-800/90 border border-gray-100 dark:border-gray-900/50 backdrop-blur-sm"
               >
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <motion.img 
@@ -177,7 +177,7 @@ const ProjectComponent = () => {
                         initial={{ y: 20, opacity: 0 }}
                         whileHover={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="inline-block px-3 py-1 bg-amber-600 text-amber-50 text-sm rounded-full mb-3"
+                        className="inline-block px-3 py-1 bg-gray-600 text-gray-50 text-sm rounded-full mb-3"
                       >
                         {project.category}
                       </motion.span>
@@ -193,12 +193,12 @@ const ProjectComponent = () => {
                   </motion.div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 mb-2">{project.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-400 mb-2">{project.title}</h3>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => openProjectModal(project)}
-                    className="px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 rounded-lg hover:bg-amber-600 hover:text-amber-50 dark:hover:bg-amber-700 transition-all duration-300"
+                    className="px-4 py-2 bg-gray-100 dark:bg-gray-900/30 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-600 hover:text-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
                   >
                     Voir Détails
                   </motion.button>
@@ -217,14 +217,14 @@ const ProjectComponent = () => {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl sm:text-3xl font-bold text-amber-700 dark:text-amber-500 mb-6"
+            className="text-2xl sm:text-3xl font-bold text-gray-700 dark:text-gray-500 mb-6"
           >
             Vous avez un projet en tête ?
           </motion.h3>
           
           <motion.p
             variants={itemVariants}
-            className="max-w-2xl mx-auto text-base sm:text-lg text-stone-700 dark:text-amber-100/90 mb-8"
+            className="max-w-2xl mx-auto text-base sm:text-lg text-stone-700 dark:text-gray-100/90 mb-8"
           >
             Nous sommes spécialisés dans la création de pièces en cuivre sur mesure. 
             Contactez-nous pour discuter de votre vision et transformer vos idées en réalité.
@@ -238,7 +238,7 @@ const ProjectComponent = () => {
               boxShadow: "0 20px 25px -5px rgba(194, 65, 12, 0.2), 0 8px 10px -6px rgba(194, 65, 12, 0.2)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-amber-600 text-amber-50 rounded-lg shadow-lg shadow-amber-900/30 transition-all duration-300 transform hover:shadow-xl"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-600 text-gray-50 rounded-lg shadow-lg shadow-gray-900/30 transition-all duration-300 transform hover:shadow-xl"
           >
             Contactez-Nous
           </motion.button>
@@ -250,7 +250,7 @@ const ProjectComponent = () => {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute bottom-0 w-full h-0.5 bg-gradient-to-r from-amber-800/80 via-amber-600 to-amber-800/80 origin-right"
+        className="absolute bottom-0 w-full h-0.5 bg-gradient-to-r from-gray-800/80 via-gray-600 to-gray-800/80 origin-right"
       />
 
       {/* Project Detail Modal */}
@@ -291,45 +291,45 @@ const ProjectComponent = () => {
                   </svg>
                 </motion.button>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <span className="inline-block px-3 py-1 bg-amber-600 text-amber-50 text-sm rounded-full mb-2">
+                  <span className="inline-block px-3 py-1 bg-gray-600 text-gray-50 text-sm rounded-full mb-2">
                     {selectedProject.category}
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">{selectedProject.article}</h3>
                 </div>
               </div>
               <div className="p-6 sm:p-8">
-                <h4 className="text-2xl font-bold text-amber-800 dark:text-amber-400 mb-4">{selectedProject.title}</h4> {/* Display project title */}
-                <p className="text-lg font-semibold text-stone-700 dark:text-amber-100/90 mb-6">{selectedProject.article}</p> {/* Display article */}
+                <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-400 mb-4">{selectedProject.title}</h4> {/* Display project title */}
+                <p className="text-lg font-semibold text-stone-700 dark:text-gray-100/90 mb-6">{selectedProject.article}</p> {/* Display article */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                   <div>
-                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Référence:</h5>
-                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.name_reference}</p>
+                    <h5 className="text-lg font-semibold text-gray-700 dark:text-gray-500">Référence:</h5>
+                    <p className="text-stone-700 dark:text-gray-100/90">{selectedProject.name_reference}</p>
                   </div>
                   <div>
-                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Matériaux:</h5>
-                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.materials}</p>
+                    <h5 className="text-lg font-semibold text-gray-700 dark:text-gray-500">Matériaux:</h5>
+                    <p className="text-stone-700 dark:text-gray-100/90">{selectedProject.materials}</p>
                   </div>
                   <div>
-                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Dimensions:</h5>
-                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.dimensions}</p>
+                    <h5 className="text-lg font-semibold text-gray-700 dark:text-gray-500">Dimensions:</h5>
+                    <p className="text-stone-700 dark:text-gray-100/90">{selectedProject.dimensions}</p>
                   </div>
                   <div>
-                    <h5 className="text-lg font-semibold text-amber-700 dark:text-amber-500">Prix & Disponibilité:</h5>
-                    <p className="text-stone-700 dark:text-amber-100/90">{selectedProject.price_availability}</p>
+                    <h5 className="text-lg font-semibold text-gray-700 dark:text-gray-500">Prix & Disponibilité:</h5>
+                    <p className="text-stone-700 dark:text-gray-100/90">{selectedProject.price_availability}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-4 mt-8">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-amber-600 text-amber-50 rounded-lg shadow-md hover:bg-amber-700 transition-all"
+                    className="px-6 py-3 bg-gray-600 text-gray-50 rounded-lg shadow-md hover:bg-gray-700 transition-all"
                   >
                     Commander
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-800/70 transition-all"
+                    className="px-6 py-3 bg-gray-100 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800/70 transition-all"
                   >
                     Demander un Devis
                   </motion.button>
