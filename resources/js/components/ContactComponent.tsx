@@ -51,7 +51,7 @@ const ContactComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-stone-900 py-20 relative overflow-hidden"
+      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-stone-900 py-12 sm:py-16 md:py-20 relative overflow-hidden"
     >
       {/* Animated background elements */}
       <motion.div 
@@ -90,7 +90,7 @@ const ContactComponent = () => {
           
           <motion.h2 
             variants={itemVariants}
-            className="md:text-5xl text-2xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:from-gray-300 dark:via-white dark:to-gray-300"
           >
             Contactez-Nous
           </motion.h2>
@@ -104,7 +104,7 @@ const ContactComponent = () => {
           
           <motion.p
             variants={itemVariants}
-            className="mt-8 text-lg text-stone-700 dark:text-gray-100/90 max-w-2xl mx-auto"
+            className="mt-8 text-base sm:text-lg text-stone-700 dark:text-gray-100/90 max-w-2xl mx-auto px-4"
           >
             Nous sommes à votre disposition pour répondre à toutes vos questions et vous accompagner dans vos projets.
             N'hésitez pas à nous contacter par le moyen qui vous convient le mieux.
@@ -112,7 +112,7 @@ const ContactComponent = () => {
         </motion.div>
 
         {/* Contact Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
           {/* WhatsApp Card */}
           <motion.div
             custom={0}
@@ -120,7 +120,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/20 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700/30 dark:to-gray-600/30 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
@@ -158,7 +158,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/20 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700/30 dark:to-gray-600/30 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
@@ -194,7 +194,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/20 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700/30 dark:to-gray-600/30 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
