@@ -8,7 +8,7 @@ const GalleryComponent = () => {
 
   return (
     <div className="container mx-auto mt-10 px-4 py-16">
-      <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800 dark:text-white">
+      <h2 className="text-4xl md:text-5xl  font-extrabold mb-10 text-center text-gray-800 dark:text-white">
         Photo Gallery
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

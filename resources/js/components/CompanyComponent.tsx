@@ -34,7 +34,7 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
       <div className="container mx-auto px-6 md:px-12">
         <motion.h2 
           variants={itemVariants}
-          className="text-5xl md:text-6xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:text-white"
+          className="md:text-5xl text-2xl md:text-6xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:text-white"
         >
           Nos Partenaires
         </motion.h2>

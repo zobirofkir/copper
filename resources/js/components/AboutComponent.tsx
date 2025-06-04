@@ -113,7 +113,7 @@ const AboutComponent = () => {
           
           <motion.h2 
             variants={itemVariants}
-            className="text-5xl md:text-6xl font-bold mb-6 text-black dark:text-white"
+            className="md:text-5xl text-2xl md:text-6xl font-bold mb-6 text-black dark:text-white"
           >
             À Propos de Nous
           </motion.h2>
@@ -173,7 +173,7 @@ const AboutComponent = () => {
           >
             <motion.h3 
               variants={itemVariants}
-              className="text-3xl md:text-4xl font-bold mb-8 text-black dark:text-white flex justify-center"
+              className="md:text-3xl text-2xl md:text-4xl font-bold mb-8 text-black dark:text-white flex justify-center"
             >
               {Array.from("Notre Héritage de Cuivre").map((char, i) => (
                 <motion.span
