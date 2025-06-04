@@ -13,9 +13,9 @@ const ShowBlogPage = () => {
   return (
     <>
       <Head title={blog.title} />
-      <div className="min-h-screen w-full bg-gradient-to-br from-white to-amber-50 dark:from-black dark:to-stone-900 py-20 px-6 md:px-12">
+      <div className="min-h-screen w-full bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-stone-900 py-20 px-6 md:px-12">
         <div className="container mx-auto">
-          <div className="bg-gradient-to-br from-amber-50 to-transparent dark:from-amber-900/20 dark:to-transparent border border-amber-200/50 dark:border-amber-700/30 rounded-xl shadow-2xl overflow-hidden">
+          <div className="bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/20 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 rounded-xl shadow-2xl overflow-hidden">
             <motion.div
               className="relative"
               initial="hidden"
@@ -41,10 +41,10 @@ const ShowBlogPage = () => {
             </motion.div>
             <div className="p-8 md:p-12">
               <p
-                className="text-lg leading-relaxed text-stone-700 dark:text-amber-100 mb-6"
+                className="text-lg leading-relaxed text-stone-700 dark:text-gray-100 mb-6"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               ></p>
-              <p className="text-sm text-stone-500 dark:text-amber-300">
+              <p className="text-sm text-stone-500 dark:text-gray-300">
                 Published on:{" "}
                 <span className="font-medium">
                   {new Date(blog.created_at).toISOString().slice(0, 10)}
