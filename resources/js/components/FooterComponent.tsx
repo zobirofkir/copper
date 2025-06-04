@@ -92,40 +92,6 @@ const FooterComponent = () => {
             </motion.div>
           </div>
 
-          {/* Services */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-500 mb-4">
-                Nos Services
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  'Artisanat en Cuivre',
-                  'Restauration',
-                  'Sur Mesure',
-                  'Conseil',
-                  'Installation'
-                ].map((service, index) => (
-                  <motion.li 
-                    key={index}
-                    whileHover={{ x: 5 }}
-                  >
-                    <a 
-                      href="#" 
-                      className="text-stone-600 dark:text-gray-100/80 hover:text-gray-700 dark:hover:text-gray-400 transition-colors duration-300"
-                    >
-                      {service}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-
           {/* Contact Info */}
           <div>
             <motion.div
