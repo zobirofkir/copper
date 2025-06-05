@@ -234,26 +234,15 @@ const HeaderComponent = () => {
             {/* Mobile Controls */}
             <div className="flex items-center md:hidden">
               {/* Mobile Search Button */}
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="p-2 rounded-full text-white hover:bg-amber-700/50 transition-colors duration-300 mr-1"
                 aria-label="Search"
               >
                 <Search size={18} />
-              </motion.button>
-              
-              {/* Mobile Cart Button */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full text-white hover:bg-amber-700/50 transition-colors duration-300 mr-1 relative"
-                aria-label="Cart"
-              >
-                <ShoppingBag size={18} />
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">2</span>
-              </motion.button>
-              
+              </motion.button> */}
+                            
               {/* Mobile Dark Mode Toggle */}
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 15 }}
