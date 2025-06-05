@@ -60,4 +60,5 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({
   );
 };
 
+// Don't memoize to ensure rerender when galleries change
 export default GalleryGrid;
