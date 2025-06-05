@@ -43,6 +43,8 @@ const GalleryComponent = ({ galleries, categories = [] }: GalleryProps) => {
   
   const handleCategoryChange = (categoryId: number | null) => {
     setSelectedCategory(categoryId);
+    controls.set("hidden");
+    controls.start("visible");
   };
 
   const openPhotoModal = (photo: any, index: number) => {
