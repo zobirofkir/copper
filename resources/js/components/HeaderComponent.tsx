@@ -241,7 +241,7 @@ const HeaderComponent = () => {
                 className={`p-2 rounded-md transition-all duration-300 ${
                   isDarkMode 
                     ? 'text-white hover:bg-gray-800/50' 
-                    : 'text-gray-900 hover:bg-gray-100'
+                    : 'text-white hover:bg-gray-100'
                 }`}
                 aria-label="Open menu"
               >
