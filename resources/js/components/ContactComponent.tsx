@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 // Import a contact image
-import contactImage from '@/assets/images/post 1.jpg'
+import contactImage from '@/assets/images/post  4.jpg'
 
 const ContactComponent = () => {
   const controls = useAnimation()
