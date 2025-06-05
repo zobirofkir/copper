@@ -191,7 +191,7 @@ const HeaderComponent = () => {
                     {item.title}
                     <motion.span 
                       className={`absolute bottom-0 left-0 w-0 h-0.5 ${
-                        isDarkMode ? 'bg-white' : 'bg-gray-800'
+                        isDarkMode ? 'bg-white' : 'bg-white'
                       } group-hover:w-full transition-all duration-300`}
                     />
                   </Link>
