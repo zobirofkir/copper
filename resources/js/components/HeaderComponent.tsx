@@ -171,8 +171,8 @@ const HeaderComponent = () => {
                   />
                 </div>
                 <span className="hidden sm:block font-serif tracking-wide text-lg">
-                  <span className="text-amber-400 font-bold">Copper</span>
-                  <span className="font-light">Artistry</span>
+                  <span className="text-amber-400 font-bold">Cop</span>
+                  <span className="font-light">per</span>
                 </span>
               </Link>
             </motion.div>
