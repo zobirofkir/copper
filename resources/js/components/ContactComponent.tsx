@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
+// Import a contact image
+import contactImage from '@/assets/images/post 1.jpg'
 
 const ContactComponent = () => {
   const controls = useAnimation()
@@ -44,6 +46,18 @@ const ContactComponent = () => {
         ease: "easeOut"
       }
     })
+  }
+  
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
   }
 
   return (
