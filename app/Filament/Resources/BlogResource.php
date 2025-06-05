@@ -58,10 +58,6 @@ class BlogResource extends Resource
                         'fontFamily',
                         'fontSize',
                     ]),
-                TextInput::make('slug')
-                    ->label('Slug')
-                    ->required()
-                    ->maxLength(255),
             ])->columns(1);
     }
 
