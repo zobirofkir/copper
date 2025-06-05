@@ -27,7 +27,7 @@ const HeaderMain: React.FC<HeaderMainProps> = ({ state, actions, language, toggl
         scrolled ? 'py-2 shadow-lg' : 'py-4'
       } ${isDarkMode 
           ? 'bg-black/95 text-white backdrop-blur-md' 
-          : 'bg-gradient-to-r from-amber-900/95 to-amber-800/95 text-white backdrop-blur-md'
+          : 'bg-black/95 text-white backdrop-blur-md'
       }`}
     >
       {/* Copper accent border with animation */}
