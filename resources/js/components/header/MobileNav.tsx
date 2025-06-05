@@ -24,7 +24,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
           className={`fixed top-0 left-0 h-screen w-full sm:w-80 sm:left-auto sm:right-0 shadow-xl md:hidden z-[9999] overflow-y-auto ${
             isDarkMode 
               ? 'bg-gray-900/98 backdrop-blur-md' 
-              : 'bg-gradient-to-br from-amber-900/98 to-amber-800/98 backdrop-blur-md text-white'
+              : 'bg-gray-900/98 backdrop-blur-md text-white'
           }`}
         >
           {/* Left border accent */}
