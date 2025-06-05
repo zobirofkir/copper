@@ -95,7 +95,7 @@ const GalleryComponent = () => {
             key={index}
             custom={index}
             variants={itemVariants}
-            className="group relative cursor-pointer overflow-hidden bg-gray-100 dark:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-500"
+            className="group relative cursor-pointer overflow-hidden  shadow-xl hover:shadow-2xl transition-all duration-500"
             onClick={() => openPhotoModal(photo, index)}
             whileHover={{ 
               y: -5,
@@ -106,7 +106,7 @@ const GalleryComponent = () => {
               <motion.img
                 src={photo.src}
                 alt={photo.alt}
-                className="w-full h-full object-cover transform transition-transform duration-700 ease-in-out"
+                className="w-full h-90 object-cover transform transition-transform duration-700 ease-in-out"
                 initial={{ scale: 1.2, filter: "grayscale(100%)" }}
                 animate={{ 
                   scale: isLoaded ? 1 : 1.2,

@@ -269,12 +269,12 @@ const ContactComponent = () => {
           </motion.div>
         </motion.div>
 
-        {/* Contact Form Section */}
+        {/* Contact Form Section with Image */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={controls}
-          className="max-w-3xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
           <motion.h3 
             variants={itemVariants}
@@ -283,66 +283,93 @@ const ContactComponent = () => {
             Envoyez-nous un Message
           </motion.h3>
           
-          <motion.form 
-            variants={containerVariants}
-            className="space-y-6"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <motion.div variants={itemVariants}>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nom</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
-                  placeholder="Votre nom"
-                />
-              </motion.div>
-              
-              <motion.div variants={itemVariants}>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
-                  placeholder="Votre email"
-                />
-              </motion.div>
-            </div>
-            
-            <motion.div variants={itemVariants}>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sujet</label>
-              <input 
-                type="text" 
-                id="subject" 
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
-                placeholder="Sujet de votre message"
-              />
-            </motion.div>
-            
-            <motion.div variants={itemVariants}>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-              <textarea 
-                id="message" 
-                rows={6} 
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
-                placeholder="Votre message"
-              ></textarea>
-            </motion.div>
-            
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+            {/* Left side - Image */}
             <motion.div 
-              variants={itemVariants}
-              className="flex justify-center"
+              variants={imageVariants}
+              className="w-full lg:w-1/2 mb-8 lg:mb-0"
             >
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg shadow-lg transition-all duration-300 transform hover:shadow-xl"
-              >
-                Envoyer le Message
-              </motion.button>
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img 
+                  src={contactImage} 
+                  alt="Contact Us" 
+                  className="w-full h-auto object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 p-6 lg:p-8">
+                  <h4 className="text-2xl lg:text-3xl font-bold text-white mb-2">Nous Sommes Là Pour Vous</h4>
+                  <p className="text-gray-200">Notre équipe est prête à répondre à toutes vos questions</p>
+                </div>
+              </div>
             </motion.div>
-          </motion.form>
+            
+            {/* Right side - Contact Form */}
+            <motion.div 
+              variants={containerVariants}
+              className="w-full lg:w-1/2 bg-gray-50 dark:bg-gray-900 p-6 lg:p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800"
+            >
+              <motion.form 
+                variants={containerVariants}
+                className="space-y-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <motion.div variants={itemVariants}>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nom</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
+                      placeholder="Votre nom"
+                    />
+                  </motion.div>
+                  
+                  <motion.div variants={itemVariants}>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
+                      placeholder="Votre email"
+                    />
+                  </motion.div>
+                </div>
+                
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sujet</label>
+                  <input 
+                    type="text" 
+                    id="subject" 
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
+                    placeholder="Sujet de votre message"
+                  />
+                </motion.div>
+                
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                  <textarea 
+                    id="message" 
+                    rows={6} 
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-800 dark:text-white"
+                    placeholder="Votre message"
+                  ></textarea>
+                </motion.div>
+                
+                <motion.div 
+                  variants={itemVariants}
+                  className="flex justify-center"
+                >
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg shadow-lg transition-all duration-300 transform hover:shadow-xl"
+                  >
+                    Envoyer le Message
+                  </motion.button>
+                </motion.div>
+              </motion.form>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
       
