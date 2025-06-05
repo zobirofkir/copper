@@ -1,19 +1,6 @@
 import { useState, useEffect } from 'react';
-
-export interface HeaderComponentState {
-  isOpen: boolean;
-  isDarkMode: boolean;
-  scrolled: boolean;
-  menuItems: Array<{ title: string; href: string }>;
-  headerVariants: any;
-  mobileMenuVariants: any;
-  linkVariants: any;
-}
-
-export interface HeaderComponentActions {
-  setIsOpen: (isOpen: boolean) => void;
-  toggleDarkMode: () => void;
-}
+import { HeaderComponentState, HeaderComponentActions, MenuItem } from '../components/header/types';
+import { headerVariants, mobileMenuVariants, linkVariants } from '../components/header/animations';
 
 export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActions] => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +45,7 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { title: 'Accueil', href: '/' },
     { title: 'Projets', href: '/projects' },
     { title: 'À propos', href: '/abouts' },
@@ -66,50 +53,6 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     { title: 'Gallery', href: '/galleries' },
     { title: 'Contact', href: '/contacts' },
   ];
-
-  const headerVariants = {
-    hidden: { y: -100 },
-    visible: { 
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
-  const mobileMenuVariants = {
-    closed: {
-      opacity: 0,
-      x: '100%',
-      transition: {
-        type: 'tween',
-        duration: 0.3
-      }
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: 'tween',
-        duration: 0.3,
-        staggerChildren: 0.07,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const linkVariants = {
-    hover: {
-      scale: 1.05,
-      color: '#f59e0b',
-      transition: {
-        type: 'spring',
-        stiffness: 300
-      }
-    }
-  };
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
