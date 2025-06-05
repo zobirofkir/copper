@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useAnimation } from "framer-motion";
 import {
   CategoryFilter,
@@ -15,14 +15,12 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
   const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-  const [filteredGalleries, setFilteredGalleries] = useState<GalleryItem[]>(galleries);
   const controls = useAnimation();
-
-  useEffect(() => {
-    setIsLoaded(true);
-    controls.start("visible");
-  }, [controls]);
   
+  // Use state for filtered galleries to ensure proper rerendering
+  const [filteredGalleries, setFilteredGalleries] = useState(galleries);
+  
+  // Update filtered galleries when category or galleries change
   useEffect(() => {
     if (selectedCategory === null) {
       setFilteredGalleries(galleries);
@@ -30,25 +28,36 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
       setFilteredGalleries(galleries.filter(gallery => gallery.category_id === selectedCategory));
     }
   }, [selectedCategory, galleries]);
-  
-  const handleCategoryChange = (categoryId: number | null) => {
-    setSelectedCategory(categoryId);
-    controls.set("hidden");
-    controls.start("visible");
-  };
 
-  const openPhotoModal = (photo: GalleryItem, index: number) => {
+  useEffect(() => {
+    setIsLoaded(true);
+    controls.start("visible");
+  }, [controls]);
+  
+  // Force rerender when category changes
+  const handleCategoryChange = useCallback((categoryId: number | null) => {
+    setSelectedCategory(categoryId);
+    // Reset animation controls to ensure rerender
+    controls.set("hidden");
+    setTimeout(() => {
+      controls.start("visible");
+    }, 50);
+  }, [controls]);
+
+  const openPhotoModal = useCallback((photo: GalleryItem, index: number) => {
     setSelectedPhoto(photo);
     setCurrentIndex(index);
-  };
+  }, []);
 
-  const navigatePhoto = (direction: number) => {
-    const newIndex = (currentIndex + direction + filteredGalleries.length) % filteredGalleries.length;
-    setSelectedPhoto(filteredGalleries[newIndex]);
-    setCurrentIndex(newIndex);
-  };
+  const navigatePhoto = useCallback((direction: number) => {
+    setCurrentIndex(prevIndex => {
+      const newIndex = (prevIndex + direction + filteredGalleries.length) % filteredGalleries.length;
+      setSelectedPhoto(filteredGalleries[newIndex]);
+      return newIndex;
+    });
+  }, [filteredGalleries]);
 
-  const closePhotoModal = () => setSelectedPhoto(null);
+  const closePhotoModal = useCallback(() => setSelectedPhoto(null), []);
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl relative">
@@ -68,15 +77,17 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
         onPhotoClick={openPhotoModal}
       />
 
-      <PhotoModal 
-        selectedPhoto={selectedPhoto}
-        currentIndex={currentIndex}
-        totalPhotos={filteredGalleries.length}
-        onClose={closePhotoModal}
-        onNavigate={navigatePhoto}
-      />
+      {selectedPhoto && (
+        <PhotoModal 
+          selectedPhoto={selectedPhoto}
+          currentIndex={currentIndex}
+          totalPhotos={filteredGalleries.length}
+          onClose={closePhotoModal}
+          onNavigate={navigatePhoto}
+        />
+      )}
     </div>
   );
 };
 
-export default GalleryComponent;
+export default React.memo(GalleryComponent);
