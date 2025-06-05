@@ -72,7 +72,7 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
                   className="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
                 />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-center text-gray-700 dark:text-gray-300 relative inline-block mx-auto">
+              <h3 className="flex justify-center items-center font-bold md:text-xl text-md">
                 <span>{company.name}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
               </h3>
