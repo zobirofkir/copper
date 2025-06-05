@@ -74,7 +74,7 @@ const HeaderComponent = () => {
     <>
       {/* Top Bar with Links and Social Icons */}
       <div className={`w-full py-2 px-4 transition-colors duration-300 ${
-        isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'
+        isDarkMode ? 'bg-black text-white' : 'bg-gray-100 text-gray-800'
       }`}>
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
           {/* Left Side Links */}
