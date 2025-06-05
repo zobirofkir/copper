@@ -65,7 +65,7 @@ const ContactComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-white dark:bg-black py-12 sm:py-16 md:py-20 relative overflow-hidden"
+      className="min-h-screen w-full bg-black py-12 sm:py-16 md:py-20 relative overflow-hidden"
     >
       {/* Animated background elements */}
       <motion.div 
@@ -104,7 +104,7 @@ const ContactComponent = () => {
           
           <motion.h2 
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-800 dark:text-gray-200"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
           >
             Contactez-Nous
           </motion.h2>
@@ -118,7 +118,7 @@ const ContactComponent = () => {
           
           <motion.p
             variants={itemVariants}
-            className="mt-8 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4"
+            className="mt-8 text-base sm:text-lg text-white max-w-2xl mx-auto px-4"
           >
             Nous sommes à votre disposition pour répondre à toutes vos questions et vous accompagner dans vos projets.
             N'hésitez pas à nous contacter par le moyen qui vous convient le mieux.
@@ -134,7 +134,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-6 sm:p-8 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gray-950 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
@@ -172,7 +172,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-6 sm:p-8 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gray-950 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
@@ -208,7 +208,7 @@ const ContactComponent = () => {
             initial="hidden"
             animate={controls}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group p-6 sm:p-8 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group p-6 sm:p-8 rounded-xl bg-gray-950 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <motion.div 
               className="w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-300"
