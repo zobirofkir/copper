@@ -267,11 +267,7 @@ const SliderComponent = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isMobile ? 0.9 : 0.85 }}
                 transition={{ duration: 1.2 }}
-                className={`absolute inset-0 ${
-                  isDarkMode 
-                    ? 'bg-gradient-to-t from-black/95 via-black/70 to-black/30' 
-                    : 'bg-gradient-to-t from-gray-900/85 via-gray-800/60 to-gray-700/30'
-                }`}
+                className={`absolute inset-0 dark:bg-black bg-transparent`}
               ></motion.div>
               
               {/* Subtle grain texture overlay */}
