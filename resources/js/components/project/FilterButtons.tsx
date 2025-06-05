@@ -24,7 +24,7 @@ const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick }
         onClick={() => handleFilterClick('Tous')}
         className={`px-4 sm:px-6 py-2 rounded-full transition-all duration-300 ${
           activeFilter === 'Tous' 
-            ? 'bg-gray-600 text-gray-50 shadow-lg shadow-gray-900/30' 
+            ? 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40' 
             : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40'
         }`}
       >
