@@ -34,7 +34,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
           onClick={() => handleCategoryClick(null)} 
           className={`px-4 py-2 transition-all duration-300 ${
             selectedCategory === null 
-              ? 'border-b-2 border-gray-800 font-medium dark:border-white' 
+              ? 'border-b-2 border-gray-800 font-medium dark:border-white dark:text-white' 
               : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
           }`}
         >
