@@ -280,7 +280,7 @@ const HeaderComponent = () => {
                       transition={{ delay: 0.2 }}
                       className="font-serif text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 dark:from-gray-300 dark:via-gray-100 dark:to-gray-300"
                     >
-                      Menu
+                      Arraid
                     </motion.div>
                     
                     <motion.button
