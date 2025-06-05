@@ -18,6 +18,11 @@ class GalleryCategoryResource extends Resource
     protected static ?string $model = GalleryCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+        
+    protected static ?string $navigationLabel = 'Category';
+    protected static ?string $modelLabel = 'Category';
+    protected static ?string $pluralModelLabel = 'Category';
+    protected static ?string $navigationGroup = 'Gallery';
 
     public static function form(Form $form): Form
     {
