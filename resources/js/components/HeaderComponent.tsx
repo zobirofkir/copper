@@ -125,7 +125,7 @@ const HeaderComponent = () => {
         {/* Top copper accent border with animation */}
         <motion.div 
           variants={borderVariants}
-          className="absolute bottom-0 w-full h-0.5 bg-gradient-to-r from-gray-800/80 via-gray-600 to-gray-800/80 origin-left"
+          className="absolute bottom-0 w-full h-0.5 bg-amber-500 origin-left"
         />
         
         {/* Subtle background texture */}
