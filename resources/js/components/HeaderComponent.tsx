@@ -119,7 +119,7 @@ const HeaderComponent = () => {
           scrolled ? 'py-2' : 'py-4'
         } ${isDarkMode 
             ? 'bg-black/90 text-white backdrop-blur-sm' 
-            : 'bg-white/90 text-gray-900 backdrop-blur-sm'
+            : 'bg-black text-gray-900 backdrop-blur-sm'
         }`}
       >
         {/* Top copper accent border with animation */}
@@ -185,7 +185,7 @@ const HeaderComponent = () => {
                     className={`px-3 py-2 text-sm lg:text-base font-medium transition-all duration-200 border-b-2 relative group ${
                       isDarkMode
                         ? 'text-gray-300 hover:text-white border-transparent hover:border-white'
-                        : 'text-gray-800 hover:text-black border-transparent hover:border-gray-800'
+                        : 'text-white hover:text-black border-transparent hover:border-gray-800'
                     }`}
                   >
                     {item.title}
