@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -34,9 +35,7 @@ Route::get('/blogs/{id}', [App\Http\Controllers\BlogController::class, 'show'])-
 /**
  * Gallery Page
  */
-Route::get('/galleries', function() {
-    return inertia('GalleryPage');
-});
+Route::get('/galleries', [GalleryController::class, 'index'])->name('list-galleries');
 
 /**
  * Contact Page
