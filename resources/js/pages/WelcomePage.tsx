@@ -71,20 +71,6 @@ const WelcomePage = () => {
       >
         <CompanyComponent companies={companies} />
       </motion.div>
-
-      {
-        /**
-         * Contact Component
-         */
-      }
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeIn}
-      >
-        <ContactComponent/>
-      </motion.div>
     </div>
   )
 }
