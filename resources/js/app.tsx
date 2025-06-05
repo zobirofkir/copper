@@ -70,6 +70,19 @@ function initializeTheme() {
 }
 
 /**
- * Initialize theme as early as possible to prevent flash
+ * Initialize language from localStorage on page load
+ */
+function initializeLanguage() {
+    const savedLanguage = localStorage.getItem('language');
+    
+    if (!savedLanguage) {
+        // Default to English if no language is saved
+        localStorage.setItem('language', 'en');
+    }
+}
+
+/**
+ * Initialize theme and language as early as possible to prevent flash
  */
 initializeTheme();
+initializeLanguage();

@@ -280,6 +280,21 @@ const HeaderComponent = () => {
                 <Search size={18} />
               </motion.button> */}
                             
+              {/* Mobile Language Switcher */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleLanguage}
+                className={`p-2 mr-1 rounded-full transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-gray-800 text-amber-300 hover:bg-gray-700' 
+                    : 'bg-amber-700/50 text-amber-100 hover:bg-amber-700'
+                }`}
+                aria-label="Toggle language"
+              >
+                <span className="text-xs font-medium">{language.toUpperCase()}</span>
+              </motion.button>
+              
               {/* Mobile Dark Mode Toggle */}
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 15 }}
