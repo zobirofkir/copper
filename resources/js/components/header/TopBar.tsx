@@ -22,13 +22,13 @@ const TopBar: React.FC<TopBarProps> = ({ isDarkMode }) => {
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         {/* Left Side Contact Info */}
         <div className="flex space-x-4 mb-2 sm:mb-0 text-sm">
-          <span className="flex items-center gap-1">
+          <span className="md:flex hidden items-center gap-1">
             <Phone size={14} className="text-amber-600" />
             <span className="hidden sm:inline">+1 (234) 567-8900</span>
           </span>
-          <span className="hidden md:flex items-center gap-1">
+          <span className="md:flex hidden md:flex items-center gap-1">
             <Video size={14} className="text-amber-600" />
-            <span>Book a Virtual Consultation</span>
+            <span>contact@araid.com</span>
           </span>
         </div>
         
