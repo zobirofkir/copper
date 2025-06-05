@@ -202,7 +202,7 @@ const HeaderComponent = () => {
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               {/* Search Button */}
-              <motion.button
+              {/* <motion.button
                 variants={navItemVariants}
                 custom={menuItems.length + 1}
                 whileHover={{ scale: 1.1 }}
@@ -211,21 +211,8 @@ const HeaderComponent = () => {
                 aria-label="Search"
               >
                 <Search size={20} />
-              </motion.button>
+              </motion.button> */}
               
-              {/* Cart Button */}
-              <motion.button
-                variants={navItemVariants}
-                custom={menuItems.length + 2}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full text-white hover:bg-amber-700/50 transition-colors duration-300 relative"
-                aria-label="Cart"
-              >
-                <ShoppingBag size={20} />
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">2</span>
-              </motion.button>
-
               {/* Dark Mode Toggle */}
               <motion.button
                 variants={navItemVariants}
