@@ -11,7 +11,7 @@ const FooterComponent = () => {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-gray-800/80 via-gray-600 to-gray-800/80 origin-left"
+        className="absolute top-0 w-full h-0.5 bg-amber-500 origin-left"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
