@@ -23,7 +23,7 @@ const SectionHeader = ({ controls }: SectionHeaderProps) => {
       
       <motion.h2 
         variants={itemVariants}
-        className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-white"
+        className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-black dark:text-white"
       >
         Nos Projets
       </motion.h2>
@@ -37,7 +37,7 @@ const SectionHeader = ({ controls }: SectionHeaderProps) => {
       
       <motion.p
         variants={itemVariants}
-        className="max-w-2xl mx-auto text-base sm:text-lg text-white"
+        className="max-w-2xl mx-auto text-base sm:text-lg text-black dark:text-white"
       >
         Découvrez notre collection de créations en cuivre, alliant tradition artisanale et design contemporain.
         Chaque pièce raconte une histoire d'excellence et de savoir-faire.

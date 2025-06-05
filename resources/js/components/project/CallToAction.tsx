@@ -16,14 +16,14 @@ const CallToAction = ({ controls }: CallToActionProps) => {
     >
       <motion.h3
         variants={itemVariants}
-        className="text-2xl sm:text-3xl font-bold text-white mb-6"
+        className="text-2xl sm:text-3xl font-bold text-black dark:text-white mb-6"
       >
         Vous avez un projet en tête ?
       </motion.h3>
       
       <motion.p
         variants={itemVariants}
-        className="max-w-2xl mx-auto text-base sm:text-lg text-white mb-8"
+        className="max-w-2xl mx-auto text-base sm:text-lg text-black dark:text-white mb-8"
       >
         Nous sommes spécialisés dans la création de pièces en cuivre sur mesure. 
         Contactez-nous pour discuter de votre vision et transformer vos idées en réalité.

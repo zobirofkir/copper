@@ -37,7 +37,7 @@ const ProjectComponent = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen w-full bg-black dark:bg-black py-20 px-4 relative overflow-hidden"
+      className="min-h-screen w-full bg-white dark:bg-black text-gray-800 dark:text-gray-100 py-20 px-4 relative overflow-hidden"
       id="projects"
     >
       <BackgroundElements />
