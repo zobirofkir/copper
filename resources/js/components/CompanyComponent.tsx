@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 
 interface Company {
@@ -8,8 +8,6 @@ interface Company {
 }
 
 const CompanyComponent = ({ companies }: { companies: Company[] }) => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,19 +30,6 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
       }
     }
   }
-  
-  const scroll = (direction: 'left' | 'right') => {
-    if (carouselRef.current) {
-      const scrollAmount = direction === 'left' 
-        ? -carouselRef.current.offsetWidth * 0.8
-        : carouselRef.current.offsetWidth * 0.8;
-        
-      carouselRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <motion.div 
@@ -69,59 +54,31 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
           />
         </div>
         
-        <div className="relative">
-          <button 
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-3 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 transition-all"
-            aria-label="Scroll left"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <div 
-            ref={carouselRef}
-            className="overflow-x-auto scrollbar-hide scroll-smooth py-4 px-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+        <motion.div 
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {companies.map((company) => (
             <motion.div 
-              variants={containerVariants}
-              className="flex space-x-6 min-w-max"
+              key={company.id}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
             >
-              {companies.map((company) => (
-                <motion.div 
-                  key={company.id}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm flex-shrink-0 w-[280px]"
-                >
-                  <div className="aspect-square overflow-hidden rounded-lg mb-4 group">
-                    <img 
-                      src={company.image} 
-                      alt={company.name} 
-                      className="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
-                    />
-                  </div>
-                  <h3 className="flex justify-center items-center font-bold md:text-xl text-md text-black dark:text-white font-bold">
-                    <span className='font-bold'>{company.name}</span>
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                  </h3>
-                </motion.div>
-              ))}
+              <div className="aspect-square overflow-hidden rounded-lg mb-4 group">
+                <img 
+                  src={company.image} 
+                  alt={company.name} 
+                  className="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
+                />
+              </div>
+              <h3 className="flex justify-center items-center font-bold md:text-xl text-md text-black dark:text-white">
+                <span className='font-bold'>{company.name}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </h3>
             </motion.div>
-          </div>
-          
-          <button 
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-3 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 transition-all"
-            aria-label="Scroll right"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </motion.div>
   )
