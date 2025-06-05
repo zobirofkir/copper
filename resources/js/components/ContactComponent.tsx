@@ -29,7 +29,7 @@ const ContactComponent = () => {
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                   />
                 </div>
                 <div>
@@ -37,7 +37,7 @@ const ContactComponent = () => {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                   />
                 </div>
               </div>
@@ -46,7 +46,7 @@ const ContactComponent = () => {
                 <input
                   type="text"
                   id="subject"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                 />
               </div>
               <div>
@@ -54,13 +54,13 @@ const ContactComponent = () => {
                 <textarea
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                 ></textarea>
               </div>
               <div>
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-medium rounded-md transition-colors duration-300"
+                  className="w-full px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-md transition-colors duration-300"
                 >
                   Envoyer
                 </button>
