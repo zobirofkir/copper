@@ -185,7 +185,7 @@ const HeaderComponent = () => {
                     className={`px-3 py-2 text-sm lg:text-base font-medium transition-all duration-200 border-b-2 relative group ${
                       isDarkMode
                         ? 'text-gray-300 hover:text-white border-transparent hover:border-white'
-                        : 'text-white hover:text-black border-transparent hover:border-gray-800'
+                        : 'text-white hover:text-gray-100 border-transparent hover:border-gray-800'
                     }`}
                   >
                     {item.title}
