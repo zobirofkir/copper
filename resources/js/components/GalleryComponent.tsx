@@ -1,14 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { GalleryData } from "@/data/GalleryData";
+import axios from "axios";
+
+interface GalleryItem {
+  id: number;
+  image: string;
+  category: string | null;
+  category_id: number;
+}
 
 const GalleryComponent = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [galleries, setGalleries] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const controls = useAnimation();
 
   useEffect(() => {
+    const fetchGalleries = async () => {
+      try {
+        const response = await axios.get('/api/galleries');
+        setGalleries(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching galleries:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchGalleries();
     setIsLoaded(true);
     controls.start("visible");
   }, [controls]);
@@ -19,8 +40,8 @@ const GalleryComponent = () => {
   };
 
   const navigatePhoto = (direction: number) => {
-    const newIndex = (currentIndex + direction + GalleryData.length) % GalleryData.length;
-    setSelectedPhoto(GalleryData[newIndex]);
+    const newIndex = (currentIndex + direction + galleries.length) % galleries.length;
+    setSelectedPhoto(galleries[newIndex]);
     setCurrentIndex(newIndex);
   };
 
@@ -84,38 +105,47 @@ const GalleryComponent = () => {
         className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-12"
       />
       
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        animate={controls}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
-      >
-        {GalleryData.map((photo, index) => (
-          <motion.div
-            key={index}
-            custom={index}
-            variants={itemVariants}
-            className="group relative cursor-pointer overflow-hidden  shadow-xl hover:shadow-2xl transition-all duration-500"
-            onClick={() => openPhotoModal(photo, index)}
-            whileHover={{ 
-              y: -5,
-              transition: { duration: 0.3 }
-            }}
-          >
-            <div className="aspect-w-4 aspect-h-3 overflow-hidden">
-              <motion.img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-90 object-cover transform transition-transform duration-700 ease-in-out"
-                initial={{ scale: 1.2, filter: "grayscale(100%)" }}
-                animate={{ 
-                  scale: isLoaded ? 1 : 1.2,
-                  filter: "grayscale(0%)"
-                }}
-                transition={{ duration: 1.2 }}
-                whileHover={{ scale: 1.05 }}
-              />
-            </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-gray-100"></div>
+        </div>
+      ) : galleries.length === 0 ? (
+        <div className="text-center py-10">
+          <p className="text-xl text-gray-600 dark:text-gray-400">No gallery images found.</p>
+        </div>
+      ) : (
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+        >
+          {galleries.map((photo, index) => (
+            <motion.div
+              key={photo.id}
+              custom={index}
+              variants={itemVariants}
+              className="group relative cursor-pointer overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+              onClick={() => openPhotoModal(photo, index)}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="aspect-w-4 aspect-h-3 overflow-hidden">
+                <motion.img
+                  src={photo.image}
+                  alt={photo.category || `Photo ${index + 1}`}
+                  className="w-full h-90 object-cover transform transition-transform duration-700 ease-in-out"
+                  initial={{ scale: 1.2, filter: "grayscale(100%)" }}
+                  animate={{ 
+                    scale: isLoaded ? 1 : 1.2,
+                    filter: "grayscale(0%)"
+                  }}
+                  transition={{ duration: 1.2 }}
+                  whileHover={{ scale: 1.05 }}
+                />
+              </div>
             
             {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -130,12 +160,13 @@ const GalleryComponent = () => {
             
             {/* Caption */}
             <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <p className="text-white text-lg font-medium tracking-wide">{photo.alt}</p>
+              <p className="text-white text-lg font-medium tracking-wide">{photo.category || `Photo ${index + 1}`}</p>
               <div className="w-10 h-0.5 bg-white/70 mt-2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </div>
           </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </motion.div>
+      )}
 
       {/* Modal */}
       <AnimatePresence>
@@ -163,8 +194,8 @@ const GalleryComponent = () => {
               {/* Image container with subtle border */}
               <div className="relative overflow-hidden">
                 <motion.img
-                  src={selectedPhoto.src}
-                  alt={selectedPhoto.alt}
+                  src={selectedPhoto.image}
+                  alt={selectedPhoto.category || `Photo ${currentIndex + 1}`}
                   className="w-full max-h-[85vh] object-contain shadow-2xl"
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -249,9 +280,9 @@ const GalleryComponent = () => {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <div className="inline-block backdrop-blur-md bg-black/50 px-6 py-3 rounded-sm border border-white/10">
-                  <p className="text-white text-lg font-medium mb-1">{selectedPhoto.alt}</p>
+                  <p className="text-white text-lg font-medium mb-1">{selectedPhoto.category || `Photo ${currentIndex + 1}`}</p>
                   <div className="flex items-center justify-center space-x-2 text-white/70 text-sm">
-                    <span>{currentIndex + 1}/{GalleryData.length}</span>
+                    <span>{currentIndex + 1}/{galleries.length}</span>
                     <span className="w-1 h-1 bg-white/50 rounded-full"></span>
                     <span>Portfolio</span>
                   </div>
