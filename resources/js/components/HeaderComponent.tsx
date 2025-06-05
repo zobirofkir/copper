@@ -1,13 +1,32 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, Instagram, Phone, Video, Search, ShoppingBag } from 'lucide-react';
+import { Menu, X, Sun, Moon, Instagram, Phone, Video, Search, ShoppingBag, Globe } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 import { useHeaderComponent } from '../hooks/useHeaderComponent';
 import Logo from '../assets/logo/logo.jpg';
+import { useState, useEffect } from 'react';
 
 const HeaderComponent = () => {
   const [state, actions] = useHeaderComponent();
   const { isOpen, isDarkMode, scrolled, menuItems, headerVariants, mobileMenuVariants, linkVariants } = state;
   const { setIsOpen, toggleDarkMode } = actions;
+  
+  // Language state
+  const [language, setLanguage] = useState('en');
+  
+  // Toggle language between English and French
+  const toggleLanguage = () => {
+    const newLang = language === 'en' ? 'fr' : 'en';
+    setLanguage(newLang);
+    localStorage.setItem('language', newLang);
+  };
+  
+  // Initialize language from localStorage
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
 
   /**
    * Enhanced animation variants
@@ -212,6 +231,24 @@ const HeaderComponent = () => {
               >
                 <Search size={20} />
               </motion.button> */}
+              
+              {/* Language Switcher */}
+              <motion.button
+                variants={navItemVariants}
+                custom={menuItems.length + 2}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleLanguage}
+                className={`p-2 rounded-full transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-gray-800 text-amber-300 hover:bg-gray-700' 
+                    : 'bg-amber-700/50 text-amber-100 hover:bg-amber-700'
+                }`}
+                aria-label="Toggle language"
+              >
+                <Globe size={18} className="mr-1" />
+                <span className="text-xs font-medium">{language.toUpperCase()}</span>
+              </motion.button>
               
               {/* Dark Mode Toggle */}
               <motion.button
