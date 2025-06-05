@@ -29,20 +29,18 @@ class GalleryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make("title"),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
                     ->directory('galleries')
                     ->required(),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make("title"),
                 ImageColumn::make('image')
                     ->label('Image'),
             ])
