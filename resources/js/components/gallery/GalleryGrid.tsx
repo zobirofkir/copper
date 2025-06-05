@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { GalleryItem as GalleryItemType } from "./types";
 import GalleryItem from "./GalleryItem";
@@ -19,6 +19,11 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({
   controls,
   onPhotoClick
 }) => {
+  // Reset animation when galleries change
+  useEffect(() => {
+    controls.set("hidden");
+    controls.start("visible");
+  }, [galleries, controls]);
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
