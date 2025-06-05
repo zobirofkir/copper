@@ -22,12 +22,12 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
   };
   
   return (
-    <div className="mb-10">
+    <div className="mb-10 overflow-x-auto pb-2">
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="flex flex-wrap justify-center gap-3"
+        className="flex whitespace-nowrap gap-3 min-w-max justify-center"
         layout
       >
         <button 
