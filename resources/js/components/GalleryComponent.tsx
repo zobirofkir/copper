@@ -6,23 +6,44 @@ interface GalleryItem {
   src: string;
   alt: string;
   category_id: number;
+  category_title?: string;
+}
+
+interface Category {
+  id: number;
+  title: string;
 }
 
 interface GalleryProps {
   galleries: GalleryItem[];
+  categories: Category[];
 }
 
-const GalleryComponent = ({ galleries }: GalleryProps) => {
+const GalleryComponent = ({ galleries, categories = [] }: GalleryProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [filteredGalleries, setFilteredGalleries] = useState<GalleryItem[]>(galleries);
   const controls = useAnimation();
 
   useEffect(() => {
     setIsLoaded(true);
     controls.start("visible");
   }, [controls]);
+  
+  useEffect(() => {
+    if (selectedCategory === null) {
+      setFilteredGalleries(galleries);
+    } else {
+      setFilteredGalleries(galleries.filter(gallery => gallery.category_id === selectedCategory));
+    }
+  }, [selectedCategory, galleries]);
+  
+  const handleCategoryChange = (categoryId: number | null) => {
+    setSelectedCategory(categoryId);
+  };
 
   const openPhotoModal = (photo: any, index: number) => {
     setSelectedPhoto(photo);
@@ -30,8 +51,8 @@ const GalleryComponent = ({ galleries }: GalleryProps) => {
   };
 
   const navigatePhoto = (direction: number) => {
-    const newIndex = (currentIndex + direction + galleries.length) % galleries.length;
-    setSelectedPhoto(galleries[newIndex]);
+    const newIndex = (currentIndex + direction + filteredGalleries.length) % filteredGalleries.length;
+    setSelectedPhoto(filteredGalleries[newIndex]);
     setCurrentIndex(newIndex);
   };
 
@@ -92,16 +113,53 @@ const GalleryComponent = ({ galleries }: GalleryProps) => {
         initial={{ width: 0 }}
         animate={{ width: "120px" }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-12"
+        className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-6"
       />
+      
+      {/* Category filters */}
+      {categories.length > 0 && (
+        <div className="mb-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            <button 
+              onClick={() => handleCategoryChange(null)} 
+              className={`px-4 py-2 rounded-md transition-all duration-300 ${
+                selectedCategory === null 
+                  ? 'bg-gray-800 text-white shadow-lg' 
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+              }`}
+            >
+              All
+            </button>
+            
+            {categories.map(category => (
+              <button 
+                key={category.id}
+                onClick={() => handleCategoryChange(category.id)}
+                className={`px-4 py-2 rounded-md transition-all duration-300 ${
+                  selectedCategory === category.id 
+                    ? 'bg-gray-800 text-white shadow-lg' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                {category.title}
+              </button>
+            ))}
+          </motion.div>
+        </div>
+      )}
       
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-gray-100"></div>
         </div>
-      ) : galleries.length === 0 ? (
+      ) : filteredGalleries.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl text-gray-600 dark:text-gray-400">No gallery images found.</p>
+          <p className="text-xl text-gray-600 dark:text-gray-400">No gallery images found for this category.</p>
         </div>
       ) : (
         <motion.div 
@@ -110,7 +168,7 @@ const GalleryComponent = ({ galleries }: GalleryProps) => {
           animate={controls}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
         >
-          {galleries.map((photo, index) => (
+          {filteredGalleries.map((photo, index) => (
             <motion.div
               key={photo.id}
               custom={index}
@@ -272,9 +330,9 @@ const GalleryComponent = ({ galleries }: GalleryProps) => {
                 <div className="inline-block backdrop-blur-md bg-black/50 px-6 py-3 rounded-sm border border-white/10">
                   <p className="text-white text-lg font-medium mb-1">{selectedPhoto.alt || `Photo ${currentIndex + 1}`}</p>
                   <div className="flex items-center justify-center space-x-2 text-white/70 text-sm">
-                    <span>{currentIndex + 1}/{galleries.length}</span>
+                    <span>{currentIndex + 1}/{filteredGalleries.length}</span>
                     <span className="w-1 h-1 bg-white/50 rounded-full"></span>
-                    <span>Portfolio</span>
+                    <span>{selectedPhoto.category_title || 'Portfolio'}</span>
                   </div>
                 </div>
               </motion.div>
