@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\GalleryResource\Pages;
 use App\Filament\Resources\GalleryResource\RelationManagers;
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,6 +35,10 @@ class GalleryResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('gallery_category_id')
+                    ->label('Category')
+                    ->relationship('category', 'title')
+                    ->required(),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
@@ -47,9 +53,14 @@ class GalleryResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label('Image'),
+                TextColumn::make('category.title')
+                    ->label('Category')
+                    ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('gallery_category_id')
+                    ->label('Category')
+                    ->relationship('category', 'title')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
