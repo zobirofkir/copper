@@ -10,7 +10,18 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        return inertia('GalleryPage');
+        $galleries = Gallery::with('category')->get()->map(function($gallery) {
+            return [
+                'id' => $gallery->id,
+                'src' => asset('storage/' . $gallery->image),
+                'alt' => $gallery->category ? $gallery->category->name : 'Gallery Image',
+                'category_id' => $gallery->gallery_category_id
+            ];
+        });
+        
+        return inertia('GalleryPage', [
+            'galleries' => $galleries
+        ]);
     }
 
     public function getGalleries()

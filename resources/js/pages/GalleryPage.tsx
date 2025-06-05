@@ -2,12 +2,21 @@ import GalleryComponent from '@/components/GalleryComponent'
 import { Head } from '@inertiajs/react'
 import React from 'react'
 
-const GalleryPage = () => {
+interface GalleryPageProps {
+  galleries: {
+    id: number;
+    src: string;
+    alt: string;
+    category_id: number;
+  }[];
+}
+
+const GalleryPage = ({ galleries }: GalleryPageProps) => {
   return (
     <section className="bg-white dark:bg-black min-h-screen transition-colors duration-300">
       <Head title='Galerie'/>
       <div className="pt-8 pb-16">
-        <GalleryComponent />
+        <GalleryComponent galleries={galleries} />
       </div>
     </section>
   )

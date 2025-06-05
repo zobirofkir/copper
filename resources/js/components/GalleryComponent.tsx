@@ -1,35 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import axios from "axios";
 
 interface GalleryItem {
   id: number;
-  image: string;
-  category: string | null;
+  src: string;
+  alt: string;
   category_id: number;
 }
 
-const GalleryComponent = () => {
+interface GalleryProps {
+  galleries: GalleryItem[];
+}
+
+const GalleryComponent = ({ galleries }: GalleryProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [galleries, setGalleries] = useState<GalleryItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
-    const fetchGalleries = async () => {
-      try {
-        const response = await axios.get('/api/galleries');
-        setGalleries(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching galleries:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchGalleries();
     setIsLoaded(true);
     controls.start("visible");
   }, [controls]);
@@ -134,8 +124,8 @@ const GalleryComponent = () => {
             >
               <div className="aspect-w-4 aspect-h-3 overflow-hidden">
                 <motion.img
-                  src={photo.image}
-                  alt={photo.category || `Photo ${index + 1}`}
+                  src={photo.src}
+                  alt={photo.alt || `Photo ${index + 1}`}
                   className="w-full h-90 object-cover transform transition-transform duration-700 ease-in-out"
                   initial={{ scale: 1.2, filter: "grayscale(100%)" }}
                   animate={{ 
@@ -160,7 +150,7 @@ const GalleryComponent = () => {
             
             {/* Caption */}
             <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <p className="text-white text-lg font-medium tracking-wide">{photo.category || `Photo ${index + 1}`}</p>
+              <p className="text-white text-lg font-medium tracking-wide">{photo.alt || `Photo ${index + 1}`}</p>
               <div className="w-10 h-0.5 bg-white/70 mt-2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </div>
           </motion.div>
@@ -194,8 +184,8 @@ const GalleryComponent = () => {
               {/* Image container with subtle border */}
               <div className="relative overflow-hidden">
                 <motion.img
-                  src={selectedPhoto.image}
-                  alt={selectedPhoto.category || `Photo ${currentIndex + 1}`}
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.alt || `Photo ${currentIndex + 1}`}
                   className="w-full max-h-[85vh] object-contain shadow-2xl"
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -280,7 +270,7 @@ const GalleryComponent = () => {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <div className="inline-block backdrop-blur-md bg-black/50 px-6 py-3 rounded-sm border border-white/10">
-                  <p className="text-white text-lg font-medium mb-1">{selectedPhoto.category || `Photo ${currentIndex + 1}`}</p>
+                  <p className="text-white text-lg font-medium mb-1">{selectedPhoto.alt || `Photo ${currentIndex + 1}`}</p>
                   <div className="flex items-center justify-center space-x-2 text-white/70 text-sm">
                     <span>{currentIndex + 1}/{galleries.length}</span>
                     <span className="w-1 h-1 bg-white/50 rounded-full"></span>
