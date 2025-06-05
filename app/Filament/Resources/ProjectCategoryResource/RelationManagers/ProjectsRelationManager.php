@@ -25,23 +25,6 @@ class ProjectsRelationManager extends RelationManager
                     ->label('Catégorie de Projet')
                     ->relationship('projectCategory', 'title')
                     ->required(),
-                TextInput::make('article')
-                    ->label('Titre')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('name_reference')
-                    ->label('Référence')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('materials')
-                    ->label('Matériaux')
-                    ->maxLength(255),
-                TextInput::make('dimensions')
-                    ->label('Dimensions')
-                    ->maxLength(255),
-                TextInput::make('price_availability')
-                    ->label('Prix')
-                    ->maxLength(255),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
@@ -55,16 +38,6 @@ class ProjectsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('article')
             ->columns([
-                Tables\Columns\TextColumn::make('article')
-                    ->label('Article/Description'),
-                Tables\Columns\TextColumn::make('name_reference')
-                    ->label('Nom & Référence'),
-                Tables\Columns\TextColumn::make('materials')
-                    ->label('Matériaux'),
-                Tables\Columns\TextColumn::make('dimensions')
-                    ->label('Dimensions'),
-                Tables\Columns\TextColumn::make('price_availability')
-                    ->label('Prix & Disponibilité'),
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Image'),
             ])

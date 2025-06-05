@@ -14,12 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_category_id')->constrained('project_categories')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('article');
-            $table->string('name_reference');
-            $table->string('materials')->nullable();
-            $table->string('dimensions')->nullable();
-            $table->string('price_availability')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }

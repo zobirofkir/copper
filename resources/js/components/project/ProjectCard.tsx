@@ -57,14 +57,6 @@ const ProjectCard = ({ project, index, openProjectModal }: ProjectCardProps) => 
               >
                 {project.category}
               </motion.span>
-              <motion.h3 
-                initial={{ y: 20, opacity: 0 }}
-                whileHover={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="text-xl font-bold text-white mb-1"
-              >
-                {project.article}
-              </motion.h3>
             </div>
           </motion.div>
         </div>

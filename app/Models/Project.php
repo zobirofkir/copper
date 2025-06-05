@@ -8,14 +8,7 @@ class Project extends Model
 {
     protected $fillable = [
         'project_category_id',
-        'article',
-        'name_reference',
-        'materials',
-        'dimensions',
-        'price_availability',
         'image',
-        'client',
-        'location',
     ];
 
     public function projectCategory()
