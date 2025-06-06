@@ -1,5 +1,5 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface Company {
   id: number;
@@ -59,24 +59,7 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {companies.map((company) => (
-            <motion.div 
-              key={company.id}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/30 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
-            >
-              <div className="aspect-square overflow-hidden rounded-lg mb-4 group">
-                <img 
-                  src={company.image} 
-                  alt={company.name} 
-                  className="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
-                />
-              </div>
-              <h3 className="flex justify-center items-center font-bold md:text-xl text-md text-black dark:text-white">
-                <span className='font-bold'>{company.name}</span>
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </h3>
-            </motion.div>
+            <FlipCard key={company.id} company={company} variants={itemVariants} />
           ))}
         </motion.div>
       </div>
@@ -84,4 +67,78 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
   )
 }
 
+interface FlipCardProps {
+  company: Company;
+  variants: any;
+}
+
+const FlipCard = ({ company, variants }: FlipCardProps) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  return (
+    <motion.div
+      variants={variants}
+      className="h-64 w-full cursor-pointer"
+      style={{ perspective: "1000px" }}
+      onClick={flipCard}
+    >
+      <div 
+        className="relative w-full h-full transition-all duration-500"
+        style={{ 
+          transformStyle: "preserve-3d",
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"
+        }}
+      >
+        {/* Front - Image Only */}
+        <div 
+          className="absolute w-full h-full rounded-xl overflow-hidden shadow-lg"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <img 
+            src={company.image} 
+            alt={company.name} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Back - Title */}
+        <div 
+          className="absolute w-full h-full rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 flex items-center justify-center"
+          style={{ 
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)"
+          }}
+        >
+          <h3 className="text-2xl font-bold text-center text-gray-800 dark:text-white px-4">
+            {company.name}
+          </h3>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export default CompanyComponent
+
+/* Add these styles to your CSS or create a new CSS file */
+/* 
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+*/
