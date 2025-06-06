@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useProjectComponent } from '@/hooks/useProjectComponent'
 import BackgroundElements from './project/BackgroundElements'
@@ -7,6 +7,9 @@ import FilterButtons from './project/FilterButtons'
 import ProjectGrid from './project/ProjectGrid'
 import CallToAction from './project/CallToAction'
 import ProjectModal from './project/ProjectModal'
+
+import { t } from '../translations/projectTranslations'
+import { useLanguage } from '../components/header/useLanguage'
 
 const ProjectComponent = () => {
   const {
@@ -24,6 +27,20 @@ const ProjectComponent = () => {
     openProjectModal,
     closeProjectModal
   } = useProjectComponent()
+  
+  const [currentLang, setCurrentLang] = useState('en')
+  const { language } = useLanguage()
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
 
   useEffect(() => {
     if (isInView) {
@@ -51,19 +68,21 @@ const ProjectComponent = () => {
       />
       
       <div className="container mx-auto max-w-7xl relative" ref={ref}>
-        <SectionHeader controls={controls} />
+        <SectionHeader controls={controls} currentLang={currentLang} />
         <FilterButtons 
           controls={controls} 
           categories={categories} 
           activeFilter={activeFilter} 
-          handleFilterClick={handleFilterClick} 
+          handleFilterClick={handleFilterClick}
+          currentLang={currentLang}
         />
         <ProjectGrid 
           controls={controls} 
           filteredProjects={filteredProjects} 
-          openProjectModal={openProjectModal} 
+          openProjectModal={openProjectModal}
+          currentLang={currentLang}
         />
-        <CallToAction controls={controls} />
+        <CallToAction controls={controls} currentLang={currentLang} />
       </div>
       
       {/* Bottom copper accent border with animation */}

@@ -1,15 +1,17 @@
 import React from 'react'
 import { motion, AnimationControls } from 'framer-motion'
 import { containerVariants, itemVariants } from '@/hooks/useProjectComponent'
+import { t } from '../../translations/projectTranslations'
 
 interface FilterButtonsProps {
   controls: AnimationControls
   categories: string[]
   activeFilter: string
   handleFilterClick: (category: string) => void
+  currentLang?: string
 }
 
-const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick }: FilterButtonsProps) => {
+const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick, currentLang = 'en' }: FilterButtonsProps) => {
   return (
     <motion.div 
       variants={containerVariants}
@@ -21,14 +23,14 @@ const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick }
         variants={itemVariants}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => handleFilterClick('Tous')}
+        onClick={() => handleFilterClick(t('all', currentLang))}
         className={`px-4 sm:px-6 py-2 rounded-full transition-all duration-300 ${
-          activeFilter === 'Tous' 
+          activeFilter === t('all', currentLang) 
             ? 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40' 
             : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800/40'
         }`}
       >
-        Tous
+        {t('all', currentLang)}
       </motion.button>
       
       {categories.map((category, index) => (

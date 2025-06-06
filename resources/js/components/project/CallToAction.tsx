@@ -1,12 +1,14 @@
 import React from 'react'
 import { motion, AnimationControls } from 'framer-motion'
 import { containerVariants, itemVariants } from '@/hooks/useProjectComponent'
+import { t } from '../../translations/projectTranslations'
 
 interface CallToActionProps {
   controls: AnimationControls
+  currentLang?: string
 }
 
-const CallToAction = ({ controls }: CallToActionProps) => {
+const CallToAction = ({ controls, currentLang = 'en' }: CallToActionProps) => {
   return (
     <motion.div
       variants={containerVariants}
@@ -18,7 +20,7 @@ const CallToAction = ({ controls }: CallToActionProps) => {
         variants={itemVariants}
         className="text-2xl sm:text-3xl font-bold text-black dark:text-white mb-6"
       >
-        Vous avez un projet en tête ?
+        {t('startProject', currentLang)}
       </motion.h3>
       
       <motion.p
@@ -39,7 +41,7 @@ const CallToAction = ({ controls }: CallToActionProps) => {
         whileTap={{ scale: 0.95 }}
         className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-600 text-white rounded-lg shadow-lg shadow-gray-900/30 transition-all duration-300 transform hover:shadow-xl"
       >
-        Contactez-Nous
+        {t('contactUs', currentLang)}
       </motion.button>
     </motion.div>
   )

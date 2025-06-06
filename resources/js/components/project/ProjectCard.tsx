@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { projectCardVariants } from '@/hooks/useProjectComponent'
 import { Link } from '@inertiajs/react'
+import { t } from '../../translations/projectTranslations'
 
 interface Project {
   id: number | string
@@ -19,9 +20,10 @@ interface ProjectCardProps {
   project: Project
   index: number
   openProjectModal: (project: Project) => void
+  currentLang?: string
 }
 
-const ProjectCard = ({ project, index, openProjectModal }: ProjectCardProps) => {
+const ProjectCard = ({ project, index, openProjectModal, currentLang = 'en' }: ProjectCardProps) => {
   return (
     <motion.div
       key={project.id}

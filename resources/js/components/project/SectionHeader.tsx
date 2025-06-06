@@ -1,12 +1,14 @@
 import React from 'react'
 import { motion, AnimationControls } from 'framer-motion'
 import { containerVariants, itemVariants } from '@/hooks/useProjectComponent'
+import { t } from '../../translations/projectTranslations'
 
 interface SectionHeaderProps {
   controls: AnimationControls
+  currentLang?: string
 }
 
-const SectionHeader = ({ controls }: SectionHeaderProps) => {
+const SectionHeader = ({ controls, currentLang = 'en' }: SectionHeaderProps) => {
   return (
     <motion.div 
       variants={containerVariants}
@@ -25,7 +27,7 @@ const SectionHeader = ({ controls }: SectionHeaderProps) => {
         variants={itemVariants}
         className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-black dark:text-white"
       >
-        Nos Projets
+        {t('projects', currentLang)}
       </motion.h2>
       
       <motion.div
@@ -39,8 +41,7 @@ const SectionHeader = ({ controls }: SectionHeaderProps) => {
         variants={itemVariants}
         className="max-w-2xl mx-auto text-base sm:text-lg text-black dark:text-white"
       >
-        Découvrez notre collection de créations en cuivre, alliant tradition artisanale et design contemporain.
-        Chaque pièce raconte une histoire d'excellence et de savoir-faire.
+        {t('ourWork', currentLang)}
       </motion.p>
     </motion.div>
   )

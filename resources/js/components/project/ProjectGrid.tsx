@@ -2,6 +2,7 @@ import React from 'react'
 import { motion, AnimationControls, AnimatePresence } from 'framer-motion'
 import { containerVariants, getGridClass } from '@/hooks/useProjectComponent'
 import ProjectCard from './ProjectCard'
+import { t } from '../../translations/projectTranslations'
 
 interface Project {
   id: number | string
@@ -19,9 +20,10 @@ interface ProjectGridProps {
   controls: AnimationControls
   filteredProjects: Project[]
   openProjectModal: (project: Project) => void
+  currentLang?: string
 }
 
-const ProjectGrid = ({ controls, filteredProjects, openProjectModal }: ProjectGridProps) => {
+const ProjectGrid = ({ controls, filteredProjects, openProjectModal, currentLang = 'en' }: ProjectGridProps) => {
   return (
     <motion.div 
       variants={containerVariants}
@@ -36,6 +38,7 @@ const ProjectGrid = ({ controls, filteredProjects, openProjectModal }: ProjectGr
             project={project}
             index={index}
             openProjectModal={openProjectModal}
+            currentLang={currentLang}
           />
         ))}
       </AnimatePresence>
