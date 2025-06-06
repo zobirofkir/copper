@@ -27,7 +27,7 @@ export const translations = {
     /**
      * Footer Bottom
      */
-    copyright: '© {year} Copper Artistry. All rights reserved by nl digital agency',
+    copyright: '© {year} Copper Artistry. All rights reserved by NL Digital Agency.',
     legalNotice: 'Legal Notice',
     privacyPolicy: 'Privacy Policy',
     termsOfSale: 'Terms of Sale'
@@ -60,10 +60,10 @@ export const translations = {
     /**
      * Footer Bottom
      */
-    copyright: '© {year} Copper Artistry. Tous droits réservés nl digital agency.',
+    copyright: '© {year} Copper Artistry. Tous droits réservés par NL Digital Agency.',
     legalNotice: 'Mentions Légales',
     privacyPolicy: 'Politique de Confidentialité',
-    termsOfSale: 'CGV'
+    termsOfSale: 'Conditions de Vente'
   }
 };
 
