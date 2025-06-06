@@ -105,9 +105,9 @@ const AboutComponent = () => {
       <motion.div 
         animate={{ 
           background: [
-            'radial-gradient(circle at 20% 30%, rgba(128, 128, 128, 0.03) 0%, transparent 70%)',
-            'radial-gradient(circle at 80% 70%, rgba(128, 128, 128, 0.03) 0%, transparent 70%)',
-            'radial-gradient(circle at 20% 30%, rgba(128, 128, 128, 0.03) 0%, transparent 70%)'
+            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)',
+            'radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)',
+            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)'
           ]
         }}
         transition={{ duration: 10, repeat: Infinity }}
@@ -137,7 +137,7 @@ const AboutComponent = () => {
               initial={{ width: 0 }}
               animate={{ width: "80px" }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-4"
+              className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-4"
             />
             
             <motion.h2 
@@ -151,7 +151,7 @@ const AboutComponent = () => {
               initial={{ width: 0 }}
               animate={{ width: "80px" }}
               transition={{ duration: 1, delay: 0.7 }}
-              className="h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto"
+              className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"
             />
           </div>
         </motion.div>
@@ -183,13 +183,13 @@ const AboutComponent = () => {
             </motion.div>
             
             <motion.div 
-              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-gray-600/20 -z-10"
+              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-amber-500/20 -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             />
             <motion.div 
-              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-gray-600/20 -z-10"
+              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-amber-500/20 -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
@@ -206,7 +206,7 @@ const AboutComponent = () => {
             {/* Subtitle - Sticky within its container */}
             <motion.h3 
               variants={itemVariants}
-              className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-gray-800 dark:text-gray-300 flex justify-center bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
+              className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-black dark:text-amber-400 flex justify-center bg-white/50 dark:bg-black/50 backdrop-blur-sm"
             >
               {Array.from(t('ourCopperHeritage', currentLang)).map((char, i) => (
                 <motion.span
@@ -243,10 +243,10 @@ const AboutComponent = () => {
               <motion.div 
                 variants={numberAnimation}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-none bg-white dark:bg-gray-800 border-l-4 border-gray-600 shadow-md"
+                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-amber-500 shadow-md"
               >
                 <motion.span 
-                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-gray-300 mb-2"
+                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-amber-400 mb-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
@@ -259,10 +259,10 @@ const AboutComponent = () => {
               <motion.div 
                 variants={numberAnimation}
                 whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-none bg-white dark:bg-gray-800 border-l-4 border-gray-600 shadow-md"
+                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-amber-500 shadow-md"
               >
                 <motion.span 
-                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-gray-300 mb-2"
+                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-amber-400 mb-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
@@ -277,7 +277,7 @@ const AboutComponent = () => {
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-none shadow-lg shadow-gray-900/20 hover:shadow-xl transition-all duration-300 transform"
+              className="px-8 py-4 bg-black hover:bg-gray-900 dark:bg-amber-600 dark:hover:bg-amber-700 text-white rounded-none shadow-lg shadow-amber-900/20 hover:shadow-xl transition-all duration-300 transform"
             >
               {t('learnMore', currentLang)}
             </motion.button>
