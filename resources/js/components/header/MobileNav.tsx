@@ -75,7 +75,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
               >
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 text-lg font-medium transition-all border-l-2 border-transparent hover:border-amber-400 pl-3 hover:pl-5 hover:text-amber-300"
+                  className="block px-4 py-3 text-lg font-medium transition-all border-l-2 border-transparent hover:border-amber-400 pl-3 hover:pl-5 hover:text-amber-300 text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.translationKey ? t(item.translationKey, language) : t(item.title.toLowerCase(), language) || item.title}
