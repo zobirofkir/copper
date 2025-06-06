@@ -253,7 +253,7 @@ const AboutComponent = () => {
                 >
                   30+
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">{t('yearsExperience', language)}</span>
+                <span className="text-gray-700 dark:text-gray-300 font-light">{t('yearsExperience', currentLang)}</span>
               </motion.div>
               
               <motion.div 
