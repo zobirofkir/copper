@@ -55,7 +55,7 @@ const HeaderMain: React.FC<HeaderMainProps> = ({ state, actions, language, toggl
           <Logo />
 
           {/* Desktop Navigation */}
-          <DesktopNav menuItems={menuItems} />
+          <DesktopNav menuItems={menuItems} language={language} />
 
           {/* Desktop Action Buttons */}
           <ActionButtons 

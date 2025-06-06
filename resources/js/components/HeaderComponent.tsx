@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHeaderComponent } from '../hooks/useHeaderComponent';
 import { useLanguage } from './header/useLanguage';
 import TopBar from './header/TopBar';
@@ -7,9 +7,14 @@ import MobileNav from './header/MobileNav';
 
 const HeaderComponent: React.FC = () => {
   const [state, actions] = useHeaderComponent();
-  const { language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage, translate } = useLanguage();
   const { isOpen, isDarkMode, menuItems } = state;
   const { setIsOpen } = actions;
+  
+  // Update document title based on language
+  useEffect(() => {
+    document.title = translate('copper') || 'Copper';
+  }, [language, translate]);
 
   return (
     <>
@@ -29,7 +34,8 @@ const HeaderComponent: React.FC = () => {
         isOpen={isOpen} 
         setIsOpen={setIsOpen} 
         isDarkMode={isDarkMode} 
-        menuItems={menuItems} 
+        menuItems={menuItems}
+        language={language}
       />
     </>
   );

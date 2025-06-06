@@ -4,15 +4,17 @@ import { Link } from '@inertiajs/react';
 import { X, Instagram, Phone, Video } from 'lucide-react';
 import { MenuItem } from './types';
 import { mobileMenuVariants, mobileNavItemVariants } from './animations';
+import { t } from '../../translations';
 
 interface MobileNavProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   isDarkMode: boolean;
   menuItems: MenuItem[];
+  language: string;
 }
 
-const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, menuItems }) => {
+const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, menuItems, language }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -76,7 +78,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
                   className="block px-4 py-3 text-lg font-medium transition-all border-l-2 border-transparent hover:border-amber-400 pl-3 hover:pl-5 hover:text-amber-300"
                   onClick={() => setIsOpen(false)}
                 >
-                  {item.title}
+                  {t(item.title.toLowerCase(), language) || item.title}
                 </Link>
               </motion.div>
             ))}
@@ -121,7 +123,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
               </p>
               <p className="flex items-center justify-center gap-2">
                 <Video size={14} className="text-amber-400" />
-                Book a Virtual Consultation
+                {language === 'fr' ? 'Réserver une consultation virtuelle' : 'Book a Virtual Consultation'}
               </p>
             </motion.div>
           </div>

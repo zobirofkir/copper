@@ -46,12 +46,12 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
   }, []);
 
   const menuItems: MenuItem[] = [
-    { title: 'Accueil', href: '/' },
-    { title: 'Projets', href: '/projects' },
-    { title: 'À propos', href: '/abouts' },
-    { title: 'Blog', href: '/blogs' },
-    { title: 'Gallery', href: '/galleries' },
-    { title: 'Contact', href: '/contacts' },
+    { title: 'Accueil', href: '/', translationKey: 'home' },
+    { title: 'Projets', href: '/projects', translationKey: 'projects' },
+    { title: 'À propos', href: '/abouts', translationKey: 'about' },
+    { title: 'Blog', href: '/blogs', translationKey: 'blog' },
+    { title: 'Gallery', href: '/galleries', translationKey: 'gallery' },
+    { title: 'Contact', href: '/contacts', translationKey: 'contact' },
   ];
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);

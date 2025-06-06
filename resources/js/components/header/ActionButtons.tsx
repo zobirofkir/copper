@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Globe } from 'lucide-react';
 import { navItemVariants } from './animations';
+import { t } from '../../translations';
 
 interface ActionButtonsProps {
   isDarkMode: boolean;
@@ -46,14 +47,15 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           onHoverStart={() => setIsHovered({ ...isHovered, lang: true })}
           onHoverEnd={() => setIsHovered({ ...isHovered, lang: false })}
           className={`${buttonBaseClass} mr-2 overflow-hidden`}
-          aria-label="Toggle language"
+          aria-label={t('language', language)}
+          title={language === 'en' ? t('french', language) : t('english', language)}
         >
           <motion.div 
             className="flex items-center justify-center"
             animate={{ y: isHovered.lang ? -2 : 0 }}
           >
             <Globe size={16} className="mr-1" strokeWidth={2.5} />
-            <span className="text-xs font-bold tracking-wider">{language.toUpperCase()}</span>
+            <span className="text-xs font-bold tracking-wider">{language === 'en' ? 'EN' : 'FR'}</span>
           </motion.div>
           {isHovered.lang && (
             <motion.div 
@@ -73,7 +75,8 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           onHoverStart={() => setIsHovered({ ...isHovered, theme: true })}
           onHoverEnd={() => setIsHovered({ ...isHovered, theme: false })}
           className={`${buttonBaseClass} mr-2 overflow-hidden`}
-          aria-label="Toggle dark mode"
+          aria-label={isDarkMode ? t('lightMode', language) : t('darkMode', language)}
+          title={isDarkMode ? t('lightMode', language) : t('darkMode', language)}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -112,14 +115,15 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         onHoverStart={() => setIsHovered({ ...isHovered, lang: true })}
         onHoverEnd={() => setIsHovered({ ...isHovered, lang: false })}
         className={`${buttonBaseClass} overflow-hidden`}
-        aria-label="Toggle language"
+        aria-label={t('language', language)}
+        title={language === 'en' ? t('french', language) : t('english', language)}
       >
         <motion.div 
           className="flex items-center justify-center"
           animate={{ y: isHovered.lang ? -2 : 0 }}
         >
           <Globe size={18} className="mr-1" strokeWidth={2.5} />
-          <span className="text-xs font-bold tracking-wider">{language.toUpperCase()}</span>
+          <span className="text-xs font-bold tracking-wider">{language === 'en' ? 'EN' : 'FR'}</span>
         </motion.div>
         {isHovered.lang && (
           <motion.div 
@@ -141,7 +145,8 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         onHoverStart={() => setIsHovered({ ...isHovered, theme: true })}
         onHoverEnd={() => setIsHovered({ ...isHovered, theme: false })}
         className={`${buttonBaseClass} overflow-hidden ${isAnimating ? 'animate-pulse' : ''}`}
-        aria-label="Toggle dark mode"
+        aria-label={isDarkMode ? t('lightMode', language) : t('darkMode', language)}
+        title={isDarkMode ? t('lightMode', language) : t('darkMode', language)}
       >
         <AnimatePresence mode="wait">
           <motion.div
