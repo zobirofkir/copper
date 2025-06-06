@@ -44,13 +44,6 @@ export const translations = {
      */
     submit: 'Submit',
     cancel: 'Cancel',
-    
-    /**
-     * Footer
-     */
-    allRightsReserved: 'All Rights Reserved',
-    privacyPolicy: 'Privacy Policy',
-    termsOfService: 'Terms of Service'
   },
   fr: {
     /**
@@ -98,12 +91,6 @@ export const translations = {
     submit: 'Soumettre',
     cancel: 'Annuler',
     
-    /**
-     * Footer
-     */
-    allRightsReserved: 'Tous droits réservés',
-    privacyPolicy: 'Politique de confidentialité',
-    termsOfService: 'Conditions d\'utilisation'
   }
 };
 
