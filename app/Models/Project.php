@@ -8,6 +8,7 @@ class Project extends Model
 {
     protected $fillable = [
         'project_category_id',
+        'title',
         'image',
     ];
 

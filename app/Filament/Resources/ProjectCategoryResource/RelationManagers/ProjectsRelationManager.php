@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,6 +26,7 @@ class ProjectsRelationManager extends RelationManager
                     ->label('Catégorie de Projet')
                     ->relationship('projectCategory', 'title')
                     ->required(),
+                TextInput::make('title'),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
@@ -38,6 +40,9 @@ class ProjectsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('article')
             ->columns([
+                TextColumn::make('title')
+                    ->label('Titre')
+                    ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Image'),
             ])

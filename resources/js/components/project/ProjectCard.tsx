@@ -37,14 +37,24 @@ const ProjectCard = ({ project, index, openProjectModal, currentLang = 'en' }: P
     >
       <Link href='/galleries'>
         <div className="relative overflow-hidden aspect-[4/3]">
+          {/* Image with opacity and animation */}
           <motion.img 
             src={project.image} 
             alt={project.article}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
             initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            animate={{ scale: 1, opacity: 0.7 }} // image default opacity
             transition={{ duration: 0.5, delay: index * 0.1 }}
           />
+
+          {/* Title in a circle at the top center */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+            <div className="px-4 py-2 bg-white/90 text-sm text-black rounded-full shadow-md dark:bg-black/70 dark:text-white">
+              {project.title}
+            </div>
+          </div>
+
+          {/* Hover overlay with category */}
           <motion.div 
             className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             initial={{ opacity: 0 }}
@@ -68,3 +78,4 @@ const ProjectCard = ({ project, index, openProjectModal, currentLang = 'en' }: P
 }
 
 export default ProjectCard
+
