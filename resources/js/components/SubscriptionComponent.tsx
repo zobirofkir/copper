@@ -170,6 +170,15 @@ const SubscriptionComponent = () => {
           )}
         </motion.div>
       </div>
+
+      {/* Top copper accent border with animation */}
+      <motion.div 
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="absolute top-0 w-full h-0.5 bg-amber-500 origin-right"
+      />
+      
     </div>
   )
 }
