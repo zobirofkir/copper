@@ -19,7 +19,9 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({
   controls,
   onPhotoClick
 }) => {
-  // Reset animation when galleries change
+  /**
+   * Reset animation when galleries change
+   */
   useEffect(() => {
     controls.set("hidden");
     controls.start("visible");

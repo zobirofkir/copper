@@ -27,7 +27,7 @@ const DecorativeElements: React.FC = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-4xl md:text-5xl font-serif font-bold mb-6 text-center text-gray-900 dark:text-gray-100 tracking-tight"
       >
-        Galerie Photos
+        Gallery
       </motion.h2>
       
       <motion.div
