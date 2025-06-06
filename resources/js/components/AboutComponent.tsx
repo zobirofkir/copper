@@ -269,7 +269,7 @@ const AboutComponent = () => {
                 >
                   100%
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">{t('customerSatisfaction', language)}</span>
+                <span className="text-gray-700 dark:text-gray-300 font-light">{t('customerSatisfaction', currentLang)}</span>
               </motion.div>
             </motion.div>
             
@@ -279,7 +279,7 @@ const AboutComponent = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-none shadow-lg shadow-gray-900/20 hover:shadow-xl transition-all duration-300 transform"
             >
-              {t('learnMore', language)}
+              {t('learnMore', currentLang)}
             </motion.button>
           </motion.div>
         </div>        
