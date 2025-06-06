@@ -25,7 +25,7 @@ class ProjectController extends Controller
         $projects = Project::with('projectCategory')->get()->map(function ($project) {
             return [
                 'id' => $project->id,
-                'title' => $project->article, 
+                'title' => $project->title, 
                 'article' => $project->article,
                 'name_reference' => $project->name_reference,
                 'materials' => $project->materials,
@@ -47,7 +47,7 @@ class ProjectController extends Controller
         
         return response()->json([
             'id' => $project->id,
-            'title' => $project->article, 
+            'title' => $project->title, 
             'article' => $project->article,
             'name_reference' => $project->name_reference,
             'materials' => $project->materials,
