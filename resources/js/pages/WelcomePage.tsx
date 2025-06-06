@@ -5,6 +5,7 @@ import SliderComponent from "@/components/SliderComponent"
 import ContactComponent from "@/components/ContactComponent"
 import { Head, usePage } from "@inertiajs/react"
 import CompanyComponent from "@/components/CompanyComponent"
+import SubscriptionComponent from "@/components/SubscriptionComponent";
 
 const WelcomePage = () => {
   const { projects, categories, companies } = usePage().props as any;
@@ -70,6 +71,20 @@ const WelcomePage = () => {
         variants={fadeIn}
       >
         <CompanyComponent companies={companies} />
+      </motion.div>
+
+      {
+        /**
+         * Subscription Component
+         */
+      }
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <SubscriptionComponent />
       </motion.div>
     </div>
   )
