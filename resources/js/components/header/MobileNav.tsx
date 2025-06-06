@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import { X, Instagram, Phone, Video } from 'lucide-react';
 import { MenuItem } from './types';
 import { mobileMenuVariants, mobileNavItemVariants } from './animations';
-import { t } from '../../translations';
+import { t } from '../../translations/headerTranslations';
 
 interface MobileNavProps {
   isOpen: boolean;

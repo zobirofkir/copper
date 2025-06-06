@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Globe } from 'lucide-react';
 import { navItemVariants } from './animations';
-import { t } from '../../translations';
+import { t } from '../../translations/headerTranslations';
 
 interface ActionButtonsProps {
   isDarkMode: boolean;

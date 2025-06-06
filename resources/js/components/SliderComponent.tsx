@@ -3,7 +3,7 @@ import { useSliderComponent, slideVariants } from '@/hooks/useSliderComponent'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useLanguage } from './header/useLanguage'
-import { t } from '../translations'
+import { t } from '../translations/headerTranslations'
 import { getSliderTranslation } from '../translations/sliderTranslations'
 
 const SliderComponent = () => {

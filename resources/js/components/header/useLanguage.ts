@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { t } from '../../translations';
+import { t } from '../../translations/headerTranslations';
 
 export const useLanguage = () => {
   const [language, setLanguage] = useState('en');

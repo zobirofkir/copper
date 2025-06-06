@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@inertiajs/react';
 import { MenuItem } from './types';
 import { navItemVariants } from './animations';
-import { t } from '../../translations';
+import { t } from '../../translations/headerTranslations';
 
 interface DesktopNavProps {
   menuItems: MenuItem[];
