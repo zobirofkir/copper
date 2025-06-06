@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { HeaderComponentState, HeaderComponentActions, MenuItem } from '../components/header/types';
 import { headerVariants, mobileMenuVariants, linkVariants } from '../components/header/animations';
+import { useLanguage } from '../components/header/useLanguage';
 
 export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActions] => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language } = useLanguage();
 
   /**
    * Load theme preference from localStorage on mount
@@ -56,11 +58,32 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
+  // Get translated menu items based on current language
+  const getTranslatedMenuItems = () => {
+    return menuItems.map(item => {
+      const translatedItem = { ...item };
+      if (language === 'en') {
+        // Translate French titles to English
+        if (item.title === 'Accueil') translatedItem.title = 'Home';
+        if (item.title === 'Projets') translatedItem.title = 'Projects';
+        if (item.title === 'À propos') translatedItem.title = 'About';
+        if (item.title === 'Gallery') translatedItem.title = 'Gallery';
+      } else {
+        // Keep original French titles or translate English titles to French
+        if (item.title === 'Home') translatedItem.title = 'Accueil';
+        if (item.title === 'Projects') translatedItem.title = 'Projets';
+        if (item.title === 'About') translatedItem.title = 'À propos';
+        if (item.title === 'Gallery') translatedItem.title = 'Galerie';
+      }
+      return translatedItem;
+    });
+  };
+
   const state: HeaderComponentState = {
     isOpen,
     isDarkMode,
     scrolled,
-    menuItems,
+    menuItems: getTranslatedMenuItems(),
     headerVariants,
     mobileMenuVariants,
     linkVariants

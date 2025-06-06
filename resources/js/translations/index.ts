@@ -1,10 +1,13 @@
-// Translation data for English and French
 export const translations = {
   en: {
-    // Site name
+    /**
+     * Site name
+     */
     copper: 'Copper',
     
-    // Navigation
+    /**
+     * Navigation
+     */
     home: 'Home',
     about: 'About',
     services: 'Services',
@@ -20,31 +23,43 @@ export const translations = {
     galleries: 'Gallery',
     contacts: 'Contact',
     
-    // Common UI elements
+    /**
+     * Common UI elements
+     */
     darkMode: 'Dark Mode',
     lightMode: 'Light Mode',
     language: 'Language',
     english: 'English',
     french: 'French',
     
-    // Call to action
+    /**
+     * Call to action
+     */
     getStarted: 'Get Started',
     learnMore: 'Learn More',
     
-    // Form elements
+    /**
+     * Form elements
+     */
     submit: 'Submit',
     cancel: 'Cancel',
     
-    // Footer
+    /**
+     * Footer
+     */
     allRightsReserved: 'All Rights Reserved',
     privacyPolicy: 'Privacy Policy',
     termsOfService: 'Terms of Service'
   },
   fr: {
-    // Site name
+    /**
+     * Site name
+     */
     copper: 'Cuivre',
     
-    // Navigation
+    /**
+     * Navigation
+     */
     home: 'Accueil',
     about: 'À propos',
     services: 'Services',
@@ -60,31 +75,44 @@ export const translations = {
     galleries: 'Galerie',
     contacts: 'Contact',
     
-    // Common UI elements
+    /**
+     * Common UI elements
+     */
     darkMode: 'Mode sombre',
     lightMode: 'Mode clair',
     language: 'Langue',
     english: 'Anglais',
     french: 'Français',
     
-    // Call to action
+    /**
+     * Call to action
+     */
     getStarted: 'Commencer',
     learnMore: 'En savoir plus',
     
-    // Form elements
+    /**
+     * Form elements
+     */
     submit: 'Soumettre',
     cancel: 'Annuler',
     
-    // Footer
+    /**
+     * Footer
+     */
     allRightsReserved: 'Tous droits réservés',
     privacyPolicy: 'Politique de confidentialité',
     termsOfService: 'Conditions d\'utilisation'
   }
 };
 
-// Translation utility function
+/**
+ * 
+ * @param key Translation utility function
+ * @param language 
+ * @returns 
+ */
 export const t = (key: string, language: string): string => {
-  const lang = language === 'fr' ? 'fr' : 'en'; // Default to English if not French
+  const lang = language === 'fr' ? 'fr' : 'en'; 
   const keys = key.split('.');
   
   let result = translations[lang];
@@ -93,7 +121,6 @@ export const t = (key: string, language: string): string => {
     if (result && result[k]) {
       result = result[k];
     } else {
-      // Return the key if translation not found
       return key;
     }
   }
