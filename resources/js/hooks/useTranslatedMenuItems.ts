@@ -6,10 +6,14 @@ export const useTranslatedMenuItems = (originalMenuItems: MenuItem[]) => {
   const { language } = useLanguage();
   const [menuItems, setMenuItems] = useState<MenuItem[]>(originalMenuItems);
   
-  // Update menu items when language changes
+  /**
+   * Update menu items when language changes
+   */
   useEffect(() => {
     if (language === 'en') {
-      // Convert French menu items to English
+      /**
+       * Convert French menu items to English
+       */
       setMenuItems(originalMenuItems.map(item => {
         if (item.title === 'Accueil') return { ...item, title: 'Home' };
         if (item.title === 'Projets') return { ...item, title: 'Projects' };
@@ -20,7 +24,9 @@ export const useTranslatedMenuItems = (originalMenuItems: MenuItem[]) => {
         return item;
       }));
     } else {
-      // Convert English menu items to French
+      /**
+       * Convert English menu items to French
+       */
       setMenuItems(originalMenuItems.map(item => {
         if (item.title === 'Home') return { ...item, title: 'Accueil' };
         if (item.title === 'Projects') return { ...item, title: 'Projets' };
