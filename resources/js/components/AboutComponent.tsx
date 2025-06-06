@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import AboutImage from '../assets/images/post 1.jpg'
+import { t } from '../translations/aboutTranslations'
+import { useLanguage } from '../components/header/useLanguage'
 
 const AboutComponent = () => {
   const controls = useAnimation()
@@ -9,6 +11,7 @@ const AboutComponent = () => {
   const isInView = useInView(ref)
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { language } = useLanguage()
 
   useEffect(() => {
     if (isInView) {
@@ -129,7 +132,7 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="md:text-4xl text-2xl font-serif font-bold mb-4 text-gray-800 dark:text-gray-50"
             >
-              À Propos de Nous
+              {t('aboutUs', language)}
             </motion.h2>
             
             <motion.div
@@ -193,7 +196,7 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-gray-800 dark:text-gray-300 flex justify-center bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
             >
-              {Array.from("Notre Héritage de Cuivre").map((char, i) => (
+              {Array.from(t('ourCopperHeritage', language)).map((char, i) => (
                 <motion.span
                   key={i}
                   custom={i}
@@ -211,17 +214,14 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="mb-6 text-lg leading-relaxed font-light"
             >
-              Depuis plus de trois décennies, notre entreprise s'est consacrée à l'excellence dans le travail du cuivre. 
-              Nous combinons des techniques traditionnelles avec des innovations modernes pour créer des produits en cuivre 
-              de la plus haute qualité.
+              {t('experienceDescription', language)}
             </motion.p>
             
             <motion.p 
               variants={itemVariants}
               className="mb-10 text-lg leading-relaxed font-light"
             >
-              Notre engagement envers la durabilité et l'artisanat nous distingue dans l'industrie. Chaque pièce que nous 
-              produisons reflète notre passion pour ce métal noble et polyvalent.
+              {t('commitmentDescription', language)}
             </motion.p>
             
             <motion.div 
@@ -241,7 +241,7 @@ const AboutComponent = () => {
                 >
                   30+
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">Années d'Expérience</span>
+                <span className="text-gray-700 dark:text-gray-300 font-light">{t('yearsExperience', language)}</span>
               </motion.div>
               
               <motion.div 
@@ -257,7 +257,7 @@ const AboutComponent = () => {
                 >
                   100%
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">Satisfaction Client</span>
+                <span className="text-gray-700 dark:text-gray-300 font-light">{t('customerSatisfaction', language)}</span>
               </motion.div>
             </motion.div>
             
@@ -267,7 +267,7 @@ const AboutComponent = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-none shadow-lg shadow-gray-900/20 hover:shadow-xl transition-all duration-300 transform"
             >
-              En Savoir Plus
+              {t('learnMore', language)}
             </motion.button>
           </motion.div>
         </div>        
