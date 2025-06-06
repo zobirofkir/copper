@@ -105,21 +105,26 @@ const AboutComponent = () => {
       <motion.div 
         animate={{ 
           background: [
-            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)',
-            'radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)',
-            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.03) 0%, transparent 70%)'
+            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.05) 0%, transparent 70%)',
+            'radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.05) 0%, transparent 70%)',
+            'radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.05) 0%, transparent 70%)'
           ]
         }}
         transition={{ duration: 10, repeat: Infinity }}
         className="absolute inset-0 pointer-events-none"
       />
+      {/* Subtle amber accent lines */}
+      <div className="absolute top-10 left-0 w-24 h-px bg-amber-500/30"></div>
+      <div className="absolute top-10 right-0 w-24 h-px bg-amber-500/30"></div>
+      <div className="absolute bottom-10 left-0 w-24 h-px bg-amber-500/30"></div>
+      <div className="absolute bottom-10 right-0 w-24 h-px bg-amber-500/30"></div>
 
       {/* Top border line */}
       <motion.div 
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute top-0 w-full h-0.5 bg-amber-500 origin-left"
+        className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-black via-amber-500 to-black origin-left"
       />
 
       <div className="container mx-auto px-6 md:px-12 relative" ref={ref}>
@@ -149,7 +154,7 @@ const AboutComponent = () => {
             
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: "80px" }}
+              animate={{ width: "120px" }}
               transition={{ duration: 1, delay: 0.7 }}
               className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"
             />
@@ -165,6 +170,7 @@ const AboutComponent = () => {
             <motion.div 
               className="aspect-square overflow-hidden rounded-none border-8 border-white dark:border-amber-900/30 shadow-xl relative"
               transition={{ duration: 0.3 }}
+              whileHover={{ boxShadow: "0 20px 25px -5px rgba(251, 191, 36, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
             >
               <motion.img 
                 src={AboutImage}
@@ -175,7 +181,7 @@ const AboutComponent = () => {
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-gray-900/20 via-transparent to-transparent mix-blend-overlay"
+                className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-black/10 mix-blend-overlay"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -183,13 +189,13 @@ const AboutComponent = () => {
             </motion.div>
             
             <motion.div 
-              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-amber-500/20 -z-10"
+              className="absolute -bottom-4 -left-4 w-32 h-32 border-4 border-amber-500/40 -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             />
             <motion.div 
-              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-amber-500/20 -z-10"
+              className="absolute -top-4 -right-4 w-32 h-32 border-4 border-black/20 -z-10"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
@@ -206,7 +212,7 @@ const AboutComponent = () => {
             {/* Subtitle - Sticky within its container */}
             <motion.h3 
               variants={itemVariants}
-              className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-black dark:text-amber-400 flex justify-center bg-white/50 dark:bg-black/50 backdrop-blur-sm"
+              className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-black dark:text-amber-400 flex justify-center bg-white/50 dark:bg-black/50 backdrop-blur-sm border-b border-amber-500/20"
             >
               {Array.from(t('ourCopperHeritage', currentLang)).map((char, i) => (
                 <motion.span
@@ -242,44 +248,52 @@ const AboutComponent = () => {
             >
               <motion.div 
                 variants={numberAnimation}
-                whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-amber-500 shadow-md"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(251, 191, 36, 0.2)" }}
+                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-amber-500 shadow-md relative overflow-hidden group"
               >
+                <div className="absolute -right-4 -top-4 w-16 h-16 bg-amber-500/10 rounded-full transform group-hover:scale-150 transition-transform duration-500"></div>
                 <motion.span 
-                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-amber-400 mb-2"
+                  className="block text-4xl font-serif font-bold text-black dark:text-amber-400 mb-2 relative z-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
                 >
                   30+
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">{t('yearsExperience', currentLang)}</span>
+                <span className="text-gray-800 dark:text-gray-300 font-light relative z-10">{t('yearsExperience', currentLang)}</span>
               </motion.div>
               
               <motion.div 
                 variants={numberAnimation}
-                whileHover={{ scale: 1.05 }}
-                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-amber-500 shadow-md"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2)" }}
+                className="p-6 rounded-none bg-white dark:bg-gray-900 border-l-4 border-black dark:border-amber-500 shadow-md relative overflow-hidden group"
               >
+                <div className="absolute -right-4 -top-4 w-16 h-16 bg-black/5 dark:bg-amber-500/10 rounded-full transform group-hover:scale-150 transition-transform duration-500"></div>
                 <motion.span 
-                  className="block text-4xl font-serif font-bold text-gray-800 dark:text-amber-400 mb-2"
+                  className="block text-4xl font-serif font-bold text-black dark:text-amber-400 mb-2 relative z-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
                 >
                   100%
                 </motion.span>
-                <span className="text-gray-700 dark:text-gray-300 font-light">{t('customerSatisfaction', currentLang)}</span>
+                <span className="text-gray-800 dark:text-gray-300 font-light relative z-10">{t('customerSatisfaction', currentLang)}</span>
               </motion.div>
             </motion.div>
             
             <motion.button
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(251, 191, 36, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-black hover:bg-gray-900 dark:bg-amber-600 dark:hover:bg-amber-700 text-white rounded-none shadow-lg shadow-amber-900/20 hover:shadow-xl transition-all duration-300 transform"
+              className="px-8 py-4 bg-black hover:bg-gray-900 dark:bg-amber-600 dark:hover:bg-amber-700 text-white rounded-none shadow-lg shadow-amber-900/20 hover:shadow-xl transition-all duration-300 transform relative overflow-hidden group"
             >
-              {t('learnMore', currentLang)}
+              <span className="relative z-10">{t('learnMore', currentLang)}</span>
+              <motion.span 
+                className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-500"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.button>
           </motion.div>
         </div>        
@@ -290,7 +304,7 @@ const AboutComponent = () => {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute bottom-0 w-full h-0.5 bg-amber-500 origin-right"
+        className="absolute bottom-0 w-full h-0.5 bg-gradient-to-r from-amber-500 via-black to-amber-500 origin-right"
       />
     </motion.div>
   )
