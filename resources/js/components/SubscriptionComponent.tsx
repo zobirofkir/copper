@@ -1,100 +1,154 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { t } from '../translations/subscriptionTranslations'
+import { useLanguage } from '../components/header/useLanguage'
 
 const SubscriptionComponent = () => {
+  const [currentLang, setCurrentLang] = useState('en')
+  const { language } = useLanguage()
   const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
+  const [name, setName] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    setSubscribed(true)
+    // Handle form submission logic here
+    setIsSubmitted(true)
     setEmail('')
+    setName('')
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setIsSubmitted(false)
+    }, 3000)
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
   }
 
   return (
-    <section className="py-16 px-4 bg-white dark:bg-black">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="min-h-[50vh] w-full bg-gray-50 dark:bg-gray-900 py-16 relative overflow-hidden"
+    >
+      <div className="container mx-auto px-6 md:px-12 relative">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-lg mx-auto"
+        >
+          <motion.div variants={itemVariants} className="text-center mb-8">
+            <motion.h2 className="text-3xl font-serif font-bold mb-4 text-gray-800 dark:text-gray-50">
+              {t('subscriptionTitle', currentLang)}
+            </motion.h2>
+            <motion.p className="text-gray-600 dark:text-gray-300">
+              {t('subscriptionBenefits', currentLang)}
+            </motion.p>
+          </motion.div>
 
-      {/* Top border with animation */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute top-0 w-full h-0.5 bg-black dark:bg-white origin-left"
-      />
-      
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-          <div className="flex flex-col md:flex-row">
-            {/* Left side - Image/Graphic */}
-            <div className="w-full md:w-1/2 bg-black p-8 flex items-center justify-center">
-              <div className="text-center">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
+          {!isSubmitted ? (
+            <motion.form 
+              variants={containerVariants}
+              onSubmit={handleSubmit}
+              className="bg-white dark:bg-gray-800 p-8 rounded-md shadow-lg"
+            >
+              <motion.div variants={itemVariants} className="mb-4">
+                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2">
+                  {t('nameLabel', currentLang)}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-700 dark:text-white"
+                  required
+                />
+              </motion.div>
+              
+              <motion.div variants={itemVariants} className="mb-6">
+                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2">
+                  {t('emailLabel', currentLang)}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-700 dark:text-white"
+                  required
+                />
+              </motion.div>
+              
+              <motion.div variants={itemVariants} className="text-center">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  className="px-6 py-3 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <svg className="w-32 h-32 mx-auto text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M21.5 14.98c-.02 0-.03 0-.05.01A3.49 3.49 0 0018 12c-1.4 0-2.6.83-3.16 2.02A2.99 2.99 0 0012 13a3 3 0 00-2.99 3.05L9 16a3.01 3.01 0 00-3-3 3 3 0 00-3 3.01L3 16c0 1.66 1.34 3 3 3h15c1.66 0 3-1.34 3-3 0-.55-.45-1-1-1h-1.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
-                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                  </svg>
-                </motion.div>
-                <h3 className="mt-6 text-xl font-bold text-white">Stay Updated</h3>
-                <p className="mt-2 text-gray-300">Get the latest news, updates, and offers directly to your inbox.</p>
-              </div>
-            </div>
-            
-            {/* Right side - Form */}
-            <div className="w-full md:w-1/2 p-8">
-              <div className="h-full flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">Subscribe to Our Newsletter</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-8">Join our community and be the first to know about new features and updates.</p>
+                  {t('subscribeButton', currentLang)}
+                </motion.button>
                 
-                {subscribed ? (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg"
-                  >
-                    <p className="text-gray-800 dark:text-gray-200 font-medium">Thank you for subscribing! We've sent a confirmation email.</p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-black focus:border-black bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="submit"
-                      className="w-full bg-black hover:bg-gray-900 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
-                    >
-                      Subscribe Now
-                    </motion.button>
-                  </form>
-                )}
-                
-                <div className="mt-6 text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    We respect your privacy. Unsubscribe at any time.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                <motion.p variants={itemVariants} className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                  {t('privacyNotice', currentLang)}
+                </motion.p>
+              </motion.div>
+            </motion.form>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white dark:bg-gray-800 p-8 rounded-md shadow-lg text-center"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </motion.div>
+              <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">
+                {t('thankYou', currentLang)}
+              </h3>
+            </motion.div>
+          )}
+        </motion.div>
       </div>
-    </section>
+    </motion.div>
   )
 }
 

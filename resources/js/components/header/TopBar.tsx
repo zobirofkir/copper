@@ -16,7 +16,7 @@ const TopBar: React.FC<TopBarProps> = ({ isDarkMode }) => {
   ];
 
   return (
-    <div className={`w-full py-2 px-4 transition-colors duration-300 ${
+    <div className={`w-full py-2 px-4 transition-colors duration-300 overflow-hidden ${
       isDarkMode ? 'bg-gray-900 text-white' : 'bg-amber-50 text-gray-800'
     }`}>
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
