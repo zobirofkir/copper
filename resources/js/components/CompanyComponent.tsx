@@ -124,21 +124,3 @@ const FlipCard = ({ company, variants }: FlipCardProps) => {
 
 export default CompanyComponent
 
-/* Add these styles to your CSS or create a new CSS file */
-/* 
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.transform-style-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-*/
