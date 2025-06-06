@@ -34,6 +34,18 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
+  
+  // Listen for language changes
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      // Force a re-render when language changes
+      setScrolled(prev => !prev);
+      setTimeout(() => setScrolled(prev => !prev), 0);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, []);
 
   /**
    * Handle scroll effect
