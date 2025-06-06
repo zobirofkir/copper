@@ -2,9 +2,14 @@ import { slides } from '@/data/SliderData'
 import { useSliderComponent, slideVariants } from '@/hooks/useSliderComponent'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { useLanguage } from './header/useLanguage'
+import { t } from '../translations'
+import { getSliderTranslation } from '../translations/sliderTranslations'
 
 const SliderComponent = () => {
   const { currentSlide, direction, setCurrentSlide, setDirection } = useSliderComponent()
+  const [currentLanguage, setCurrentLanguage] = useState('')
+  const { language } = useLanguage()
   const [isLoaded, setIsLoaded] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -17,6 +22,11 @@ const SliderComponent = () => {
    * Particle animation effect - elegant monochrome style
    */
   const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, speed: number, opacity: number}>>([])
+  
+  // Update component when language changes
+  useEffect(() => {
+    setCurrentLanguage(language)
+  }, [language])
   
   useEffect(() => {
     setIsLoaded(true)
@@ -64,6 +74,14 @@ const SliderComponent = () => {
     mobileQuery.addEventListener('change', mobileListener)
     
     /**
+     * Listen for language changes
+     */
+    const handleLanguageChange = (e: CustomEvent) => {
+      setCurrentLanguage(e.detail.language)
+    }
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener)
+    
+    /**
      * Generate elegant particles for background effect with monochrome tones
      */
     const particlesArray = Array.from({ length: 30 }, () => {
@@ -88,6 +106,7 @@ const SliderComponent = () => {
       darkModeQuery.removeEventListener('change', darkModeListener)
       mobileQuery.removeEventListener('change', mobileListener)
       window.removeEventListener('resize', updateScreenSize)
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener)
     }
   }, [currentSlide, setCurrentSlide, setDirection])
 
@@ -195,7 +214,7 @@ const SliderComponent = () => {
             ? 'bg-black/30 text-white border border-white/20 hover:bg-black/40' 
             : 'bg-white/40 text-black border border-black/10 hover:bg-white/50'
         }`}
-        aria-label="Previous slide"
+        aria-label={getSliderTranslation('previousSlide', currentLanguage || language)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -213,7 +232,7 @@ const SliderComponent = () => {
             ? 'bg-black/30 text-white border border-white/20 hover:bg-black/40' 
             : 'bg-white/40 text-black border border-black/10 hover:bg-white/50'
         }`}
-        aria-label="Next slide"
+        aria-label={getSliderTranslation('nextSlide', currentLanguage || language)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
@@ -295,7 +314,7 @@ const SliderComponent = () => {
                   className="relative text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-wider mb-3 sm:mb-6 text-white"
                 >
                   <span className="relative inline-block">
-                    {slides[currentSlide].title}
+                    {getSliderTranslation(slides[currentSlide].title, currentLanguage || language)}
                     <motion.span 
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
@@ -311,7 +330,7 @@ const SliderComponent = () => {
                   transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
                   className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-light tracking-wide max-w-3xl mb-4 sm:mb-8 px-2"
                 >
-                  {slides[currentSlide].description}
+                  {getSliderTranslation(slides[currentSlide].description, currentLanguage || language)}
                 </motion.p>
                 
                 <motion.div
@@ -324,7 +343,7 @@ const SliderComponent = () => {
                     whileTap={{ scale: 0.98 }}
                     className="group relative px-6 sm:px-8 py-2 sm:py-3 bg-transparent overflow-hidden text-white tracking-wider text-sm sm:text-base"
                   >
-                    <span className="relative z-10">En Savoir Plus</span>
+                    <span className="relative z-10">{getSliderTranslation('enSavoirPlus', currentLanguage || language)}</span>
                     <span className="absolute inset-0 border border-white/30 group-hover:border-white/60 transition-colors duration-300"></span>
                     <motion.span 
                       initial={{ y: "100%" }}
@@ -369,7 +388,7 @@ const SliderComponent = () => {
                 ? "w-6 sm:w-8 bg-white"
                 : "w-3 sm:w-4 bg-white/30 hover:bg-white/50"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`${getSliderTranslation('goToSlide', currentLanguage || language)} ${index + 1}`}
           />
         ))}
       </motion.div>

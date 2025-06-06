@@ -37,6 +37,7 @@ export const translations = {
      */
     getStarted: 'Get Started',
     learnMore: 'Learn More',
+    enSavoirPlus: 'Learn More',
     
     /**
      * Form elements
@@ -89,6 +90,7 @@ export const translations = {
      */
     getStarted: 'Commencer',
     learnMore: 'En savoir plus',
+    enSavoirPlus: 'En savoir plus',
     
     /**
      * Form elements
