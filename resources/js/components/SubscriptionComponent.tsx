@@ -73,17 +73,6 @@ const SubscriptionComponent = () => {
                         placeholder="your@email.com"
                       />
                     </div>
-                    <div className="flex items-center">
-                      <input
-                        id="privacy"
-                        type="checkbox"
-                        required
-                        className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="privacy" className="ml-2 block text-sm text-gray-600 dark:text-gray-400">
-                        I agree to the <a href="#" className="text-gray-800 hover:text-black dark:text-gray-300 dark:hover:text-white">Privacy Policy</a>
-                      </label>
-                    </div>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
