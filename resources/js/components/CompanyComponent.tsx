@@ -36,7 +36,7 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="min-h-screen w-full bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-stone-900 py-16 sm:py-20"
+      className="w-full bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-stone-900 py-16 sm:py-20"
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-12">
         <div className="relative mb-16">
