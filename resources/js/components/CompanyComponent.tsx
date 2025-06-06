@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { t } from '../translations/companyTranslations'
+import { useLanguage } from './header/useLanguage'
 
 interface Company {
   id: number;
@@ -8,6 +10,20 @@ interface Company {
 }
 
 const CompanyComponent = ({ companies }: { companies: Company[] }) => {
+  const [currentLang, setCurrentLang] = useState('en')
+  const { language } = useLanguage()
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +60,7 @@ const CompanyComponent = ({ companies }: { companies: Company[] }) => {
             variants={itemVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 dark:from-gray-300 dark:via-white dark:to-gray-300"
           >
-            Nos Partenaires
+            {t('ourPartners', currentLang)}
           </motion.h2>
           <motion.div
             initial={{ width: 0 }}
