@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { t } from '../translations/footerTranslations'
+import { useLanguage } from './header/useLanguage'
 
 const FooterComponent = () => {
   const currentYear = new Date().getFullYear()
+  const [currentLang, setCurrentLang] = useState('en')
+  const { language } = useLanguage()
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
 
   return (
     <footer className="relative bg-black dark:to-stone-900">
@@ -24,10 +39,10 @@ const FooterComponent = () => {
               transition={{ duration: 0.5 }}
             >
               <h3 className="text-2xl font-bold text-white">
-                Copper Artistry
+                {t('companyName', currentLang)}
               </h3>
               <p className="mt-4 text-white text-sm leading-relaxed">
-                Créateurs d'excellence en cuivre depuis 1990. Notre savoir-faire artisanal au service de votre vision.
+                {t('companyDescription', currentLang)}
               </p>
             </motion.div>
             
@@ -66,15 +81,15 @@ const FooterComponent = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <h3 className="text-lg font-semibold text-white mb-4">
-                Liens Rapides
+                {t('quickLinks', currentLang)}
               </h3>
               <ul className="space-y-3">
                 {[
-                  'Accueil',
-                  'À Propos',
-                  'Services',
-                  'Portfolio',
-                  'Contact'
+                  { key: 'home', label: t('home', currentLang) },
+                  { key: 'about', label: t('about', currentLang) },
+                  { key: 'services', label: t('services', currentLang) },
+                  { key: 'portfolio', label: t('portfolio', currentLang) },
+                  { key: 'contact', label: t('contact', currentLang) }
                 ].map((link, index) => (
                   <motion.li 
                     key={index}
@@ -84,7 +99,7 @@ const FooterComponent = () => {
                       href="#" 
                       className="text-white transition-colors duration-300"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </motion.li>
                 ))}
@@ -100,7 +115,7 @@ const FooterComponent = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <h3 className="text-lg font-semibold text-white mb-4">
-                Contact
+                {t('contactTitle', currentLang)}
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start space-x-3">
@@ -109,8 +124,12 @@ const FooterComponent = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   <span className="text-white">
-                    123 Rue du Cuivre<br />
-                    75001 Paris, France
+                    {t('address', currentLang).split('\n').map((line, i) => (
+                      <React.Fragment key={i}>
+                        {line}
+                        {i === 0 && <br />}
+                      </React.Fragment>
+                    ))}
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -118,7 +137,7 @@ const FooterComponent = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <span className="text-white">
-                    +33 1 23 45 67 89
+                    {t('phone', currentLang)}
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -126,14 +145,14 @@ const FooterComponent = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <span className="text-white">
-                    contact@copperartistry.com
+                    {t('email', currentLang)}
                   </span>
                 </li>
               </ul>
             </motion.div>
           </div>
         </div>
-
+ble
         {/* Bottom Section */}
         <div className="border-t border-gray-200/20 dark:border-gray-700/30 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
@@ -143,7 +162,7 @@ const FooterComponent = () => {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="text-white text-sm"
             >
-              © {currentYear} Copper Artistry. Tous droits réservés.
+              {t('copyright', currentLang, { year: currentYear })}
             </motion.p>
             
             <motion.div 
@@ -152,13 +171,17 @@ const FooterComponent = () => {
               transition={{ duration: 0.5, delay: 1 }}
               className="flex space-x-6"
             >
-              {['Mentions Légales', 'Politique de Confidentialité', 'CGV'].map((item, index) => (
+              {[
+                { key: 'legalNotice', label: t('legalNotice', currentLang) },
+                { key: 'privacyPolicy', label: t('privacyPolicy', currentLang) },
+                { key: 'termsOfSale', label: t('termsOfSale', currentLang) }
+              ].map((item, index) => (
                 <a
                   key={index}
                   href="#"
                   className="text-sm text-white hover:text-gray-300 transition-colors duration-300"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </motion.div>
