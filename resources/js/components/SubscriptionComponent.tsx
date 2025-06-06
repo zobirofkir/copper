@@ -23,132 +23,154 @@ const SubscriptionComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission logic here
     setIsSubmitted(true)
     setEmail('')
     setName('')
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false)
     }, 3000)
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
-  }
-
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="min-h-[50vh] w-full bg-gray-50 dark:bg-gray-900 py-16 relative overflow-hidden"
-    >
-      <div className="container mx-auto px-6 md:px-12 relative">
+    <div className="relative py-16 overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-amber-50/30 to-white dark:from-gray-900/50 dark:to-black"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-100/30 dark:bg-amber-900/10 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-100/30 dark:bg-amber-900/10 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-6 relative">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-lg mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="text-center mb-8">
-            <motion.h2 className="text-3xl font-serif font-bold mb-4 text-gray-800 dark:text-gray-50">
-              {t('subscriptionTitle', currentLang)}
-            </motion.h2>
-            <motion.p className="text-gray-600 dark:text-gray-300">
-              {t('subscriptionBenefits', currentLang)}
-            </motion.p>
-          </motion.div>
+          {/* Copper accent line */}
+          <div className="flex justify-center mb-8">
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "120px" }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-300"
+            />
+          </div>
+          
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-4xl font-serif text-center font-bold mb-4 text-gray-800 dark:text-amber-50"
+          >
+            {t('subscriptionTitle', currentLang)}
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto"
+          >
+            {t('subscriptionBenefits', currentLang)}
+          </motion.p>
 
           {!isSubmitted ? (
-            <motion.form 
-              variants={containerVariants}
-              onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-800 p-8 rounded-md shadow-lg"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="relative"
             >
-              <motion.div variants={itemVariants} className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2">
-                  {t('nameLabel', currentLang)}
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-700 dark:text-white"
-                  required
-                />
-              </motion.div>
+              {/* Card with copper accent */}
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 transform -rotate-1 rounded-lg shadow-lg"></div>
               
-              <motion.div variants={itemVariants} className="mb-6">
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2">
-                  {t('emailLabel', currentLang)}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-700 dark:text-white"
-                  required
-                />
-              </motion.div>
-              
-              <motion.div variants={itemVariants} className="text-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="px-6 py-3 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  {t('subscribeButton', currentLang)}
-                </motion.button>
-                
-                <motion.p variants={itemVariants} className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-                  {t('privacyNotice', currentLang)}
-                </motion.p>
-              </motion.div>
-            </motion.form>
+              <div className="relative bg-white dark:bg-gray-800 p-8 md:p-10 rounded-lg shadow-xl border border-amber-100 dark:border-amber-900/30">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div 
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                        {t('nameLabel', currentLang)}
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full px-4 py-3 border-b-2 border-amber-200 dark:border-amber-700 bg-transparent focus:border-amber-500 dark:focus:border-amber-500 focus:outline-none transition-colors dark:text-white"
+                        required
+                      />
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.7 }}
+                    >
+                      <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                        {t('emailLabel', currentLang)}
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-4 py-3 border-b-2 border-amber-200 dark:border-amber-700 bg-transparent focus:border-amber-500 dark:focus:border-amber-500 focus:outline-none transition-colors dark:text-white"
+                        required
+                      />
+                    </motion.div>
+                  </div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className="text-center pt-4"
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.03, backgroundColor: '#b45309' }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="px-8 py-3 bg-amber-600 text-white rounded-md shadow-lg hover:shadow-amber-500/20 transition-all duration-300 font-medium"
+                    >
+                      {t('subscribeButton', currentLang)}
+                    </motion.button>
+                    
+                    <p className="mt-6 text-xs text-gray-500 dark:text-gray-400">
+                      {t('privacyNotice', currentLang)}
+                    </p>
+                  </motion.div>
+                </form>
+              </div>
+            </motion.div>
           ) : (
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white dark:bg-gray-800 p-8 rounded-md shadow-lg text-center"
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              className="bg-white dark:bg-gray-800 p-10 rounded-lg shadow-xl border border-amber-100 dark:border-amber-900/30 text-center"
             >
               <motion.div
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4"
+                animate={{ scale: 1, rotate: [0, 10, -10, 0] }}
+                transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.2 }}
+                className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </motion.div>
-              <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">
+              <h3 className="text-2xl font-serif font-bold text-gray-800 dark:text-amber-50">
                 {t('thankYou', currentLang)}
               </h3>
             </motion.div>
           )}
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
