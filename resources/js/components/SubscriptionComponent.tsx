@@ -7,19 +7,26 @@ const SubscriptionComponent = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically handle the subscription logic
-    // For now, we'll just simulate a successful subscription
     setSubscribed(true)
     setEmail('')
   }
 
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+
+      {/* Top border with animation */}
+      <motion.div 
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="absolute top-0 w-full h-0.5 bg-black dark:bg-white origin-left"
+      />
+      
       <div className="max-w-6xl mx-auto">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
           <div className="flex flex-col md:flex-row">
             {/* Left side - Image/Graphic */}
-            <div className="w-full md:w-1/2 bg-indigo-600 p-8 flex items-center justify-center">
+            <div className="w-full md:w-1/2 bg-black p-8 flex items-center justify-center">
               <div className="text-center">
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -32,7 +39,7 @@ const SubscriptionComponent = () => {
                   </svg>
                 </motion.div>
                 <h3 className="mt-6 text-xl font-bold text-white">Stay Updated</h3>
-                <p className="mt-2 text-indigo-100">Get the latest news, updates, and offers directly to your inbox.</p>
+                <p className="mt-2 text-gray-300">Get the latest news, updates, and offers directly to your inbox.</p>
               </div>
             </div>
             
@@ -46,9 +53,9 @@ const SubscriptionComponent = () => {
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-green-50 dark:bg-green-900 p-4 rounded-lg"
+                    className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg"
                   >
-                    <p className="text-green-700 dark:text-green-200 font-medium">Thank you for subscribing! We've sent a confirmation email.</p>
+                    <p className="text-gray-800 dark:text-gray-200 font-medium">Thank you for subscribing! We've sent a confirmation email.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,7 +69,7 @@ const SubscriptionComponent = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-black focus:border-black bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -71,17 +78,17 @@ const SubscriptionComponent = () => {
                         id="privacy"
                         type="checkbox"
                         required
-                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                        className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300 rounded"
                       />
                       <label htmlFor="privacy" className="ml-2 block text-sm text-gray-600 dark:text-gray-400">
-                        I agree to the <a href="#" className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">Privacy Policy</a>
+                        I agree to the <a href="#" className="text-gray-800 hover:text-black dark:text-gray-300 dark:hover:text-white">Privacy Policy</a>
                       </label>
                     </div>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
+                      className="w-full bg-black hover:bg-gray-900 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
                     >
                       Subscribe Now
                     </motion.button>
