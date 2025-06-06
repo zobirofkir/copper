@@ -1,6 +1,7 @@
 export interface MenuItem {
   title: string;
   href: string;
+  translationKey?: string;
 }
 
 export interface SocialIcon {
