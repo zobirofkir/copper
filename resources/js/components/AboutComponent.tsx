@@ -11,7 +11,19 @@ const AboutComponent = () => {
   const isInView = useInView(ref)
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [currentLang, setCurrentLang] = useState('en')
   const { language } = useLanguage()
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
 
   useEffect(() => {
     if (isInView) {
@@ -132,7 +144,7 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="md:text-4xl text-2xl font-serif font-bold mb-4 text-gray-800 dark:text-gray-50"
             >
-              {t('aboutUs', language)}
+              {t('aboutUs', currentLang)}
             </motion.h2>
             
             <motion.div
@@ -196,7 +208,7 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="sticky top-24 z-20 py-4 font-serif md:text-3xl text-2xl font-bold mb-8 text-gray-800 dark:text-gray-300 flex justify-center bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
             >
-              {Array.from(t('ourCopperHeritage', language)).map((char, i) => (
+              {Array.from(t('ourCopperHeritage', currentLang)).map((char, i) => (
                 <motion.span
                   key={i}
                   custom={i}
@@ -214,14 +226,14 @@ const AboutComponent = () => {
               variants={itemVariants}
               className="mb-6 text-lg leading-relaxed font-light"
             >
-              {t('experienceDescription', language)}
+              {t('experienceDescription', currentLang)}
             </motion.p>
             
             <motion.p 
               variants={itemVariants}
               className="mb-10 text-lg leading-relaxed font-light"
             >
-              {t('commitmentDescription', language)}
+              {t('commitmentDescription', currentLang)}
             </motion.p>
             
             <motion.div 
