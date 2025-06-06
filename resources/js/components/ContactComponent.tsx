@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { t } from '../translations/contactTranslations'
+import { useLanguage } from '../components/header/useLanguage'
 
 const ContactComponent = () => {
+  const [currentLang, setCurrentLang] = useState('en')
+  const { language } = useLanguage()
+  
+  useEffect(() => {
+    setCurrentLang(language)
+    
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language)
+    }
+    
+    window.addEventListener('languageChanged', handleLanguageChange)
+    return () => window.removeEventListener('languageChanged', handleLanguageChange)
+  }, [language])
+
   return (
     <section className="bg-white dark:bg-black text-gray-800 dark:text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,7 +27,7 @@ const ContactComponent = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Contactez-nous</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('contactUs', currentLang)}</h2>
           <div className="h-1 w-24 bg-gray-700 mx-auto"></div>
         </motion.div>
 
@@ -25,7 +41,7 @@ const ContactComponent = () => {
             <form className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">Nom</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">{t('name', currentLang)}</label>
                   <input
                     type="text"
                     id="name"
@@ -33,7 +49,7 @@ const ContactComponent = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">{t('email', currentLang)}</label>
                   <input
                     type="email"
                     id="email"
@@ -42,7 +58,7 @@ const ContactComponent = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">Sujet</label>
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">{t('subject', currentLang)}</label>
                 <input
                   type="text"
                   id="subject"
@@ -50,7 +66,7 @@ const ContactComponent = () => {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">{t('message', currentLang)}</label>
                 <textarea
                   id="message"
                   rows={5}
@@ -62,7 +78,7 @@ const ContactComponent = () => {
                   type="submit"
                   className="w-full px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-md transition-colors duration-300"
                 >
-                  Envoyer
+                  {t('send', currentLang)}
                 </button>
               </div>
             </form>
@@ -86,8 +102,13 @@ const ContactComponent = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Adresse</h3>
-                  <p className="text-gray-600 dark:text-gray-300">123 Rue du Cuivre<br />75001 Paris, France</p>
+                  <h3 className="text-lg font-medium mb-1">{t('address', currentLang)}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{t('addressValue', currentLang).split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i === 0 && <br />}
+                    </React.Fragment>
+                  ))}</p>
                 </div>
               </div>
 
@@ -100,8 +121,8 @@ const ContactComponent = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Téléphone</h3>
-                  <p className="text-gray-600 dark:text-gray-300">+33 1 23 45 67 89</p>
+                  <h3 className="text-lg font-medium mb-1">{t('phone', currentLang)}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{t('phoneValue', currentLang)}</p>
                 </div>
               </div>
 
@@ -114,8 +135,8 @@ const ContactComponent = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Email</h3>
-                  <p className="text-gray-600 dark:text-gray-300">contact@copperartistry.com</p>
+                  <h3 className="text-lg font-medium mb-1">{t('emailLabel', currentLang)}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{t('emailValue', currentLang)}</p>
                 </div>
               </div>
 
@@ -128,8 +149,13 @@ const ContactComponent = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Heures d'ouverture</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Lun - Ven: 9h - 18h<br />Sam: 10h - 16h</p>
+                  <h3 className="text-lg font-medium mb-1">{t('openingHours', currentLang)}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{t('openingHoursValue', currentLang).split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i === 0 && <br />}
+                    </React.Fragment>
+                  ))}</p>
                 </div>
               </div>
             </div>
