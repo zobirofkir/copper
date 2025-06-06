@@ -142,7 +142,7 @@ const AboutComponent = () => {
             
             <motion.h2 
               variants={itemVariants}
-              className="md:text-4xl text-2xl font-serif font-bold mb-4 text-gray-800 dark:text-gray-50"
+              className="md:text-4xl text-2xl font-serif font-bold mb-4 text-black dark:text-amber-400"
             >
               {t('aboutUs', currentLang)}
             </motion.h2>
@@ -163,7 +163,7 @@ const AboutComponent = () => {
             className="relative group"
           >
             <motion.div 
-              className="aspect-square overflow-hidden rounded-none border-8 border-white dark:border-gray-800 shadow-xl relative"
+              className="aspect-square overflow-hidden rounded-none border-8 border-white dark:border-amber-900/30 shadow-xl relative"
               transition={{ duration: 0.3 }}
             >
               <motion.img 
@@ -284,6 +284,14 @@ const AboutComponent = () => {
           </motion.div>
         </div>        
       </div>
+      
+      {/* Bottom amber border line */}
+      <motion.div 
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="absolute bottom-0 w-full h-0.5 bg-amber-500 origin-right"
+      />
     </motion.div>
   )
 }
