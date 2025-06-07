@@ -4,24 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Filament\Resources\BlogResource;
 use App\Models\Blog;
+use App\Services\Facades\BlogFacade;
 
 class BlogController extends Controller
 {
+    /**
+     * List All Blogs
+     */
     public function index()
     {
-        $blogs = BlogResource::getEloquentQuery()->get()->map(function ($blog) {
-            $blog->image = $blog->image ? asset('storage/' . $blog->image) : null;
-            return $blog;
-        });
-
-        return inertia('BlogPage', ['blogs' => $blogs]);
+        return BlogFacade::index();
     }
 
+    /**
+     * Show Blog by id
+     */
     public function show($id)
     {
-        $blog = BlogResource::getEloquentQuery()->findOrFail($id);
-        $blog->image = $blog->image ? asset('storage/' . $blog->image) : null;
-
-        return inertia('blogs/ShowBlogPage', ['blog' => $blog]);
+        return BlogFacade::show($id);
     }
 }
