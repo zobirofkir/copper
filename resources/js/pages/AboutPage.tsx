@@ -5,7 +5,7 @@ import React from 'react'
 const AboutPage = () => {
   return (
     <section>
-        <Head title='About Us'/>
+        <Head title='À propos'/>
         <div>
             <AboutComponent />
         </div>
