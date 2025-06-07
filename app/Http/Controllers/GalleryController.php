@@ -13,10 +13,20 @@ class GalleryController extends Controller
     {
         $query = Gallery::with('category', 'project.projectCategory');
     
+        /**
+         * µFilter by project_category_id if provided
+         */
         if ($request->has('project_category_id')) {
             $query->whereHas('project.projectCategory', function ($q) use ($request) {
                 $q->where('id', $request->project_category_id);
             });
+        }
+    
+        /**
+         * Filter by project id if provided (this is your "project" param)
+         */
+        if ($request->has('project')) {
+            $query->where('project_id', $request->project);
         }
     
         $galleries = $query->get()->map(function ($gallery) {
@@ -39,9 +49,10 @@ class GalleryController extends Controller
             'galleries' => $galleries,
             'categories' => $categories,
             'selectedProjectCategoryId' => $request->project_category_id,
+            'selectedProjectId' => $request->project,  // pass project id to frontend
         ]);
     }
-
+    
     public function getGalleries()
     {
         $galleries = Gallery::with('category')->get();
