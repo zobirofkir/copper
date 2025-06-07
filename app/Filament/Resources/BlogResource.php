@@ -33,7 +33,7 @@ class BlogResource extends Resource
                 TextInput::make('title')
                     ->label('Titre')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(50),
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
