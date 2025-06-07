@@ -1,8 +1,8 @@
 import React, { memo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Category } from "./types";
-import { t } from "@/translations/projectTranslations";
 import { useLanguage } from "../header/useLanguage";
+import { t } from "@/translations/galleryTranslations";
 
 interface CategoryFilterProps {
   categories: Category[];
