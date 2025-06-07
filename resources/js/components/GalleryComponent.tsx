@@ -69,6 +69,7 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl relative">
+      
       <DecorativeElements />
       
       <CategoryFilter 

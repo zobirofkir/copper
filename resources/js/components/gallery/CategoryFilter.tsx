@@ -15,7 +15,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
   selectedCategory, 
   onCategoryChange 
 }) => {
-  const { language } = useLanguage(); // ✅ تم نقلها داخل جسم المكون
+  const { language } = useLanguage(); 
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCategories, setFilteredCategories] = useState<Category[]>(categories);
   const [currentLang, setCurrentLang] = useState('en');
