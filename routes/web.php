@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -41,4 +42,4 @@ Route::get('/galleries', [GalleryController::class, 'index'])->name('list-galler
 /**
  * Contact Page
  */
-Route::get('/contacts', function() { return inertia('ContactPage'); })->name('contact.page');
+Route::resource('/contacts', ContactController::class);
