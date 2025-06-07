@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\ProjectService;
 use Illuminate\Support\ServiceProvider;
 
 class ProjectServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class ProjectServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('ProjectService', ProjectService::class);
     }
 
     /**
