@@ -36,7 +36,6 @@ Route::get('/blogs/{id}', [App\Http\Controllers\BlogController::class, 'show'])-
  * Gallery Page
  */
 Route::get('/galleries', [GalleryController::class, 'index'])->name('list-galleries');
-Route::get('/api/galleries', [GalleryController::class, 'getGalleries'])->name('api.galleries');
 
 /**
  * Contact Page
