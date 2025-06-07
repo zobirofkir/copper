@@ -17,10 +17,14 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const controls = useAnimation();
   
-  // Use state for filtered galleries to ensure proper rerendering
+  /**
+   * Use state for filtered galleries to ensure proper rerendering
+   */
   const [filteredGalleries, setFilteredGalleries] = useState(galleries);
   
-  // Update filtered galleries when category or galleries change
+  /**
+   * Update filtered galleries when category or galleries change
+   */
   useEffect(() => {
     if (selectedCategory === null) {
       setFilteredGalleries(galleries);
@@ -34,10 +38,14 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
     controls.start("visible");
   }, [controls]);
   
-  // Force rerender when category changes
+  /**
+   * Force rerender when category changes
+   */
   const handleCategoryChange = useCallback((categoryId: number | null) => {
     setSelectedCategory(categoryId);
-    // Reset animation controls to ensure rerender
+    /**
+     * Reset animation controls to ensure rerender
+     */
     controls.set("hidden");
     setTimeout(() => {
       controls.start("visible");
@@ -61,6 +69,7 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl relative">
+      
       <DecorativeElements />
       
       <CategoryFilter 

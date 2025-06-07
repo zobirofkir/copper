@@ -22,8 +22,8 @@ const Logo: React.FC = () => {
           />
         </div>
         <span className="hidden sm:block font-serif tracking-wide text-lg">
-          <span className="text-amber-400 font-bold">Cop</span>
-          <span className="font-light">per</span>
+          <span className="text-amber-400 font-bold">Arr</span>
+          <span className="font-light">aid</span>
         </span>
       </Link>
     </motion.div>

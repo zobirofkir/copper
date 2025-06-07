@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { t } from "@/translations/galleryTranslations";
+import { useLanguage } from "../header/useLanguage";
 
 const DecorativeElements: React.FC = () => {
+
+  const { language } = useLanguage();
+
+  const [currentLang, setCurrentLang] = useState('en');
+
+  useEffect(() => {
+    setCurrentLang(language);
+
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, [language]);
+
   return (
     <>
       <motion.div 
@@ -27,7 +45,7 @@ const DecorativeElements: React.FC = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-4xl md:text-5xl font-serif font-bold mb-6 text-center text-gray-900 dark:text-gray-100 tracking-tight"
       >
-        Galerie Photos
+      {t('GalleryTitle', currentLang)}
       </motion.h2>
       
       <motion.div

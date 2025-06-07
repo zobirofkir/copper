@@ -75,7 +75,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
               >
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 text-lg font-medium transition-all border-l-2 border-transparent hover:border-amber-400 pl-3 hover:pl-5 hover:text-amber-300"
+                  className="block px-4 py-3 text-lg font-medium transition-all border-l-2 border-transparent hover:border-amber-400 pl-3 hover:pl-5 hover:text-amber-300 text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.translationKey ? t(item.translationKey, language) : t(item.title.toLowerCase(), language) || item.title}
@@ -102,7 +102,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className={`w-10 h-10 rounded-full flex items-center justify-center group transition-colors duration-300 
-                      bg-amber-800/50 hover:bg-amber-700/70 ${social.color}`}
+                      bg-white text-black ${social.color}`}
                   >
                     {social.icon}
                   </motion.a>
@@ -117,12 +117,12 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen, isDarkMode, me
               transition={{ delay: 1 }}
               className="pt-4 mt-2 text-center text-sm"
             >
-              <p className="mb-2 flex items-center justify-center gap-2">
-                <Phone size={14} className="text-amber-400" />
+              <p className="mb-2 flex items-center justify-center gap-2 text-white">
+                <Phone size={14} className="text-white" />
                 +1 (234) 567-8900
               </p>
-              <p className="flex items-center justify-center gap-2">
-                <Video size={14} className="text-amber-400" />
+              <p className="flex items-center justify-center gap-2 text-white">
+                <Video size={14} className="text-white" />
                 {language === 'fr' ? 'Réserver une consultation virtuelle' : 'Book a Virtual Consultation'}
               </p>
             </motion.div>

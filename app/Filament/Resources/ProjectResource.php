@@ -40,6 +40,11 @@ class ProjectResource extends Resource
                     ->label('Catégorie de Projet')
                     ->relationship('projectCategory', 'title')
                     ->required(),
+
+                TextInput::make('title')
+                    ->label('Titre')
+                    ->required(),
+
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
@@ -52,6 +57,7 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('title'),
                 ImageColumn::make('image')
                     ->label('Image'),
             ])

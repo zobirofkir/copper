@@ -39,6 +39,12 @@ class GalleryResource extends Resource
                     ->label('Category')
                     ->relationship('category', 'title')
                     ->required(),
+
+                Select::make('project_id')
+                    ->label('Project')
+                    ->relationship('project', 'title')
+                    ->required(),
+                    
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
@@ -55,6 +61,9 @@ class GalleryResource extends Resource
                     ->label('Image'),
                 TextColumn::make('category.title')
                     ->label('Category')
+                    ->sortable(),
+                TextColumn::make('project.title')
+                    ->label('Project')
                     ->sortable(),
             ])
             ->filters([

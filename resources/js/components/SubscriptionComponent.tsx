@@ -35,7 +35,7 @@ const SubscriptionComponent = () => {
   return (
     <div className="relative py-16 overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-amber-50/30 to-white dark:from-gray-900/50 dark:to-black"></div>
+      <div className="absolute inset-0 -z-10 bg-white dark:bg-black"></div>
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-100/30 dark:bg-amber-900/10 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-100/30 dark:bg-amber-900/10 rounded-full blur-3xl"></div>
       
@@ -170,6 +170,15 @@ const SubscriptionComponent = () => {
           )}
         </motion.div>
       </div>
+
+      {/* Top copper accent border with animation */}
+      <motion.div 
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="absolute top-0 w-full h-0.5 bg-amber-500 origin-right"
+      />
+      
     </div>
   )
 }

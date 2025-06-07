@@ -35,10 +35,14 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
     }
   }, [isDarkMode]);
   
-  // Listen for language changes
+  /**
+   * Listen for language changes
+   */
   useEffect(() => {
     const handleLanguageChange = () => {
-      // Force a re-render when language changes
+      /**
+       * Force a re-render when language changes
+       */
       setScrolled(prev => !prev);
       setTimeout(() => setScrolled(prev => !prev), 0);
     };
@@ -70,18 +74,26 @@ export const useHeaderComponent = (): [HeaderComponentState, HeaderComponentActi
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
-  // Get translated menu items based on current language
+  /**
+   * Get translated menu items based on current language
+   */
   const getTranslatedMenuItems = () => {
     return menuItems.map(item => {
       const translatedItem = { ...item };
       if (language === 'en') {
-        // Translate French titles to English
+        
+        /**
+         * Translate French titles to English
+         */
         if (item.title === 'Accueil') translatedItem.title = 'Home';
         if (item.title === 'Projets') translatedItem.title = 'Projects';
         if (item.title === 'À propos') translatedItem.title = 'About';
         if (item.title === 'Gallery') translatedItem.title = 'Gallery';
       } else {
-        // Keep original French titles or translate English titles to French
+        
+        /**
+         * Keep original French titles or translate English titles to French
+         */
         if (item.title === 'Home') translatedItem.title = 'Accueil';
         if (item.title === 'Projects') translatedItem.title = 'Projets';
         if (item.title === 'About') translatedItem.title = 'À propos';
