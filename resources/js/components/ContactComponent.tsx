@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { t } from '../translations/contactTranslations'
 import { useLanguage } from '../components/header/useLanguage'
+import { useForm } from '@inertiajs/react'
 
 const ContactComponent = () => {
   const [currentLang, setCurrentLang] = useState('en')
@@ -17,6 +18,25 @@ const ContactComponent = () => {
     window.addEventListener('languageChanged', handleLanguageChange)
     return () => window.removeEventListener('languageChanged', handleLanguageChange)
   }, [language])
+
+
+  const { data, setData, post, processing, errors, reset } = useForm({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  })
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    post('/contacts', {
+      onSuccess: () => {
+        reset()
+        alert('Nous vous contacterons dès que possible !')
+      },
+    })
+  }
+  
 
   return (
     <section className="bg-white dark:bg-black text-gray-800 dark:text-white py-16">
@@ -38,50 +58,70 @@ const ContactComponent = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <form className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">{t('name', currentLang)}</label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
+                    value={data.name}
+                    onChange={(e) => setData('name', e.target.value)}
+                    className="..."
                   />
+                  {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">{t('email', currentLang)}</label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
+                    value={data.email}
+                    onChange={(e) => setData('email', e.target.value)}
+                    className="..."
                   />
+                  {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                 </div>
               </div>
+
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">{t('subject', currentLang)}</label>
                 <input
                   type="text"
                   id="subject"
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
+                  value={data.subject}
+                  onChange={(e) => setData('subject', e.target.value)}
+                  className="..."
                 />
+                {errors.subject && <p className="text-red-500 text-sm">{errors.subject}</p>}
               </div>
+
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">{t('message', currentLang)}</label>
                 <textarea
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
+                  value={data.message}
+                  onChange={(e) => setData('message', e.target.value)}
+                  className="..."
                 ></textarea>
+                {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
               </div>
+
               <div>
                 <button
                   type="submit"
+                  disabled={processing}
                   className="w-full px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-md transition-colors duration-300"
                 >
-                  {t('send', currentLang)}
+                  {processing ? t('sending', currentLang) : t('send', currentLang)}
                 </button>
               </div>
             </form>
+
           </motion.div>
 
           {/* Contact Info */}
