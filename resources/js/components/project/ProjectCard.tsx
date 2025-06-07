@@ -35,7 +35,7 @@ const ProjectCard = ({ project, index, openProjectModal, currentLang = 'en' }: P
       layout
       className="group rounded-3xl overflow-hidden shadow-xl bg-white/20 dark:bg-black/30 backdrop-blur-md border border-gray-200/40 dark:border-gray-700/40 transition-transform hover:scale-[1.015]"
     >
-      <Link href="/galleries">
+      <Link href={`/galleries?project=${project.id}`}>
         <div className="relative overflow-hidden aspect-[4/3]">
 
           {/* Background image with slight zoom */}

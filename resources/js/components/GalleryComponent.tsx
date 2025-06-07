@@ -16,34 +16,20 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const controls = useAnimation();
-  
-  /**
-   * Use state for filtered galleries to ensure proper rerendering
-   */
-  const [filteredGalleries, setFilteredGalleries] = useState(galleries);
-  
-  /**
-   * Update filtered galleries when category or galleries change
-   */
-  useEffect(() => {
-    if (selectedCategory === null) {
-      setFilteredGalleries(galleries);
-    } else {
-      setFilteredGalleries(galleries.filter(gallery => gallery.category_id === selectedCategory));
-    }
-  }, [selectedCategory, galleries]);
+
+  const filteredGalleries = useMemo(() => {
+    return selectedCategory
+      ? galleries.filter(g => g.category_id === selectedCategory)
+      : galleries;
+  }, [galleries, selectedCategory]);
 
   useEffect(() => {
     setIsLoaded(true);
     controls.start("visible");
   }, [controls]);
-  
-  /**
-   * Force rerender when category changes
-   */
+
   const handleCategoryChange = useCallback((categoryId: number | null) => {
     setSelectedCategory(categoryId);
-    // Reset animation controls to ensure rerender
     controls.set("hidden");
     setTimeout(() => {
       controls.start("visible");
