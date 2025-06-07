@@ -18,7 +18,7 @@ class GalleryService implements GalleryConstructor
         $query = Gallery::with('category', 'project.projectCategory');
     
         /**
-         * µFilter by project_category_id if provided
+         * Filter by project_category_id if provided
          */
         if ($request->has('project_category_id')) {
             $query->whereHas('project.projectCategory', function ($q) use ($request) {
