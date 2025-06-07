@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\GalleryService;
 use Illuminate\Support\ServiceProvider;
 
 class GalleryServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class GalleryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind("GalleryService", GalleryService::class);
     }
 
     /**
