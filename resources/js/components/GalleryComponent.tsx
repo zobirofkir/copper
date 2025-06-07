@@ -43,7 +43,9 @@ const GalleryComponent: React.FC<GalleryProps> = ({ galleries, categories = [] }
    */
   const handleCategoryChange = useCallback((categoryId: number | null) => {
     setSelectedCategory(categoryId);
-    // Reset animation controls to ensure rerender
+    /**
+     * Reset animation controls to ensure rerender
+     */
     controls.set("hidden");
     setTimeout(() => {
       controls.start("visible");
