@@ -3,6 +3,7 @@
 namespace App\Services\Services;
 
 use App\Filament\Resources\BlogResource;
+use App\Models\Blog;
 use App\Services\Constructors\BlogConstructor;
 
 class BlogService implements BlogConstructor
@@ -21,11 +22,12 @@ class BlogService implements BlogConstructor
     }
 
     /**
-     * Show Blog By Id
+     * Show Blog By slug
      */
-    public function show($id)
+    public function show($slug)
     {
-        $blog = BlogResource::getEloquentQuery()->findOrFail($id);
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        
         $blog->image = $blog->image ? asset('storage/' . $blog->image) : null;
 
         return inertia('blogs/ShowBlogPage', ['blog' => $blog]);

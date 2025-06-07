@@ -17,10 +17,10 @@ class BlogController extends Controller
     }
 
     /**
-     * Show Blog by id
+     * Show Blog by slug
      */
-    public function show($id)
+    public function show($slug)
     {
-        return BlogFacade::show($id);
+        return BlogFacade::show($slug);
     }
 }

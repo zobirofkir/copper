@@ -31,7 +31,7 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blog.page');
 /**
  * Show Blog Page
  */
-Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('show-blog.page');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('show-blog.page');
 
 /**
  * Gallery Page

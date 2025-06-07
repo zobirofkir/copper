@@ -40,11 +40,11 @@ const BlogComponent = ({ blogs }: { blogs: any[] }) => {
         >
           {blogs.map((blog) => (
             <motion.div
-              key={blog.id}
+              key={blog.slug}
               variants={itemVariants}
               className="bg-gradient-to-br from-gray-50 to-transparent dark:from-gray-900/20 dark:to-transparent border border-gray-200/50 dark:border-gray-700/30 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <Link href={`/blogs/${blog.id}`}>
+              <Link href={`/blogs/${blog.slug}`}>
                 <motion.div
                   className="relative"
                   initial="hidden"

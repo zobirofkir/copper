@@ -10,7 +10,7 @@ interface BlogConstructor
     public function index();
 
     /**
-     * Show Blog By Id
+     * Show Blog By slug
      */
-    public function show($id);
+    public function show($slug);
 }
