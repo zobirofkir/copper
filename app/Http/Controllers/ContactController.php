@@ -20,12 +20,11 @@ class ContactController extends Controller
     /**
      * Store New Contact Info
      */
-    public function store(ContactRequest $request) : ContactResource
+    public function store(ContactRequest $request)
     {
-        return ContactResource::make(
-            Contact::create(
-                $request->validated()
-            )
-        );
+        Contact::create($request->validated());
+    
+        return redirect('/contacts')
+            ->with('success', 'Votre message a été envoyé avec succès.');
     }
 }

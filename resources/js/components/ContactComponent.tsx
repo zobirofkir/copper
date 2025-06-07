@@ -32,7 +32,7 @@ const ContactComponent = () => {
     post('/contacts', {
       onSuccess: () => {
         reset()
-        alert('Nous vous contacterons dès que possible !')
+        alert('Votre message a été envoyé avec succès.')
       },
     })
   }
