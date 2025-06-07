@@ -24,7 +24,12 @@ export const translations = {
      * Call to action
      */
     contactUs: 'Contact Us',
-    startProject: 'Start Your Project'
+    startProject: 'Start Your Project',
+
+    /**
+     * Gallery 
+     */
+    galleyFiltration: 'List All Galleries'
   },
   fr: {
     /**
@@ -51,7 +56,12 @@ export const translations = {
      * Call to action
      */
     contactUs: 'Contactez-Nous',
-    startProject: 'Démarrer Votre Projet'
+    startProject: 'Démarrer Votre Projet',
+
+    /**
+     * Gallery
+     */
+    galleyFiltration: 'Tous',
   }
 };
 

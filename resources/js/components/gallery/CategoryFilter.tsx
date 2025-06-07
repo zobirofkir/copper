@@ -1,6 +1,8 @@
 import React, { memo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Category } from "./types";
+import { t } from "@/translations/projectTranslations";
+import { useLanguage } from "../header/useLanguage";
 
 interface CategoryFilterProps {
   categories: Category[];
@@ -13,9 +15,22 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
   selectedCategory, 
   onCategoryChange 
 }) => {
+  const { language } = useLanguage(); // ✅ تم نقلها داخل جسم المكون
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCategories, setFilteredCategories] = useState<Category[]>(categories);
-  
+  const [currentLang, setCurrentLang] = useState('en');
+
+  useEffect(() => {
+    setCurrentLang(language);
+
+    const handleLanguageChange = (e) => {
+      setCurrentLang(e.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, [language]);
+
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFilteredCategories(categories);
@@ -26,9 +41,9 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
       setFilteredCategories(filtered);
     }
   }, [searchTerm, categories]);
-  
+
   if (categories.length === 0) return null;
-  
+
   const handleCategoryClick = (categoryId: number | null) => {
     if (categoryId !== selectedCategory) {
       onCategoryChange(categoryId);
@@ -38,7 +53,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
   const goToGalleries = () => {
     window.location.href = '/galleries';
   };
-    
+
   return (
     <div className="mb-10">
       <div className="mb-4 flex justify-center gap-4 items-center">
@@ -64,13 +79,13 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={goToGalleries}
-          className="whitespace-nowrap px-5 py-2 bg-gradient-to-r from-gray-600 to-black  text-white rounded-lg shadow-lg font-semibold transition-transform duration-300 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-400"
+          className="whitespace-nowrap px-5 py-2 bg-gradient-to-r from-gray-600 to-black text-white rounded-lg shadow-lg font-semibold transition-transform duration-300 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-400"
           aria-label="Go to Galleries"
         >
-          View All Galleries
+          {t('galleyFiltration', currentLang)}
         </motion.button>
       </div>
-      
+
       <div className="overflow-x-auto pb-2">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -89,7 +104,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
           >
             Tout
           </button>
-          
+
           {filteredCategories.map(category => (
             <button 
               key={category.id}
@@ -103,7 +118,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = memo(({
               {category.title}
             </button>
           ))}
-          
+
           {filteredCategories.length === 0 && searchTerm && (
             <div className="px-4 py-2 text-gray-500 dark:text-gray-400">
               No categories found
