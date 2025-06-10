@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { t } from '../translations/subscriptionTranslations'
 import { useLanguage } from '../components/header/useLanguage'
+import { router } from '@inertiajs/react'
 
 const SubscriptionComponent = () => {
   const [currentLang, setCurrentLang] = useState('en')
@@ -23,13 +24,21 @@ const SubscriptionComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    setEmail('')
-    setName('')
     
-    setTimeout(() => {
-      setIsSubmitted(false)
-    }, 3000)
+    router.post('/subscriptions', {
+      fullname: name,
+      email: email,
+    }, {
+      onSuccess: () => {
+        setIsSubmitted(true)
+        setEmail('')
+        setName('')
+        
+        setTimeout(() => {
+          setIsSubmitted(false)
+        }, 3000)
+      }
+    })
   }
 
   return (
