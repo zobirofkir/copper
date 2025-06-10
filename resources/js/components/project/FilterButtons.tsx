@@ -19,7 +19,7 @@ const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick, 
       animate={controls}
       className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12"
     >
-      <motion.button
+      {/* <motion.button
         variants={itemVariants}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -31,7 +31,7 @@ const FilterButtons = ({ controls, categories, activeFilter, handleFilterClick, 
         }`}
       >
         {t('all', currentLang)}
-      </motion.button>
+      </motion.button> */}
       
       {categories.map((category, index) => (
         <motion.button
