@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -43,3 +44,8 @@ Route::get('/galleries', [GalleryController::class, 'index'])->name('list-galler
  * Contact Page
  */
 Route::resource('/contacts', ContactController::class);
+
+/**
+ * Subscription Routes 
+ */
+Route::resource('/subscriptions', SubscriptionController::class);
