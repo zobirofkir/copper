@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useProjectComponent } from '@/hooks/useProjectComponent'
 import BackgroundElements from './project/BackgroundElements'
 import SectionHeader from './project/SectionHeader'
 import FilterButtons from './project/FilterButtons'
 import ProjectGrid from './project/ProjectGrid'
-import CallToAction from './project/CallToAction'
-import ProjectModal from './project/ProjectModal'
 
 import { t } from '../translations/projectTranslations'
 import { useLanguage } from '../components/header/useLanguage'
@@ -82,7 +80,6 @@ const ProjectComponent = () => {
           openProjectModal={openProjectModal}
           currentLang={currentLang}
         />
-        <CallToAction controls={controls} currentLang={currentLang} />
       </div>
       
       {/* Bottom copper accent border with animation */}
