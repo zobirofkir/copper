@@ -156,15 +156,16 @@ ble
         {/* Bottom Section */}
         <div className="border-t border-gray-200/20 dark:border-gray-700/30 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="text-white text-sm"
-            >
-              {t('copyright', currentLang, { year: currentYear })}
-            </motion.p>
-            
+            <a href="https://nl-digitalagency.com/">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="text-white text-sm"
+              >
+                {t('copyright', currentLang, { year: currentYear })}
+              </motion.p>
+            </a>
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
