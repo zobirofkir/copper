@@ -21,8 +21,8 @@ export const translations = {
      */
     contactTitle: 'Contact',
     address: '123 Copper Street\n75001 Paris, France',
-    phone: '+33 1 23 45 67 89',
-    email: 'contact@copperartistry.com',
+    phone: '+212 664-561079',
+    email: 'contact@arraid.net',
     
     /**
      * Footer Bottom
@@ -54,8 +54,8 @@ export const translations = {
      */
     contactTitle: 'Contact',
     address: '123 Rue du Cuivre\n75001 Paris, France',
-    phone: '+33 1 23 45 67 89',
-    email: 'contact@copperartistry.com',
+    phone: '+212 664-561079',
+    email: 'contact@arraid.net',
     
     /**
      * Footer Bottom

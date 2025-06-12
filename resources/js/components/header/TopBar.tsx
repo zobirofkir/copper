@@ -24,11 +24,11 @@ const TopBar: React.FC<TopBarProps> = ({ isDarkMode }) => {
         <div className="flex space-x-4 mb-2 sm:mb-0 text-sm">
           <span className="md:flex hidden items-center gap-1">
             <Phone size={14} className="text-amber-600" />
-            <span className="hidden sm:inline">+1 (234) 567-8900</span>
+            <span className="hidden sm:inline">+212 664-561079</span>
           </span>
           <span className="md:flex hidden md:flex items-center gap-1">
             <Video size={14} className="text-amber-600" />
-            <span>contact@araid.com</span>
+            <span>contact@arraid.net</span>
           </span>
         </div>
         
