@@ -3,8 +3,8 @@ export const translations = {
     /**
      * Company Info
      */
-    companyName: 'Copper Artistry',
-    companyDescription: 'Creators of copper excellence since 1990. Our craftsmanship at the service of your vision.',
+    companyName: 'Arraid',
+    companyDescription: 'Creators of Arraid excellence since 1990. Our craftsmanship at the service of your vision.',
     
     /**
      * Quick Links
@@ -20,14 +20,14 @@ export const translations = {
      * Contact Info
      */
     contactTitle: 'Contact',
-    address: '123 Copper Street\n75001 Paris, France',
+    address: '123 Arraid Street\n75001 Paris, France',
     phone: '+212 664-561079',
     email: 'contact@arraid.net',
     
     /**
      * Footer Bottom
      */
-    copyright: '© {year} Copper Artistry. All rights reserved by NL Digital Agency.',
+    copyright: '© {year} Arraid. All rights reserved by NL Digital Agency.',
     legalNotice: 'Legal Notice',
     privacyPolicy: 'Privacy Policy',
     termsOfSale: 'Terms of Sale'
@@ -36,7 +36,7 @@ export const translations = {
     /**
      * Company Info
      */
-    companyName: 'Copper Artistry',
+    companyName: 'Arraid',
     companyDescription: 'Créateurs d\'excellence en cuivre depuis 1990. Notre savoir-faire artisanal au service de votre vision.',
     
     /**
@@ -60,7 +60,7 @@ export const translations = {
     /**
      * Footer Bottom
      */
-    copyright: '© {year} Copper Artistry. Tous droits réservés par NL Digital Agency.',
+    copyright: '© {year} Arraid. Tous droits réservés par NL Digital Agency.',
     legalNotice: 'Mentions Légales',
     privacyPolicy: 'Politique de Confidentialité',
     termsOfSale: 'Conditions de Vente'
