@@ -23,7 +23,9 @@ const SliderComponent = () => {
    */
   const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, speed: number, opacity: number}>>([])
   
-  // Update component when language changes
+  /**
+   * Update component when language changes
+   */
   useEffect(() => {
     setCurrentLanguage(language)
   }, [language])
