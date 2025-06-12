@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GalleryCategoryResource\Pages;
 use App\Filament\Resources\GalleryCategoryResource\RelationManagers;
+use App\Filament\Resources\GalleryCategoryResource\RelationManagers\GalleriesRelationManager;
 use App\Models\GalleryCategory;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -56,7 +57,7 @@ class GalleryCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            GalleriesRelationManager::class
         ];
     }
 
