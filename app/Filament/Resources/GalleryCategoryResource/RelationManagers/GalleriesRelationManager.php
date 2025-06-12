@@ -26,6 +26,11 @@ class GalleriesRelationManager extends RelationManager
                 ->searchable()
                 ->preload()
                 ->required(),
+
+            Select::make('project_id')
+                ->label('Project')
+                ->relationship('project', 'title')
+                ->required(),
         ])->columns(1);
     }
 
